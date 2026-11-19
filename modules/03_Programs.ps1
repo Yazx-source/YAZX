@@ -1,0 +1,81 @@
+param($YazxDir, $BackupDir, $LogFile)
+# YAZX Module 03 - Install All Programs
+# Installs from backup or downloads
+
+function Log($msg) { "[$((Get-Date).ToString('yyyy-MM-dd HH:mm:ss'))] $msg" | Out-File $LogFile -Append -Encoding UTF8 }
+
+Write-Host "`n  === YAZX Module 03: Programs ===" -ForegroundColor Cyan
+Log "Module 03 Programs: Started"
+
+# Program list with install methods
+$programs = @(
+    @{Name="7-Zip"; Check="C:\Program Files\7-Zip\7z.exe"; Url="https://www.7-zip.org/a/7z2402-x64.exe"; Silent="/S"}
+    @{Name="Process Lasso"; Check="C:\Program Files\Process Lasso\ProcessLasso.exe"; Backup="yazx_ProcessLasso"; Url="https://dl.bitsum.com/files/processlassosetup64.exe"; Silent="/S"}
+    @{Name="MSI Afterburner"; Check="C:\Program Files (x86)\MSI Afterburner\MSIAfterburner.exe"; Backup="yazx_MSI_Afterburner"; Url="https://download.msi.com/uti_exe/vga/MSIAfterburnerSetup466.zip"; Silent="/S"}
+    @{Name="Equalizer APO"; Check="C:\Program Files\EqualizerAPO\Editor.exe"; Backup="yazx_EqualizerAPO"; Url="https://sourceforge.net/projects/equalizerapo/files/latest/download"; Silent="/S"}
+    @{Name="Open-Shell"; Check="C:\Program Files\Open-Shell\StartMenu.exe"; Backup="yazx_OpenShell"; Silent="QUIET"}
+    @{Name="ParkControl"; Check="C:\Program Files\ParkControl\ParkControl.exe"; Backup="yazx_ParkControl"; Url="https://dl.bitsum.com/files/parkcontrolsetup64.exe"; Silent="/S"}
+    @{Name="Mem Reduct"; Check="C:\Program Files\Mem Reduct\memreduct.exe"; Backup="yazx_MemReduct"; Portable=$true}
+    @{Name="LibreWolf"; Check="C:\Program Files\LibreWolf\librewolf.exe"; Url="https://librewolf.net/installation/windows/"; Manual=$true}
+    @{Name="Steam"; Check="C:\Program Files (x86)\Steam\steam.exe"; Url="https://cdn.akamai.steamstatic.com/client/installer/SteamSetup.exe"; Silent="/S"}
+    @{Name="Discord"; Check="$env:LOCALAPPDATA\Discord\Update.exe"; Url="https://discord.com/api/downloads/distributions/app/installers/latest?channel=stable&platform=win&arch=x64"; Silent="-s"}
+    @{Name="Brave"; Check="C:\Program Files\BraveSoftware\Brave-Browser\Application\brave.exe"; Url="https://laptop-updates.brave.com/latest/winx64"; Silent="--silent --install"}
+    @{Name="Git"; Check="C:\Program Files\Git\git-cmd.exe"; Url="https://github.com/git-for-windows/git/releases/latest"; Manual=$true}
+    @{Name="VS Code"; Check="$env:LOCALAPPDATA\Programs\Microsoft VS Code\Code.exe"; Url="https://code.visualstudio.com/sha/download?build=stable&os=win32-x64-user"; Silent="/VERYSILENT"}
+    @{Name="Revo Uninstaller"; Check="C:\Program Files\VS Revo Group\Revo Uninstaller Pro\RevoUninPro.exe"; Backup="yazx_RevoUninstaller"; Manual=$true}
+    @{Name="ExplorerPatcher"; Check="$null"; Backup="yazx_ExplorerPatcher"; Manual=$true}
+    @{Name="RW-Everything"; Check="$null"; Backup="yazx_BIOS"; Portable=$true}
+)
+
+$installed = 0
+$needInstall = 0
+
+foreach ($prog in $programs) {
+    $exists = $false
+    if ($prog.Check -and $prog.Check -ne '$null') {
+        $exists = Test-Path $prog.Check
+    }
+
+    if ($exists) {
+        Write-Host "  [OK] $($prog.Name) - Already installed" -ForegroundColor Green
+        $installed++
+    } else {
+        $needInstall++
+        if ($prog.Manual) {
+            Write-Host "  [!!] $($prog.Name) - Manual install needed" -ForegroundColor Red
+            if ($prog.Url) { Write-Host "       URL: $($prog.Url)" -ForegroundColor Gray }
+            if ($prog.Backup -and (Test-Path "$BackupDir\$($prog.Backup)")) {
+                Write-Host "       Backup available: $BackupDir\$($prog.Backup)" -ForegroundColor Yellow
+            }
+            Log "$($prog.Name): Manual install needed"
+        } elseif ($prog.Portable -and $prog.Backup -and (Test-Path "$BackupDir\$($prog.Backup)")) {
+            Write-Host "  [=>] $($prog.Name) - Copying from backup..." -ForegroundColor Yellow
+            $dst = "C:\Program Files\$($prog.Name)"
+            New-Item -ItemType Directory -Path $dst -Force -ErrorAction SilentlyContinue | Out-Null
+            Copy-Item "$BackupDir\$($prog.Backup)\*" "$dst\" -Recurse -Force -ErrorAction SilentlyContinue
+            Write-Host "  [OK] $($prog.Name) - Copied from backup" -ForegroundColor Green
+            Log "$($prog.Name): Installed from backup"
+        } else {
+            Write-Host "  [!!] $($prog.Name) - Needs installation" -ForegroundColor Red
+            if ($prog.Url) { Write-Host "       URL: $($prog.Url)" -ForegroundColor Gray }
+            Log "$($prog.Name): Not installed, needs download"
+        }
+    }
+}
+
+# VC++ Redistributables
+Write-Host "`n  --- Visual C++ Redistributables ---" -ForegroundColor Yellow
+$vcList = @("2005", "2008", "2010", "2012", "2013", "2022")
+foreach ($vc in $vcList) {
+    $found = Get-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\*" -ErrorAction SilentlyContinue |
+        Where-Object { $_.DisplayName -match "Visual C\+\+ $vc" }
+    if ($found) {
+        Write-Host "  [OK] VC++ $vc" -ForegroundColor Green
+    } else {
+        Write-Host "  [!!] VC++ $vc - Missing" -ForegroundColor Red
+    }
+}
+
+Write-Host "`n  Summary: $installed already installed, $needInstall need installation" -ForegroundColor Cyan
+Log "Module 03 Programs: $installed installed, $needInstall needed. Completed"
+Write-Host "  [OK] Programs module complete.`n" -ForegroundColor Green

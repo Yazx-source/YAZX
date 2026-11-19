@@ -1,0 +1,125 @@
+Windows Registry Editor Version 5.00
+
+; ================================================================
+; YAZX Gaming Registry Tweaks
+; Made by YAZX
+; Priority, MMCSS, Memory, GPU, Mouse, Keyboard, FileSystem, GameBar
+; ================================================================
+
+; --- Priority Separation (FPS Preset: 0x26 = 38) ---
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\PriorityControl]
+"Win32PrioritySeparation"=dword:00000026
+"IRQ8Priority"=dword:00000001
+"IRQ0Priority"=dword:00000002
+
+; --- MMCSS (Multimedia Class Scheduler) ---
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile]
+"SystemResponsiveness"=dword:00000000
+"NetworkThrottlingIndex"=dword:ffffffff
+"NoLazyMode"=dword:00000001
+"LazyModeTimeout"=dword:00000000
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProfile\Tasks\Games]
+"Affinity"=dword:00000000
+"Background Only"="False"
+"Clock Rate"=dword:00002710
+"GPU Priority"=dword:00000008
+"Priority"=dword:00000006
+"Scheduling Category"="High"
+"SFIO Priority"="High"
+"Latency Sensitive"="True"
+
+; --- Memory Management ---
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management]
+"DisablePagingExecutive"=dword:00000001
+"LargeSystemCache"=dword:00000000
+"ClearPageFileAtShutdown"=dword:00000000
+"NonPagedPoolQuota"=dword:00000000
+"PagedPoolQuota"=dword:00000000
+"NonPagedPoolSize"=dword:00000000
+"PagedPoolSize"=dword:00000000
+"SystemPages"=dword:00000000
+
+; --- Graphics Drivers ---
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\GraphicsDrivers]
+"HwSchMode"=dword:00000002
+"TdrDelay"=dword:0000003c
+
+; --- Disable Multiplane Overlay (MPO) ---
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\Dwm]
+"OverlayTestMode"=dword:00000005
+
+; --- FileSystem ---
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\FileSystem]
+"NtfsDisableLastAccessUpdate"=dword:80000002
+"NtfsDisable8dot3NameCreation"=dword:00000002
+"NtfsMemoryUsage"=dword:00000000
+
+; --- Mouse (1:1 raw input, no acceleration) ---
+[HKEY_CURRENT_USER\Control Panel\Mouse]
+"MouseSpeed"="0"
+"MouseSensitivity"="10"
+"MouseThreshold1"="0"
+"MouseThreshold2"="0"
+"MouseHoverTime"="10"
+
+; Flat 1:1 acceleration curves
+[HKEY_CURRENT_USER\Control Panel\Mouse]
+"SmoothMouseXCurve"=hex:00,00,00,00,00,00,00,00,\
+  c0,cc,0c,00,00,00,00,00,\
+  80,99,19,00,00,00,00,00,\
+  40,66,26,00,00,00,00,00,\
+  00,33,33,00,00,00,00,00
+"SmoothMouseYCurve"=hex:00,00,00,00,00,00,00,00,\
+  00,00,38,00,00,00,00,00,\
+  00,00,70,00,00,00,00,00,\
+  00,00,a8,00,00,00,00,00,\
+  00,00,e0,00,00,00,00,00
+
+; --- Keyboard ---
+[HKEY_CURRENT_USER\Control Panel\Keyboard]
+"KeyboardDelay"="0"
+"KeyboardSpeed"="31"
+
+; --- Accessibility (disable StickyKeys etc) ---
+[HKEY_CURRENT_USER\Control Panel\Accessibility\StickyKeys]
+"Flags"="506"
+
+[HKEY_CURRENT_USER\Control Panel\Accessibility\ToggleKeys]
+"Flags"="58"
+
+[HKEY_CURRENT_USER\Control Panel\Accessibility\Keyboard Response]
+"Flags"="122"
+
+; --- Game Bar ---
+[HKEY_CURRENT_USER\SOFTWARE\Microsoft\GameBar]
+"AllowAutoGameMode"=dword:00000001
+"AutoGameModeEnabled"=dword:00000001
+"ShowStartupPanel"=dword:00000000
+"UseNexusForGameBarEnabled"=dword:00000000
+
+; --- GameDVR (Disable) ---
+[HKEY_CURRENT_USER\System\GameConfigStore]
+"GameDVR_Enabled"=dword:00000000
+"GameDVR_FSEBehavior"=dword:00000002
+"GameDVR_HonorUserFSEBehaviorMode"=dword:00000001
+"GameDVR_DXGIHonorFSEWindowsCompatible"=dword:00000001
+"GameDVR_EFSEFeatureFlags"=dword:00000000
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\GameDVR]
+"AllowGameDVR"=dword:00000000
+
+; --- WPF Rendering (Hardware acceleration) ---
+[HKEY_CURRENT_USER\SOFTWARE\Microsoft\Avalon.Graphics]
+"DisableHWAcceleration"=dword:00000000
+
+; --- Disable Windows Error Reporting ---
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\Windows Error Reporting]
+"Disabled"=dword:00000001
+"DontSendAdditionalData"=dword:00000001
+"LoggingDisabled"=dword:00000001
+
+; --- Disable Telemetry ---
+[HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\DataCollection]
+"AllowTelemetry"=dword:00000000
+"MaxTelemetryAllowed"=dword:00000000

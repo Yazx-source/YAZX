@@ -1,0 +1,52 @@
+================================================================
+  YAZX NVCleanInstall Settings Guide
+  For RTX 3060 - Gaming Only Setup
+  Made by YAZX
+================================================================
+
+DOWNLOAD: https://www.techpowerup.com/nvcleaninstall/
+
+STEP 1 - Select Driver
+  - Choose "Manually select a driver version"
+  - Select: GeForce RTX 3060 → Windows 11 x64
+  - Pick latest Game Ready (WHQL) driver
+
+STEP 2 - Components to KEEP:
+  [x] Display Driver
+  [x] PhysX System Software
+  [x] HD Audio Driver (only if using HDMI/DP audio)
+
+STEP 3 - Components to REMOVE:
+  [ ] NVIDIA App / GeForce Experience
+  [ ] NvContainer (Local System)
+  [ ] NvContainer (Network Service)
+  [ ] NvModuleTracker / Telemetry
+  [ ] NVIDIA Backend (NodeJS)
+  [ ] Shield Wireless Controller Driver
+  [ ] Optimus (not needed for desktop)
+  [ ] USBType-C (if not using USB-C display)
+
+STEP 4 - Tweaks (Expert Mode):
+  [x] Disable Installer Telemetry & Advertising
+  [x] Disable Multiplane Overlay (MPO)
+  [x] Disable NVIDIA HD Audio device sleep timer
+  [x] Perform a Clean Installation
+  [x] Use method compatible with Easy Anti-Cheat
+  [x] Disable Driver Signature Checks (if needed)
+  [x] Show Expert Tweaks
+
+AFTER INSTALL:
+  1. Open NVIDIA Profile Inspector
+  2. Import Performances.nip (YAZX profile)
+  3. Apply and restart
+
+================================================================
+NVIDIA REGISTRY TWEAKS (applied by YAZX_Gaming.reg):
+  - HwSchMode = 2 (Hardware GPU Scheduling ON)
+  - TdrDelay = 60 (Timeout Detection Recovery delay)
+  - OverlayTestMode = 5 (Disable MPO)
+
+NVIDIA CONTAINERS (disabled by YAZX):
+  - NVDisplay.ContainerLocalSystem = disabled
+  - NvContainerLocalSystem = disabled
+================================================================
