@@ -1,0 +1,10 @@
+﻿
+
+Description          : Realtek Gaming 2.5GbE Family Controller
+IPAddress            : {192.168.8.135}
+DefaultIPGateway     : {192.168.8.1}
+DNSServerSearchOrder : {1.1.1.2, 1.0.0.2, 9.9.9.9, 149.112.112.112}
+MACAddress           : 74:56:3C:94:7D:D3
+
+
+

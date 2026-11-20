@@ -1,0 +1,14 @@
+﻿
+
+Name                      : 13th Gen Intel(R) Core(TM) i5-13400F
+NumberOfCores             : 10
+NumberOfLogicalProcessors : 16
+MaxClockSpeed             : 2500
+CurrentClockSpeed         : 2500
+CurrentVoltage            : 9
+VoltageCaps               : 
+L2CacheSize               : 9728
+L3CacheSize               : 20480
+
+
+

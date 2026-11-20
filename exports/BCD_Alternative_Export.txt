@@ -1,0 +1,25 @@
+﻿# YAZX BCD Alternative Export (from registry — bcdedit blocked)
+# Date: 2026-11-20 05:18
+
+## Boot Options (SystemStartOptions)
+   NOEXECUTE=OPTIN  USEPLATFORMTICK  DISABLEDYNAMICTICK  FVEBOOT=2666496  NOVGA
+
+## Parsed Boot Flags
+  NOEXECUTE=OPTIN (DEP enabled)
+  USEPLATFORMTICK (platform timer — reduces timer overhead)
+  DISABLEDYNAMICTICK (fixed timer — better for gaming latency)
+  NOVGA (no VGA driver — faster boot)
+
+## TimeZone/TSC Info
+  RealTimeIsUniversal: 
+
+## Known BCD Settings (from Phase 2 audit)
+  useplatformtick = yes
+  disabledynamictick = yes
+  tscsyncpolicy = Enhanced
+  These are confirmed by SystemStartOptions and Phase 2 research
+
+## Note
+  Full bcdedit /enum requires admin elevation
+  Power plan .pow export also requires admin
+  These will be available after format with admin access

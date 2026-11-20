@@ -1,0 +1,136 @@
+﻿
+
+DeviceName         : Intel(R) Management Engine Interface #1
+DriverProviderName : Intel
+DriverVersion      : 2407.6.1.0
+InfName            : oem17.inf
+DriverDate         : 20240211000000.******+***
+
+DeviceName         : Intel(R) LPC Controller/eSPI Controller - 7A06
+DriverProviderName : INTEL
+DriverVersion      : 10.1.46.5
+InfName            : oem16.inf
+DriverDate         : 19680718000000.******+***
+
+DeviceName         : Intel(R) PCI Express Root Port #3 - 7A3A
+DriverProviderName : INTEL
+DriverVersion      : 10.1.46.5
+InfName            : oem16.inf
+DriverDate         : 19680718000000.******+***
+
+DeviceName         : Intel(R) PCI Express Root Port #25 - 7A48
+DriverProviderName : INTEL
+DriverVersion      : 10.1.46.5
+InfName            : oem16.inf
+DriverDate         : 19680718000000.******+***
+
+DeviceName         : Intel(R) PCI Express Root Port #1 - 7A38
+DriverProviderName : INTEL
+DriverVersion      : 10.1.46.5
+InfName            : oem16.inf
+DriverDate         : 19680718000000.******+***
+
+DeviceName         : Intel(R) PEG10 - 460D
+DriverProviderName : INTEL
+DriverVersion      : 10.1.45.9
+InfName            : oem4.inf
+DriverDate         : 19680718000000.******+***
+
+DeviceName         : Intel(R) Host Bridge/DRAM Registers - 4648
+DriverProviderName : INTEL
+DriverVersion      : 10.1.45.9
+InfName            : oem4.inf
+DriverDate         : 19680718000000.******+***
+
+DeviceName         : Intel(R) Shared SRAM - 7A27
+DriverProviderName : INTEL
+DriverVersion      : 10.1.46.5
+InfName            : oem16.inf
+DriverDate         : 19680718000000.******+***
+
+DeviceName         : Intel(R) SMBus - 7A23
+DriverProviderName : INTEL
+DriverVersion      : 10.1.46.5
+InfName            : oem16.inf
+DriverDate         : 19680718000000.******+***
+
+DeviceName         : Intel(R) SPI (flash) Controller - 7A24
+DriverProviderName : INTEL
+DriverVersion      : 10.1.46.5
+InfName            : oem16.inf
+DriverDate         : 19680718000000.******+***
+
+DeviceName         : Intel(R) Serial IO I2C Host Controller - 7A4C
+DriverProviderName : Intel Corporation
+DriverVersion      : 30.100.2417.30
+InfName            : oem23.inf
+DriverDate         : 20240424000000.******+***
+
+DeviceName         : Intel(R) Serial IO I2C Host Controller - 7A4E
+DriverProviderName : Intel Corporation
+DriverVersion      : 30.100.2417.30
+InfName            : oem23.inf
+DriverDate         : 20240424000000.******+***
+
+DeviceName         : Intel(R) Serial IO I2C Host Controller - 7A4D
+DriverProviderName : Intel Corporation
+DriverVersion      : 30.100.2417.30
+InfName            : oem23.inf
+DriverDate         : 20240424000000.******+***
+
+DeviceName         : Intel(R) Serial IO I2C Host Controller - 7A4F
+DriverProviderName : Intel Corporation
+DriverVersion      : 30.100.2417.30
+InfName            : oem23.inf
+DriverDate         : 20240424000000.******+***
+
+DeviceName         : Intel(R) Serial IO GPIO Host Controller - INTC1085
+DriverProviderName : Intel Corporation
+DriverVersion      : 30.100.2417.30
+InfName            : oem22.inf
+DriverDate         : 20240424000000.******+***
+
+DeviceName         : Intel(R) Serial IO I2C Host Controller - 7A7D
+DriverProviderName : Intel Corporation
+DriverVersion      : 30.100.2417.30
+InfName            : oem23.inf
+DriverDate         : 20240424000000.******+***
+
+DeviceName         : Intel(R) Serial IO I2C Host Controller - 7A7C
+DriverProviderName : Intel Corporation
+DriverVersion      : 30.100.2417.30
+InfName            : oem23.inf
+DriverDate         : 20240424000000.******+***
+
+DeviceName         : Intel(R) HID Event Filter
+DriverProviderName : Intel(R) Corporation
+DriverVersion      : 2.2.2.10
+InfName            : oem21.inf
+DriverDate         : 20240425000000.******+***
+
+DeviceName         : Voice Clarity
+DriverProviderName : Microsoft Corporation
+DriverVersion      : 1.0.4.7057
+InfName            : oem12.inf
+DriverDate         : 20260616000000.******+***
+
+DeviceName         : NVIDIA GeForce RTX 3060
+DriverProviderName : NVIDIA
+DriverVersion      : 32.0.16.1088
+InfName            : oem2.inf
+DriverDate         : 20260722000000.******+***
+
+DeviceName         : NVIDIA High Definition Audio
+DriverProviderName : NVIDIA Corporation
+DriverVersion      : 1.4.5.7
+InfName            : oem3.inf
+DriverDate         : 20251201000000.******+***
+
+DeviceName         : Realtek Gaming 2.5GbE Family Controller
+DriverProviderName : Realtek
+DriverVersion      : 10.80.20.407
+InfName            : oem24.inf
+DriverDate         : 20260407000000.******+***
+
+
+

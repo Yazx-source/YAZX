@@ -1,0 +1,13 @@
+﻿
+Device                                                                                                               MSISupported MessageNumberLimit DevicePolicy AssignmentSetOverride
+------                                                                                                               ------------ ------------------ ------------ ---------------------
+@hdaudbus.inf,%hdaudio.devicedesc%;High Definition Audio Controller                                                             1                  1                                   
+@oem2.inf,%nvidia_dev.2504%;NVIDIA GeForce RTX 3060                                                                             1                  1 4            30                   
+Realtek Gaming 2.5GbE Family Controller                                                                                         1                 16 4            0C                   
+@stornvme.inf,%pci\cc_010802.devicedesc%;Standard NVM Express Controller                                                        1               2048 5                                 
+@hdaudbus.inf,%hdaudio.devicedesc%;High Definition Audio Controller                                                             1                  1                                   
+@System32\drivers\usbxhci.sys,#1073807361;%1 USB %2 eXtensible Host Controller - %3 (Microsoft);(Intel(R),3.20,1.20)            1                                                      
+@mshdc.inf,%pci\cc_010601.devicedesc%;Standard SATA AHCI Controller                                                             1                  8 5                                 
+@oem17.inf,%tee_devicedesc1%;Intel(R) Management Engine Interface #1                                                            1                                                      
+
+

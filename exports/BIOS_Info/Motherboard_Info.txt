@@ -1,0 +1,6 @@
+﻿
+Manufacturer                  Product         SerialNumber   Version
+------------                  -------         ------------   -------
+Gigabyte Technology Co., Ltd. B760M DS3H DDR4 Default string x.x    
+
+

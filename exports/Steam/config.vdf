@@ -1,0 +1,1230 @@
+"InstallConfigStore"
+{
+	"Software"
+	{
+		"Valve"
+		{
+			"Steam"
+			{
+				"AutoUpdateWindowEnabled"		"0"
+				"ipv6check_http_state"		"bad"
+				"ipv6check_udp_state"		"bad"
+				"ShaderCacheManager"
+				{
+					"HasCurrentBucket"		"1"
+					"CurrentBucketGPU"		"c26305090aa51f1c;ea4bfec539d4af77"
+					"CurrentBucketDriver"		"W2:c30d67effd5a80bf51a0817799acf3c8;W2:770f4fef79200de23d313865e4691c0d"
+					"App"
+					{
+						"228980"
+						{
+							"ShaderCacheSize"		"0"
+						}
+						"252950"
+						{
+						}
+						"2567870"
+						{
+							"ShaderCacheSize"		"0"
+						}
+					}
+					"CommittedDepotManifests"
+					{
+						"228980"		""
+						"2567870"		""
+					}
+				}
+				"RecentWebSocket443Failures"		""
+				"RecentWebSocketNon443Failures"		""
+				"RecentUDPFailures"		""
+				"RecentTCPFailures"		""
+				"CMWebSocket"
+				{
+					"cmp2-fra1.steamserver.net:27018"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"fra1"
+						"LastPingValue"		"142"
+						"LastLoadValue"		"37"
+					}
+					"ext2-bom2.steamserver.net:27028"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"bom2"
+					}
+					"cmp1-sto1.steamserver.net:27022"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"sto2"
+					}
+					"ext1-bom2.steamserver.net:27025"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"bom2"
+					}
+					"cmp2-fra1.steamserver.net:27020"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"fra1"
+					}
+					"cmp2-sto2.steamserver.net:27019"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"sto1"
+					}
+					"ext1-dxb1.steamserver.net:27028"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"dxb1"
+					}
+					"ext2-bom2.steamserver.net:27029"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"bom2"
+					}
+					"ext2-maa2.steamserver.net:27034"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"maa2"
+					}
+					"cmp1-fra2.steamserver.net:27019"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"fra1"
+					}
+					"cmp2-fra1.steamserver.net:27024"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"fra2"
+					}
+					"cmp1-sto1.steamserver.net:27018"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"sto1"
+					}
+					"ext2-dxb1.steamserver.net:27035"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"dxb1"
+						"LastPingValue"		"113"
+						"LastLoadValue"		"63"
+					}
+					"ext2-dxb1.steamserver.net:27037"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"dxb1"
+					}
+					"ext1-dxb1.steamserver.net:27030"
+					{
+						"LastPingTimestamp"		"1794960328"
+						"dc"		"dxb1"
+						"LastPingValue"		"75"
+						"LastLoadValue"		"63"
+					}
+					"ext1-bom2.steamserver.net:27030"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"bom2"
+					}
+					"ext2-bom2.steamserver.net:27034"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"bom2"
+					}
+					"ext2-maa2.steamserver.net:27036"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"maa2"
+					}
+					"ext2-maa2.steamserver.net:443"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"maa2"
+						"LastPingValue"		"303"
+						"LastLoadValue"		"54"
+					}
+					"cmp1-fra1.steamserver.net:27018"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"fra1"
+					}
+					"cmp1-fra1.steamserver.net:27023"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"fra2"
+					}
+					"cmp2-hkg1.steamserver.net:27019"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"hkg1"
+					}
+					"cmp1-hkg1.steamserver.net:27019"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"hkg1"
+					}
+					"cmp2-sto1.steamserver.net:27022"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"sto2"
+					}
+					"cmp2-sto2.steamserver.net:443"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"sto1"
+					}
+					"ext2-par1.steamserver.net:443"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"par1"
+					}
+					"ext1-par1.steamserver.net:27035"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"par1"
+					}
+					"ext2-dxb1.steamserver.net:27021"
+					{
+						"LastPingTimestamp"		"1794960328"
+						"dc"		"dxb1"
+						"LastPingValue"		"91"
+						"LastLoadValue"		"63"
+					}
+					"ext2-dxb1.steamserver.net:27029"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"dxb1"
+					}
+					"ext1-dxb1.steamserver.net:27019"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"dxb1"
+					}
+					"ext1-dxb1.steamserver.net:27032"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"dxb1"
+					}
+					"ext2-bom2.steamserver.net:27023"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"bom2"
+					}
+					"ext2-bom2.steamserver.net:27038"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"bom2"
+					}
+					"ext1-bom2.steamserver.net:27024"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"bom2"
+					}
+					"ext1-bom2.steamserver.net:27029"
+					{
+						"LastPingTimestamp"		"1794960328"
+						"dc"		"bom2"
+						"LastPingValue"		"264"
+						"LastLoadValue"		"56"
+					}
+					"ext2-bom2.steamserver.net:27019"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"bom2"
+					}
+					"ext2-maa2.steamserver.net:27019"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"maa2"
+					}
+					"ext1-maa2.steamserver.net:27020"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"maa2"
+					}
+					"ext1-maa2.steamserver.net:27021"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"maa2"
+					}
+					"ext2-maa2.steamserver.net:27021"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"maa2"
+					}
+					"cmp2-fra2.steamserver.net:27018"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"fra1"
+					}
+					"cmp2-fra1.steamserver.net:27019"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"fra1"
+					}
+					"cmp1-fra2.steamserver.net:27021"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"fra2"
+					}
+					"cmp1-lhr1.steamserver.net:27018"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"lhr1"
+					}
+					"cmp2-lhr1.steamserver.net:27020"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"lhr1"
+					}
+					"cmp3-hkg1.steamserver.net:27024"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"hkg1"
+					}
+					"cmp2-sgp1.steamserver.net:443"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"sgp1"
+					}
+					"cmp2-hkg1.steamserver.net:27023"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"hkg1"
+					}
+					"cmp1-sto1.steamserver.net:443"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"sto1"
+					}
+					"cmp2-sto2.steamserver.net:27022"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"sto2"
+					}
+					"cmp2-sto1.steamserver.net:27020"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"sto2"
+					}
+					"ext1-par1.steamserver.net:27022"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"par1"
+					}
+					"ext1-par1.steamserver.net:27036"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"par1"
+					}
+					"ext1-par1.steamserver.net:27028"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"par1"
+					}
+					"ext2-dxb1.steamserver.net:27019"
+					{
+						"LastPingTimestamp"		"1794952005"
+						"dc"		"dxb1"
+						"LastPingValue"		"138"
+						"LastLoadValue"		"63"
+					}
+					"ext2-dxb1.steamserver.net:27031"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"dxb1"
+					}
+					"ext1-dxb1.steamserver.net:27023"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"dxb1"
+					}
+					"ext2-dxb1.steamserver.net:27022"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"dxb1"
+					}
+					"ext2-dxb1.steamserver.net:27020"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"dxb1"
+					}
+					"ext1-dxb1.steamserver.net:27024"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"dxb1"
+					}
+					"ext2-dxb1.steamserver.net:27024"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"dxb1"
+					}
+					"ext2-dxb1.steamserver.net:27023"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"dxb1"
+					}
+					"ext2-bom2.steamserver.net:27030"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"bom2"
+						"LastPingValue"		"100000"
+						"LastLoadValue"		"0"
+					}
+					"ext2-bom2.steamserver.net:27037"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"bom2"
+					}
+					"ext2-bom2.steamserver.net:27020"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"bom2"
+					}
+					"ext1-bom2.steamserver.net:27031"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"bom2"
+					}
+					"ext1-bom2.steamserver.net:443"
+					{
+						"LastPingTimestamp"		"1794960329"
+						"dc"		"bom2"
+						"LastPingValue"		"248"
+						"LastLoadValue"		"57"
+					}
+					"ext1-bom2.steamserver.net:27021"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"bom2"
+					}
+					"ext1-bom2.steamserver.net:27036"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"bom2"
+					}
+					"ext2-bom2.steamserver.net:443"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"bom2"
+					}
+					"ext1-bom2.steamserver.net:27023"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"bom2"
+					}
+					"ext2-maa2.steamserver.net:27025"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"maa2"
+					}
+					"ext1-maa2.steamserver.net:27025"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"maa2"
+					}
+					"ext1-maa2.steamserver.net:27022"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"maa2"
+					}
+					"ext2-maa2.steamserver.net:27022"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"maa2"
+					}
+					"ext2-maa2.steamserver.net:27030"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"maa2"
+					}
+					"ext2-maa2.steamserver.net:27023"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"maa2"
+					}
+					"ext1-maa2.steamserver.net:27031"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"maa2"
+					}
+					"ext1-maa2.steamserver.net:27030"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"maa2"
+					}
+					"ext2-maa2.steamserver.net:27032"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"maa2"
+					}
+					"cmp1-fra2.steamserver.net:27020"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"fra1"
+					}
+					"cmp1-fra1.steamserver.net:27019"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"fra1"
+					}
+					"cmp1-fra1.steamserver.net:27021"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"fra2"
+					}
+					"cmp1-fra2.steamserver.net:27023"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"fra2"
+					}
+					"cmp2-fra1.steamserver.net:27023"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"fra2"
+					}
+					"cmp3-hkg1.steamserver.net:27019"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"hkg1"
+					}
+					"cmp2-hkg1.steamserver.net:27022"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"hkg1"
+					}
+					"cmp2-hkg1.steamserver.net:27025"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"hkg1"
+					}
+					"cmp2-lhr1.steamserver.net:443"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"lhr1"
+					}
+					"cmp1-hkg1.steamserver.net:27022"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"hkg1"
+					}
+					"cmp2-sgp1.steamserver.net:27018"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"sgp1"
+					}
+					"cmp1-hkg1.steamserver.net:443"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"hkg1"
+					}
+					"cmp3-hkg1.steamserver.net:27021"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"hkg1"
+					}
+					"cmp2-hkg1.steamserver.net:27024"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"hkg1"
+					}
+					"cmp1-lhr1.steamserver.net:27019"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"lhr1"
+					}
+					"cmp1-hkg1.steamserver.net:27020"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"hkg1"
+					}
+					"cmp2-sto1.steamserver.net:27019"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"sto1"
+					}
+					"cmp1-sto2.steamserver.net:27021"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"sto2"
+					}
+					"cmp2-ams1.steamserver.net:443"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"ams1"
+					}
+					"cmp1-ams1.steamserver.net:443"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"ams1"
+					}
+					"ext2-par1.steamserver.net:27037"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"par1"
+					}
+					"ext2-par1.steamserver.net:27024"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"par1"
+					}
+					"ext2-dxb1.steamserver.net:27025"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"dxb1"
+					}
+					"ext2-dxb1.steamserver.net:27038"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"dxb1"
+					}
+					"ext1-dxb1.steamserver.net:27021"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"dxb1"
+					}
+					"ext1-dxb1.steamserver.net:27029"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"dxb1"
+					}
+					"ext1-dxb1.steamserver.net:27038"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"dxb1"
+					}
+					"ext1-dxb1.steamserver.net:27035"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"dxb1"
+					}
+					"ext1-dxb1.steamserver.net:27031"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"dxb1"
+					}
+					"ext2-dxb1.steamserver.net:27036"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"dxb1"
+					}
+					"ext2-dxb1.steamserver.net:27034"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"dxb1"
+					}
+					"ext1-dxb1.steamserver.net:27025"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"dxb1"
+					}
+					"ext2-dxb1.steamserver.net:27030"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"dxb1"
+					}
+					"ext1-dxb1.steamserver.net:27037"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"dxb1"
+					}
+					"ext2-dxb1.steamserver.net:27032"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"dxb1"
+					}
+					"ext2-dxb1.steamserver.net:27033"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"dxb1"
+					}
+					"ext2-dxb1.steamserver.net:443"
+					{
+						"LastPingTimestamp"		"1794960328"
+						"dc"		"dxb1"
+						"LastPingValue"		"66"
+						"LastLoadValue"		"63"
+					}
+					"ext1-dxb1.steamserver.net:27022"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"dxb1"
+					}
+					"ext1-dxb1.steamserver.net:443"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"dxb1"
+					}
+					"ext1-dxb1.steamserver.net:27020"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"dxb1"
+					}
+					"ext1-dxb1.steamserver.net:27033"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"dxb1"
+					}
+					"ext1-bom2.steamserver.net:27032"
+					{
+						"LastPingTimestamp"		"1794960329"
+						"dc"		"bom2"
+						"LastPingValue"		"228"
+						"LastLoadValue"		"56"
+					}
+					"ext2-bom2.steamserver.net:27035"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"bom2"
+					}
+					"ext2-bom2.steamserver.net:27033"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"bom2"
+					}
+					"ext2-bom2.steamserver.net:27032"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"bom2"
+					}
+					"ext1-bom2.steamserver.net:27035"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"bom2"
+					}
+					"ext2-bom2.steamserver.net:27024"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"bom2"
+					}
+					"ext2-bom2.steamserver.net:27025"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"bom2"
+					}
+					"ext1-bom2.steamserver.net:27020"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"bom2"
+					}
+					"ext1-bom2.steamserver.net:27034"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"bom2"
+					}
+					"ext1-bom2.steamserver.net:27019"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"bom2"
+					}
+					"ext2-bom2.steamserver.net:27036"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"bom2"
+					}
+					"ext1-bom2.steamserver.net:27033"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"bom2"
+					}
+					"ext1-bom2.steamserver.net:27028"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"bom2"
+					}
+					"ext1-maa2.steamserver.net:27037"
+					{
+						"LastPingTimestamp"		"1794960329"
+						"dc"		"maa2"
+						"LastPingValue"		"242"
+						"LastLoadValue"		"52"
+					}
+					"ext1-maa2.steamserver.net:27034"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"maa2"
+					}
+					"ext2-maa2.steamserver.net:27029"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"maa2"
+					}
+					"ext2-maa2.steamserver.net:27031"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"maa2"
+					}
+					"ext2-maa2.steamserver.net:27028"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"maa2"
+					}
+					"ext1-maa2.steamserver.net:27036"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"maa2"
+					}
+					"ext1-maa2.steamserver.net:27019"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"maa2"
+					}
+					"ext2-maa2.steamserver.net:27033"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"maa2"
+					}
+					"ext2-maa2.steamserver.net:27024"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"maa2"
+					}
+					"ext1-maa2.steamserver.net:27033"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"maa2"
+					}
+					"ext1-maa2.steamserver.net:27029"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"maa2"
+					}
+					"ext1-maa2.steamserver.net:27024"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"maa2"
+					}
+					"ext2-maa2.steamserver.net:27037"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"maa2"
+					}
+					"ext2-maa2.steamserver.net:27035"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"maa2"
+					}
+					"ext2-maa2.steamserver.net:27038"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"maa2"
+					}
+					"ext1-maa2.steamserver.net:443"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"maa2"
+					}
+					"cmp2-fra1.steamserver.net:443"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"fra1"
+					}
+					"cmp2-fra2.steamserver.net:443"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"fra1"
+					}
+					"cmp1-fra2.steamserver.net:443"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"fra1"
+					}
+					"cmp1-lhr1.steamserver.net:27020"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"lhr1"
+					}
+					"cmp1-fra1.steamserver.net:443"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"fra1"
+					}
+					"cmp2-fra2.steamserver.net:27019"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"fra1"
+					}
+					"cmp1-fra1.steamserver.net:27020"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"fra1"
+					}
+					"cmp2-fra2.steamserver.net:27022"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"fra2"
+					}
+					"cmp1-fra1.steamserver.net:27022"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"fra2"
+					}
+					"cmp2-fra1.steamserver.net:27022"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"fra2"
+					}
+					"cmp1-lhr1.steamserver.net:443"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"lhr1"
+					}
+					"cmp2-lhr1.steamserver.net:27019"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"lhr1"
+					}
+					"cmp2-lhr1.steamserver.net:27018"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"lhr1"
+					}
+					"cmp2-fra1.steamserver.net:27021"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"fra2"
+					}
+					"cmp1-fra2.steamserver.net:27022"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"fra2"
+					}
+					"cmp1-fra1.steamserver.net:27024"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"fra2"
+					}
+					"cmp1-sgp1.steamserver.net:27020"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"sgp1"
+					}
+					"cmp1-sgp1.steamserver.net:27019"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"sgp1"
+					}
+					"cmp3-hkg1.steamserver.net:27018"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"hkg1"
+					}
+					"cmp2-sgp1.steamserver.net:27020"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"sgp1"
+					}
+					"cmp3-hkg1.steamserver.net:27020"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"hkg1"
+					}
+					"cmp1-sgp1.steamserver.net:27018"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"sgp1"
+					}
+					"cmp2-hkg1.steamserver.net:27021"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"hkg1"
+					}
+					"cmp1-sgp1.steamserver.net:443"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"sgp1"
+					}
+					"cmp2-sgp1.steamserver.net:27019"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"sgp1"
+					}
+					"cmp2-hkg1.steamserver.net:27018"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"hkg1"
+					}
+					"cmp3-hkg1.steamserver.net:27025"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"hkg1"
+					}
+					"cmp1-hkg1.steamserver.net:27024"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"hkg1"
+					}
+					"cmp3-hkg1.steamserver.net:443"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"hkg1"
+					}
+					"cmp1-hkg1.steamserver.net:27021"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"hkg1"
+					}
+					"cmp3-hkg1.steamserver.net:27023"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"hkg1"
+					}
+					"cmp3-hkg1.steamserver.net:27022"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"hkg1"
+					}
+					"cmp2-sto2.steamserver.net:27021"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"sto2"
+					}
+					"cmp1-sto1.steamserver.net:27021"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"sto2"
+					}
+					"cmp2-sto1.steamserver.net:443"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"sto1"
+					}
+					"cmp1-sto2.steamserver.net:27020"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"sto2"
+					}
+					"cmp1-sto2.steamserver.net:443"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"sto1"
+					}
+					"cmp2-sto1.steamserver.net:27018"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"sto1"
+					}
+					"cmp1-sto1.steamserver.net:27020"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"sto2"
+					}
+					"cmp2-sto1.steamserver.net:27021"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"sto2"
+					}
+					"cmp2-sto2.steamserver.net:27018"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"sto1"
+					}
+					"cmp1-sto1.steamserver.net:27019"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"sto1"
+					}
+					"cmp1-sto2.steamserver.net:27022"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"sto2"
+					}
+					"cmp1-sto2.steamserver.net:27019"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"sto1"
+					}
+					"cmp2-sto2.steamserver.net:27020"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"sto2"
+					}
+					"cmp1-ams1.steamserver.net:27018"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"ams1"
+					}
+					"ext1-par1.steamserver.net:27020"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"par1"
+					}
+					"ext1-par1.steamserver.net:27025"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"par1"
+					}
+					"ext1-par1.steamserver.net:27032"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"par1"
+					}
+					"ext2-par1.steamserver.net:27023"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"par1"
+					}
+					"cmp2-ams1.steamserver.net:27018"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"ams1"
+					}
+					"ext1-par1.steamserver.net:27034"
+					{
+						"LastPingTimestamp"		"0"
+						"dc"		"par1"
+					}
+				}
+				"Accounts"
+				{
+					"heavennavy"
+					{
+						"SteamID"		"76561198115144391"
+					}
+					"weebear05"
+					{
+						"SteamID"		"76561198260485742"
+					}
+					"mvghydra"
+					{
+						"SteamID"		"76561199012906224"
+					}
+					"t9_yousef"
+					{
+						"SteamID"		"76561199060588061"
+					}
+					"marinoush84"
+					{
+						"SteamID"		"76561198201815737"
+					}
+					"iimohav60"
+					{
+						"SteamID"		"76561199748061067"
+					}
+					"jcss8"
+					{
+						"SteamID"		"76561198141368763"
+					}
+					"rodrigopuentes11"
+					{
+						"SteamID"		"76561199004396778"
+					}
+					"macsimca991"
+					{
+						"SteamID"		"76561198164226744"
+					}
+					"rlnmj"
+					{
+						"SteamID"		"76561198636383001"
+					}
+				}
+				"CellIDServerOverride"		"126"
+				"MTBF"		"597108065"
+				"cip"		"0200000036af870dc2e9a5330000c0d4c266"
+				"SurveyDate"		"2024-04-12"
+				"SurveyDateVersion"		"-3518998934116684384"
+				"SurveyDateType"		"3"
+				"Rate"		"30000"
+				"RecentDownloadRate"		"1223544"
+				"LastConfigstoreUploadTime"		"1794889306"
+				"GlobalDefaultAppUpdateBehavior"		"1"
+				"StreamingThrottleEnabled"		"0"
+				"depots"
+				{
+					"228989"
+					{
+						"DecryptionKey"		"ad69276eb476cf06c40312df7376d63deac0c838b9a2767005be8bb306ffb853"
+					}
+					"228990"
+					{
+						"DecryptionKey"		"44d8c45ce229a11c4f231a3d2a350eaf80b0d69a8af938ec7ccca720f694b0e8"
+					}
+					"229002"
+					{
+						"DecryptionKey"		"f95e8545cfe871c330a483b25520ba7ed3750d21b9a51791ff0f0ed0dae33738"
+					}
+					"229003"
+					{
+						"DecryptionKey"		"8e0ded6e1d9481eb286217322054ce7b0b8243daae770f31a30667752b1a3c63"
+					}
+					"229007"
+					{
+						"DecryptionKey"		"eba9fa9ff4f811929c119074450f49f739113bcae9317ded9bea262aa21ec58d"
+					}
+					"229033"
+					{
+						"DecryptionKey"		"9a789440bbc16131547ac6c062e5f168f7684da533a2899a71fdfaaeec21efc3"
+					}
+					"252950"
+					{
+						"DecryptionKey"		"97978ac90e1684bd157296ba59e97d1abcd1df15d9337e4d6c18d1e1f7ef53c3"
+					}
+					"2567871"
+					{
+						"DecryptionKey"		"84ff26693d69b1f13f653ad7d1a182142a2a5049bf0ce8dc73735d955d3cb186"
+					}
+					"241100"
+					{
+						"DecryptionKey"		"141426adc496d4a9070cfa549623bd7f84bf70711e9c213881191eaad8cc90a4"
+					}
+					"252951"
+					{
+						"DecryptionKey"		"2c5162dd5164c160a18d4a0086a9a540bf27b1879d0a0e7c69e2d5e0b287e681"
+					}
+					"4262461"
+					{
+						"DecryptionKey"		"3b0fe3b20d70ea3925c73a5217fcf88fc871da26ee8ef9db0fbe15819c092d56"
+					}
+				}
+			}
+		}
+	}
+	"SDL_GamepadBind"		"03000000de280000ff11000001000000,Steam Virtual Gamepad,a:b0,b:b1,back:b6,dpdown:h0.4,dpleft:h0.8,dpright:h0.2,dpup:h0.1,leftshoulder:b4,leftstick:b8,lefttrigger:+a2,leftx:a0,lefty:a1,rightshoulder:b5,rightstick:b9,righttrigger:-a2,rightx:a3,righty:a4,start:b7,x:b2,y:b3,platform:Windows,
+03000000de280000ff11000000000000,Steam Virtual Gamepad,a:b0,b:b1,back:b6,dpdown:h0.4,dpleft:h0.8,dpright:h0.2,dpup:h0.1,leftshoulder:b4,leftstick:b8,lefttrigger:+a2,leftx:a0,lefty:a1,rightshoulder:b5,rightstick:b9,righttrigger:-a2,rightx:a3,righty:a4,start:b7,x:b2,y:b3,platform:Windows,
+03000000de280000ff11000000007701,Steam Virtual Gamepad,a:b0,b:b1,x:b2,y:b3,back:b6,start:b7,leftstick:b8,rightstick:b9,leftshoulder:b4,rightshoulder:b5,dpup:b10,dpdown:b12,dpleft:b13,dpright:b11,leftx:a1,lefty:a0~,rightx:a3,righty:a2~,lefttrigger:a4,righttrigger:a5,"
+	"streaming"
+	{
+		"ClientID"		"8189429791350890147"
+	}
+	"UpdateRates"
+	{
+		"1:358cfd21c19cf4ca"		"2010041444"
+		"2:358cfd21c19cf4ca"		"5442447"
+		"3:358cfd21c19cf4ca"		"5651620"
+		"6:358cfd21c19cf4ca"		"1453146055"
+		"0:358cfd21c19cf4ca"		"192560407"
+		"0:243f0bdaacef2d77"		"535464560"
+		"1:243f0bdaacef2d77"		"44475341153"
+		"2:243f0bdaacef2d77"		"7608135"
+		"3:243f0bdaacef2d77"		"8254136"
+		"4:243f0bdaacef2d77"		"509255868"
+		"6:243f0bdaacef2d77"		"32568551999"
+	}
+	"Music"
+	{
+		"MusicVolume"		"0"
+	}
+	"WebStorage"
+	{
+		"continuously_render_store"		"false"
+		"DownloadsStoreRecentlyCompleted"		"{\"version\":2,\"data\":[{\"appid\":252950,\"active\":false,\"paused\":false,\"completed\":true,\"deferred_time\":0,\"queue_index\":-1,\"update_result\":0,\"update_error\":\"\",\"completed_time\":1793931086,\"buildid\":0,\"target_buildid\":26349479,\"launch_on_completion\":false,\"update_type_info\":[{\"has_update\":true,\"completed\":true,\"progress\":[{\"bytes_in_progress\":0,\"bytes_total\":0,\"estimated_time_remaining_sec\":0},{\"bytes_in_progress\":14626315000,\"bytes_total\":14626315000,\"estimated_time_remaining_sec\":0},{\"bytes_in_progress\":647942880,\"bytes_total\":647942880,\"estimated_time_remaining_sec\":0},{\"bytes_in_progress\":14626315000,\"bytes_total\":14626315000,\"estimated_time_remaining_sec\":0},{\"bytes_in_progress\":0,\"bytes_total\":0,\"estimated_time_remaining_sec\":0},{\"bytes_in_progress\":0,\"bytes_total\":0,\"estimated_time_remaining_sec\":0},{\"bytes_in_progress\":14626315000,\"bytes_total\":14626315000,\"estimated_time_remaining_sec\":0}],\"overall_percent_complete\":100,\"overall_estimated_time_remaining_sec\":0},{\"has_update\":false,\"completed\":false,\"progress\":[{\"bytes_in_progress\":0,\"bytes_total\":0,\"estimated_time_remaining_sec\":-1},{\"bytes_in_progress\":0,\"bytes_total\":0,\"estimated_time_remaining_sec\":-1},{\"bytes_in_progress\":0,\"bytes_total\":0,\"estimated_time_remaining_sec\":-1},{\"bytes_in_progress\":0,\"bytes_total\":0,\"estimated_time_remaining_sec\":-1},{\"bytes_in_progress\":0,\"bytes_total\":0,\"estimated_time_remaining_sec\":-1},{\"bytes_in_progress\":0,\"bytes_total\":0,\"estimated_time_remaining_sec\":-1},{\"bytes_in_progress\":0,\"bytes_total\":0,\"estimated_time_remaining_sec\":-1}],\"overall_percent_complete\":0,\"overall_estimated_time_remaining_sec\":-1},{\"has_update\":false,\"completed\":false,\"progress\":[{\"bytes_in_progress\":0,\"bytes_total\":0,\"estimated_time_remaining_sec\":-1},{\"bytes_in_progress\":0,\"bytes_total\":0,\"estimated_time_remaining_sec\":-1},{\"bytes_in_progress\":0,\"bytes_total\":0,\"estimated_time_remaining_sec\":-1},{\"bytes_in_progress\":0,\"bytes_total\":0,\"estimated_time_remaining_sec\":-1},{\"bytes_in_progress\":0,\"bytes_total\":0,\"estimated_time_remaining_sec\":-1},{\"bytes_in_progress\":0,\"bytes_total\":0,\"estimated_time_remaining_sec\":-1},{\"bytes_in_progress\":0,\"bytes_total\":0,\"estimated_time_remaining_sec\":-1}],\"overall_percent_complete\":0,\"overall_estimated_time_remaining_sec\":-1}]},{\"appid\":2567870,\"active\":false,\"paused\":false,\"completed\":true,\"deferred_time\":0,\"queue_index\":-1,\"update_result\":0,\"update_error\":\"\",\"completed_time\":1790808454,\"buildid\":24989876,\"target_buildid\":25325926,\"launch_on_completion\":false,\"update_type_info\":[{\"has_update\":true,\"completed_update\":true,\"estimated_time_remaining_sec\":0,\"progress\":[{\"bytes_in_progress\":0,\"bytes_total\":0,\"estimated_time_remaining_sec\":0},{\"bytes_in_progress\":7955639562,\"bytes_total\":7955639562,\"estimated_time_remaining_sec\":0},{\"bytes_in_progress\":105164544,\"bytes_total\":105164544,\"estimated_time_remaining_sec\":0},{\"bytes_in_progress\":7955639562,\"bytes_total\":7955639562,\"estimated_time_remaining_sec\":0},{\"bytes_in_progress\":0,\"bytes_total\":0,\"estimated_time_remaining_sec\":0},{\"bytes_in_progress\":0,\"bytes_total\":0,\"estimated_time_remaining_sec\":0},{\"bytes_in_progress\":7955639562,\"bytes_total\":7955639562,\"estimated_time_remaining_sec\":0}],\"overall_percent_complete\":100,\"overall_estimated_time_remaining_sec\":0},{\"has_update\":false,\"completed_update\":false,\"estimated_time_remaining_sec\":-1,\"progress\":[{\"bytes_in_progress\":0,\"bytes_total\":0,\"estimated_time_remaining_sec\":-1},{\"bytes_in_progress\":0,\"bytes_total\":0,\"estimated_time_remaining_sec\":-1},{\"bytes_in_progress\":0,\"bytes_total\":0,\"estimated_time_remaining_sec\":-1},{\"bytes_in_progress\":0,\"bytes_total\":0,\"estimated_time_remaining_sec\":-1},{\"bytes_in_progress\":0,\"bytes_total\":0,\"estimated_time_remaining_sec\":-1},{\"bytes_in_progress\":0,\"bytes_total\":0,\"estimated_time_remaining_sec\":-1},{\"bytes_in_progress\":0,\"bytes_total\":0,\"estimated_time_remaining_sec\":-1}],\"overall_percent_complete\":0,\"overall_estimated_time_remaining_sec\":-1},{\"has_update\":false,\"completed_update\":false,\"estimated_time_remaining_sec\":-1,\"progress\":[{\"bytes_in_progress\":0,\"bytes_total\":0,\"estimated_time_remaining_sec\":-1},{\"bytes_in_progress\":0,\"bytes_total\":0,\"estimated_time_remaining_sec\":-1},{\"bytes_in_progress\":0,\"bytes_total\":0,\"estimated_time_remaining_sec\":-1},{\"bytes_in_progress\":0,\"bytes_total\":0,\"estimated_time_remaining_sec\":-1},{\"bytes_in_progress\":0,\"bytes_total\":0,\"estimated_time_remaining_sec\":-1},{\"bytes_in_progress\":0,\"bytes_total\":0,\"estimated_time_remaining_sec\":-1},{\"bytes_in_progress\":0,\"bytes_total\":0,\"estimated_time_remaining_sec\":-1}],\"overall_percent_complete\":0,\"overall_estimated_time_remaining_sec\":-1}]},{\"appid\":228980,\"active\":false,\"paused\":false,\"completed\":true,\"deferred_time\":0,\"queue_index\":-1,\"update_result\":0,\"update_error\":\"\",\"completed_time\":1789533328,\"buildid\":24098430,\"target_buildid\":24098430,\"launch_on_completion\":false,\"update_type_info\":[{\"has_update\":true,\"completed_update\":true,\"estimated_time_remaining_sec\":-1,\"progress\":[{\"bytes_in_progress\":0,\"bytes_total\":0,\"estimated_time_remaining_sec\":0},{\"bytes_in_progress\":399478882,\"bytes_total\":399478882,\"estimated_time_remaining_sec\":0},{\"bytes_in_progress\":397219232,\"bytes_total\":397219232,\"estimated_time_remaining_sec\":0},{\"bytes_in_progress\":399478882,\"bytes_total\":399478882,\"estimated_time_remaining_sec\":0},{\"bytes_in_progress\":399478882,\"bytes_total\":549568120,\"estimated_time_remaining_sec\":-1},{\"bytes_in_progress\":0,\"bytes_total\":0,\"estimated_time_remaining_sec\":0},{\"bytes_in_progress\":399478882,\"bytes_total\":399478882,\"estimated_time_remaining_sec\":0}],\"overall_percent_complete\":99,\"overall_estimated_time_remaining_sec\":-1},{\"has_update\":false,\"completed_update\":false,\"estimated_time_remaining_sec\":-1,\"progress\":[{\"bytes_in_progress\":0,\"bytes_total\":0,\"estimated_time_remaining_sec\":-1},{\"bytes_in_progress\":0,\"bytes_total\":0,\"estimated_time_remaining_sec\":-1},{\"bytes_in_progress\":0,\"bytes_total\":0,\"estimated_time_remaining_sec\":-1},{\"bytes_in_progress\":0,\"bytes_total\":0,\"estimated_time_remaining_sec\":-1},{\"bytes_in_progress\":0,\"bytes_total\":0,\"estimated_time_remaining_sec\":-1},{\"bytes_in_progress\":0,\"bytes_total\":0,\"estimated_time_remaining_sec\":-1},{\"bytes_in_progress\":0,\"bytes_total\":0,\"estimated_time_remaining_sec\":-1}],\"overall_percent_complete\":0,\"overall_estimated_time_remaining_sec\":-1},{\"has_update\":false,\"completed_update\":false,\"estimated_time_remaining_sec\":-1,\"progress\":[{\"bytes_in_progress\":0,\"bytes_total\":0,\"estimated_time_remaining_sec\":-1},{\"bytes_in_progress\":0,\"bytes_total\":0,\"estimated_time_remaining_sec\":-1},{\"bytes_in_progress\":0,\"bytes_total\":0,\"estimated_time_remaining_sec\":-1},{\"bytes_in_progress\":0,\"bytes_total\":0,\"estimated_time_remaining_sec\":-1},{\"bytes_in_progress\":0,\"bytes_total\":0,\"estimated_time_remaining_sec\":-1},{\"bytes_in_progress\":0,\"bytes_total\":0,\"estimated_time_remaining_sec\":-1},{\"bytes_in_progress\":0,\"bytes_total\":0,\"estimated_time_remaining_sec\":-1}],\"overall_percent_complete\":0,\"overall_estimated_time_remaining_sec\":-1}],\"overall_percent_complete\":99},{\"appid\":4262460,\"active\":true,\"paused\":false,\"completed\":true,\"deferred_time\":0,\"queue_index\":0,\"update_result\":0,\"update_error\":\"\",\"completed_time\":0,\"buildid\":0,\"target_buildid\":26726105,\"launch_on_completion\":false,\"update_type_info\":[{\"has_update\":true,\"completed\":true,\"progress\":[{\"bytes_in_progress\":0,\"bytes_total\":0,\"estimated_time_remaining_sec\":0},{\"bytes_in_progress\":1848360311,\"bytes_total\":1848360311,\"estimated_time_remaining_sec\":0},{\"bytes_in_progress\":1490011712,\"bytes_total\":1490011712,\"estimated_time_remaining_sec\":0},{\"bytes_in_progress\":1848360311,\"bytes_total\":1848360311,\"estimated_time_remaining_sec\":0},{\"bytes_in_progress\":0,\"bytes_total\":0,\"estimated_time_remaining_sec\":0},{\"bytes_in_progress\":0,\"bytes_total\":0,\"estimated_time_remaining_sec\":0},{\"bytes_in_progress\":1848360311,\"bytes_total\":1848360311,\"estimated_time_remaining_sec\":0}],\"overall_percent_complete\":100,\"overall_estimated_time_remaining_sec\":0},{\"has_update\":false,\"completed\":false,\"progress\":[{\"bytes_in_progress\":0,\"bytes_total\":0,\"estimated_time_remaining_sec\":-1},{\"bytes_in_progress\":0,\"bytes_total\":0,\"estimated_time_remaining_sec\":-1},{\"bytes_in_progress\":0,\"bytes_total\":0,\"estimated_time_remaining_sec\":-1},{\"bytes_in_progress\":0,\"bytes_total\":0,\"estimated_time_remaining_sec\":-1},{\"bytes_in_progress\":0,\"bytes_total\":0,\"estimated_time_remaining_sec\":-1},{\"bytes_in_progress\":0,\"bytes_total\":0,\"estimated_time_remaining_sec\":-1},{\"bytes_in_progress\":0,\"bytes_total\":0,\"estimated_time_remaining_sec\":-1}],\"overall_percent_complete\":0,\"overall_estimated_time_remaining_sec\":-1},{\"has_update\":false,\"completed\":false,\"progress\":[{\"bytes_in_progress\":0,\"bytes_total\":0,\"estimated_time_remaining_sec\":-1},{\"bytes_in_progress\":0,\"bytes_total\":0,\"estimated_time_remaining_sec\":-1},{\"bytes_in_progress\":0,\"bytes_total\":0,\"estimated_time_remaining_sec\":-1},{\"bytes_in_progress\":0,\"bytes_total\":0,\"estimated_time_remaining_sec\":-1},{\"bytes_in_progress\":0,\"bytes_total\":0,\"estimated_time_remaining_sec\":-1},{\"bytes_in_progress\":0,\"bytes_total\":0,\"estimated_time_remaining_sec\":-1},{\"bytes_in_progress\":0,\"bytes_total\":0,\"estimated_time_remaining_sec\":-1}],\"overall_percent_complete\":0,\"overall_estimated_time_remaining_sec\":-1}],\"overall_percent_complete\":1}]}"
+		"Auth"
+		{
+			"AlwaysShowUserChooser"		"0"
+		}
+	}
+	"UI"
+	{
+		"display"
+		{
+			"Current"
+			{
+				"MinScaleFactor"		"0.711183011531829834"
+				"MaxScaleFactor"		"3.40814042091369629"
+				"IsExternalDisplay"		"1"
+				"name"		"External: LG ULTRAGEAR|||Fullscreen-1920x1080"
+				"AutoScaleFactor"		"1.42236602306365967"
+			}
+		}
+	}
+}

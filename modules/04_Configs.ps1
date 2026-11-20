@@ -26,6 +26,7 @@ if (Test-Path $plSrc) {
 Write-Host "  --- MSI Afterburner Profiles ---" -ForegroundColor Yellow
 $abDst = "C:\Program Files (x86)\MSI Afterburner\Profiles"
 $abSrc = "$BackupDir\yazx_MSI_Afterburner\Profiles"
+if (-not (Test-Path $abSrc)) { $abSrc = "$YazxDir\exports\MSI_Afterburner" }
 if (Test-Path $abSrc) {
     New-Item -ItemType Directory -Path $abDst -Force | Out-Null
     Copy-Item "$abSrc\*" "$abDst\" -Recurse -Force
@@ -35,6 +36,7 @@ if (Test-Path $abSrc) {
 
 # Also copy startup config
 $abStartup = "$BackupDir\yazx_MSI_Afterburner\Profiles\MSIAfterburner.cfg"
+if (-not (Test-Path $abStartup)) { $abStartup = "$YazxDir\exports\MSI_Afterburner\MSIAfterburner.cfg" }
 if (Test-Path $abStartup) {
     Copy-Item $abStartup "$abDst\MSIAfterburner.cfg" -Force
 }
@@ -43,6 +45,7 @@ if (Test-Path $abStartup) {
 Write-Host "  --- Equalizer APO ---" -ForegroundColor Yellow
 $eqDst = "C:\Program Files\EqualizerAPO\config"
 $eqSrc = "$BackupDir\yazx_EqualizerAPO\config"
+if (-not (Test-Path $eqSrc)) { $eqSrc = "$YazxDir\exports\EqualizerAPO" }
 if (Test-Path $eqSrc) {
     New-Item -ItemType Directory -Path $eqDst -Force | Out-Null
     Copy-Item "$eqSrc\*" "$eqDst\" -Recurse -Force
@@ -78,6 +81,7 @@ if (Test-Path "$cruSrc\*.exe") {
 # --- LibreWolf Profile ---
 Write-Host "  --- LibreWolf ---" -ForegroundColor Yellow
 $lwSrc = "$BackupDir\yazx_LibreWolf"
+if (-not (Test-Path $lwSrc)) { $lwSrc = "$YazxDir\configs\LibreWolf" }
 if (Test-Path $lwSrc) {
     $lwProfiles = "C:\Users\$env:USERNAME\AppData\Roaming\librewolf\Profiles"
     if (Test-Path $lwProfiles) {
@@ -97,6 +101,7 @@ if (Test-Path $lwSrc) {
 # --- ExplorerPatcher ---
 Write-Host "  --- ExplorerPatcher ---" -ForegroundColor Yellow
 $epReg = "$BackupDir\yazx_ExplorerPatcher\ExplorerPatcher_HKCU.reg"
+if (-not (Test-Path $epReg)) { $epReg = "$YazxDir\exports\ExplorerPatcher\ExplorerPatcher_HKCU.reg" }
 if (Test-Path $epReg) {
     regedit /s $epReg
     Write-Host "  [OK] ExplorerPatcher settings imported" -ForegroundColor Green
@@ -107,6 +112,7 @@ if (Test-Path $epReg) {
 Write-Host "  --- Steam ---" -ForegroundColor Yellow
 $stDst = "C:\Program Files (x86)\Steam\config"
 $stSrc = "$BackupDir\yazx_SteamConfig"
+if (-not (Test-Path $stSrc)) { $stSrc = "$YazxDir\exports\Steam" }
 if ((Test-Path $stSrc) -and (Test-Path "C:\Program Files (x86)\Steam")) {
     New-Item -ItemType Directory -Path $stDst -Force | Out-Null
     Copy-Item "$stSrc\config.vdf" "$stDst\" -Force -ErrorAction SilentlyContinue
@@ -134,6 +140,7 @@ if (Test-Path $trSrc) {
 # --- Open Shell ---
 Write-Host "  --- Open Shell ---" -ForegroundColor Yellow
 $osSrc = "$BackupDir\yazx_OpenShell"
+if (-not (Test-Path $osSrc)) { $osSrc = "$YazxDir\exports\OpenShell" }
 if (Test-Path $osSrc) {
     $osMenuXml = Get-ChildItem $osSrc -Filter "*.xml" -ErrorAction SilentlyContinue | Select-Object -First 1
     if ($osMenuXml) {

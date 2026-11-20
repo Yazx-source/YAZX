@@ -1,0 +1,1794 @@
+"controller_mappings"
+{
+	"version"		"3"
+	"revision"		"1"
+	"title"		"ROB RUN PRO - DualSense (Tactical)"
+	"description"		"Built from the game's own key bindings. Three control modes: On Foot, Driving (R2 gas, L2 brake) and Helicopter. Hold TRIANGLE to get in or out of a vehicle, hold OPTIONS to change mode by hand. Hold L1 for the second row of actions. No macros. Tactical: crouch on R3, melee on Circle."
+	"controller_type"		"controller_ps5"
+	"actions"
+	{
+		"Default"
+		{
+			"title"		"On Foot"
+			"legacy_set"		"1"
+		}
+		"Preset_1000001"
+		{
+			"title"		"Driving"
+			"legacy_set"		"1"
+		}
+		"Preset_1000002"
+		{
+			"title"		"Helicopter"
+			"legacy_set"		"1"
+		}
+	}
+	"action_layers"
+	{
+	}
+	"group"
+	{
+		"id"		"0"
+		"mode"		"four_buttons"
+		"inputs"
+		{
+			"button_a"
+			{
+				"activators"
+				{
+					"Full_Press"
+					{
+						"bindings"
+						{
+							"binding"		"key_press SPACE, Jump"
+						}
+					}
+				}
+			}
+			"button_b"
+			{
+				"activators"
+				{
+					"Full_Press"
+					{
+						"bindings"
+						{
+							"binding"		"key_press V, Melee Attack"
+						}
+					}
+				}
+			}
+			"button_x"
+			{
+				"activators"
+				{
+					"Full_Press"
+					{
+						"bindings"
+						{
+							"binding"		"key_press R, Reload"
+						}
+						"settings"
+						{
+							"interruptable"		"1"
+						}
+					}
+					"Long_Press"
+					{
+						"bindings"
+						{
+							"binding"		"key_press E, Interact (hold)"
+						}
+						"settings"
+						{
+							"long_press_time"		"200"
+						}
+					}
+				}
+			}
+			"button_y"
+			{
+				"activators"
+				{
+					"Full_Press"
+					{
+						"bindings"
+						{
+							"binding"		"mouse_wheel SCROLL_UP, Next Weapon"
+						}
+						"settings"
+						{
+							"interruptable"		"1"
+						}
+					}
+					"Long_Press"
+					{
+						"bindings"
+						{
+							"binding"		"key_press E, Get In Vehicle"
+							"binding"		"controller_action CHANGE_PRESET 2 1 1"
+						}
+						"settings"
+						{
+							"long_press_time"		"400"
+						}
+					}
+				}
+			}
+		}
+	}
+	"group"
+	{
+		"id"		"1"
+		"mode"		"four_buttons"
+		"inputs"
+		{
+			"button_a"
+			{
+				"activators"
+				{
+					"Full_Press"
+					{
+						"bindings"
+						{
+							"binding"		"key_press F, Mask Up (hold) / Drop Cargo"
+						}
+					}
+				}
+			}
+			"button_b"
+			{
+				"activators"
+				{
+					"Full_Press"
+					{
+						"bindings"
+						{
+							"binding"		"key_press Q, Surrender / Hands Up"
+						}
+					}
+				}
+			}
+			"button_x"
+			{
+				"activators"
+				{
+					"Full_Press"
+					{
+						"bindings"
+						{
+							"binding"		"key_press G, Emotes / Offer Bribe"
+						}
+					}
+				}
+			}
+			"button_y"
+			{
+				"activators"
+				{
+					"Full_Press"
+					{
+						"bindings"
+						{
+							"binding"		"key_press Z, Holster Weapon"
+						}
+					}
+				}
+			}
+		}
+	}
+	"group"
+	{
+		"id"		"2"
+		"mode"		"dpad"
+		"inputs"
+		{
+			"dpad_north"
+			{
+				"activators"
+				{
+					"Full_Press"
+					{
+						"bindings"
+						{
+							"binding"		"key_press 3, Quick Slot 1"
+						}
+						"settings"
+						{
+							"interruptable"		"1"
+						}
+					}
+					"Long_Press"
+					{
+						"bindings"
+						{
+							"binding"		"key_press 5, Quick Slot 3 (hold)"
+						}
+						"settings"
+						{
+							"long_press_time"		"300"
+						}
+					}
+				}
+			}
+			"dpad_south"
+			{
+				"activators"
+				{
+					"Full_Press"
+					{
+						"bindings"
+						{
+							"binding"		"key_press 4, Quick Slot 2"
+						}
+						"settings"
+						{
+							"interruptable"		"1"
+						}
+					}
+					"Long_Press"
+					{
+						"bindings"
+						{
+							"binding"		"key_press 6, Quick Slot 4 (hold)"
+						}
+						"settings"
+						{
+							"long_press_time"		"300"
+						}
+					}
+				}
+			}
+			"dpad_west"
+			{
+				"activators"
+				{
+					"Start_Press"
+					{
+						"bindings"
+						{
+							"binding"		"key_press X, Change Shoulder"
+						}
+					}
+				}
+			}
+			"dpad_east"
+			{
+				"activators"
+				{
+					"Full_Press"
+					{
+						"bindings"
+						{
+							"binding"		"key_press B, Aim Mode 1st / 3rd person (while aiming)"
+						}
+					}
+				}
+			}
+		}
+		"settings"
+		{
+			"requires_click"		"0"
+		}
+	}
+	"group"
+	{
+		"id"		"3"
+		"mode"		"dpad"
+		"inputs"
+		{
+			"dpad_north"
+			{
+				"activators"
+				{
+					"Full_Press"
+					{
+						"bindings"
+						{
+							"binding"		"mouse_wheel SCROLL_UP, Scroll Up / Zoom In"
+						}
+					}
+				}
+			}
+			"dpad_south"
+			{
+				"activators"
+				{
+					"Full_Press"
+					{
+						"bindings"
+						{
+							"binding"		"mouse_wheel SCROLL_DOWN, Scroll Down / Zoom Out"
+						}
+					}
+				}
+			}
+			"dpad_west"
+			{
+				"activators"
+				{
+					"Full_Press"
+					{
+						"bindings"
+						{
+							"binding"		"key_press N, Decline"
+						}
+					}
+				}
+			}
+			"dpad_east"
+			{
+				"activators"
+				{
+					"Full_Press"
+					{
+						"bindings"
+						{
+							"binding"		"key_press Y, Accept"
+						}
+					}
+				}
+			}
+		}
+		"settings"
+		{
+			"requires_click"		"0"
+		}
+	}
+	"group"
+	{
+		"id"		"4"
+		"mode"		"dpad"
+		"inputs"
+		{
+			"dpad_north"
+			{
+				"activators"
+				{
+					"Full_Press"
+					{
+						"bindings"
+						{
+							"binding"		"key_press W, Move Forward"
+						}
+					}
+				}
+			}
+			"dpad_south"
+			{
+				"activators"
+				{
+					"Full_Press"
+					{
+						"bindings"
+						{
+							"binding"		"key_press S, Move Backward"
+						}
+					}
+				}
+			}
+			"dpad_west"
+			{
+				"activators"
+				{
+					"Full_Press"
+					{
+						"bindings"
+						{
+							"binding"		"key_press A, Move Left"
+						}
+					}
+				}
+			}
+			"dpad_east"
+			{
+				"activators"
+				{
+					"Full_Press"
+					{
+						"bindings"
+						{
+							"binding"		"key_press D, Move Right"
+						}
+					}
+				}
+			}
+			"click"
+			{
+				"activators"
+				{
+					"Full_Press"
+					{
+						"bindings"
+						{
+							"binding"		"mouse_button BACK, Push To Talk"
+							"binding"		"mouse_button FORWARD, Push To Talk"
+						}
+					}
+				}
+			}
+			"edge"
+			{
+				"activators"
+				{
+					"Full_Press"
+					{
+						"bindings"
+						{
+							"binding"		"key_press LEFT_SHIFT, Sprint (full tilt)"
+						}
+					}
+				}
+			}
+		}
+		"settings"
+		{
+			"requires_click"		"0"
+			"deadzone"		"5500"
+			"edge_binding_radius"		"29500"
+		}
+	}
+	"group"
+	{
+		"id"		"5"
+		"mode"		"radial_menu"
+		"name"		"Game Menus"
+		"description"		""
+		"inputs"
+		{
+			"touch_menu_button_0"
+			{
+				"activators"
+				{
+					"Full_Press"
+					{
+						"bindings"
+						{
+							"binding"		"key_press P, Party"
+						}
+					}
+				}
+			}
+			"touch_menu_button_1"
+			{
+				"activators"
+				{
+					"Full_Press"
+					{
+						"bindings"
+						{
+							"binding"		"key_press U, Conflict"
+						}
+					}
+				}
+			}
+			"touch_menu_button_2"
+			{
+				"activators"
+				{
+					"Full_Press"
+					{
+						"bindings"
+						{
+							"binding"		"key_press L, Clan"
+						}
+					}
+				}
+			}
+			"touch_menu_button_3"
+			{
+				"activators"
+				{
+					"Full_Press"
+					{
+						"bindings"
+						{
+							"binding"		"key_press H, Vendor Tree"
+						}
+					}
+				}
+			}
+			"touch_menu_button_4"
+			{
+				"activators"
+				{
+					"Full_Press"
+					{
+						"bindings"
+						{
+							"binding"		"key_press O, Mail"
+						}
+					}
+				}
+			}
+			"touch_menu_button_5"
+			{
+				"activators"
+				{
+					"Full_Press"
+					{
+						"bindings"
+						{
+							"binding"		"key_press K, Codex"
+						}
+					}
+				}
+			}
+			"touch_menu_button_6"
+			{
+				"activators"
+				{
+					"Full_Press"
+					{
+						"bindings"
+						{
+							"binding"		"key_press RETURN, Chat"
+						}
+					}
+				}
+			}
+			"touch_menu_button_7"
+			{
+				"activators"
+				{
+					"Full_Press"
+					{
+						"bindings"
+						{
+							"binding"		"key_press J, Buffs"
+						}
+					}
+				}
+			}
+		}
+		"settings"
+		{
+			"touchmenu_button_fire_type"		"2"
+		}
+	}
+	"group"
+	{
+		"id"		"6"
+		"mode"		"joystick_mouse"
+		"inputs"
+		{
+			"click"
+			{
+				"activators"
+				{
+					"Full_Press"
+					{
+						"bindings"
+						{
+							"binding"		"key_press LEFT_CONTROL, Crouch / Quick Transfer"
+						}
+					}
+				}
+			}
+		}
+		"settings"
+		{
+			"output_joystick"		"2"
+			"sensitivity"		"280"
+			"sensitivity_vert_scale"		"85"
+			"curve_exponent"		"2"
+			"acceleration_axis_style"		"1"
+			"deadzone_enable_type"		"2"
+			"deadzone_inner_radius"		"2800"
+			"deadzone_outer_radius"		"31000"
+		}
+	}
+	"group"
+	{
+		"id"		"7"
+		"mode"		"trigger"
+		"inputs"
+		{
+			"edge"
+			{
+				"activators"
+				{
+					"Full_Press"
+					{
+						"bindings"
+						{
+							"binding"		"mouse_button RIGHT, Aim"
+						}
+					}
+				}
+			}
+		}
+		"settings"
+		{
+			"output_trigger"		"0"
+			"adaptive_threshold"		"0"
+			"edge_binding_radius"		"4600"
+		}
+	}
+	"group"
+	{
+		"id"		"8"
+		"mode"		"trigger"
+		"inputs"
+		{
+			"edge"
+			{
+				"activators"
+				{
+					"Full_Press"
+					{
+						"bindings"
+						{
+							"binding"		"mouse_button LEFT, Shoot"
+						}
+					}
+				}
+			}
+		}
+		"settings"
+		{
+			"output_trigger"		"0"
+			"adaptive_threshold"		"0"
+			"edge_binding_radius"		"4600"
+		}
+	}
+	"group"
+	{
+		"id"		"9"
+		"mode"		"absolute_mouse"
+		"inputs"
+		{
+			"click"
+			{
+				"activators"
+				{
+					"Full_Press"
+					{
+						"bindings"
+						{
+							"binding"		"key_press M, Map"
+						}
+					}
+				}
+			}
+		}
+		"settings"
+		{
+			"sensitivity"		"200"
+		}
+	}
+	"group"
+	{
+		"id"		"10"
+		"mode"		"absolute_mouse"
+		"inputs"
+		{
+			"click"
+			{
+				"activators"
+				{
+					"Full_Press"
+					{
+						"bindings"
+						{
+							"binding"		"mouse_button MIDDLE, Quick Mark"
+						}
+					}
+				}
+			}
+		}
+		"settings"
+		{
+			"sensitivity"		"200"
+		}
+	}
+	"group"
+	{
+		"id"		"11"
+		"mode"		"switches"
+		"inputs"
+		{
+			"button_escape"
+			{
+				"activators"
+				{
+					"Full_Press"
+					{
+						"bindings"
+						{
+							"binding"		"key_press ESCAPE, Menu / Back"
+						}
+						"settings"
+						{
+							"interruptable"		"1"
+						}
+					}
+					"Long_Press"
+					{
+						"bindings"
+						{
+							"binding"		"controller_action CHANGE_PRESET 2 1 1"
+						}
+						"settings"
+						{
+							"long_press_time"		"600"
+						}
+					}
+				}
+			}
+			"button_menu"
+			{
+				"activators"
+				{
+					"Full_Press"
+					{
+						"bindings"
+						{
+							"binding"		"key_press TAB, Inventory"
+						}
+						"settings"
+						{
+							"interruptable"		"1"
+						}
+					}
+					"Long_Press"
+					{
+						"bindings"
+						{
+							"binding"		"key_press LEFT_ALT, Show Cursor / Split Stack (hold)"
+						}
+						"settings"
+						{
+							"long_press_time"		"250"
+						}
+					}
+				}
+			}
+			"left_bumper"
+			{
+				"activators"
+				{
+					"Full_Press"
+					{
+						"bindings"
+						{
+							"binding"		"mode_shift button_diamond 1"
+						}
+						"settings"
+						{
+							"interruptable"		"0"
+						}
+					}
+					"Full_Press"
+					{
+						"bindings"
+						{
+							"binding"		"mode_shift dpad 3"
+						}
+						"settings"
+						{
+							"interruptable"		"0"
+						}
+					}
+					"Full_Press"
+					{
+						"bindings"
+						{
+							"binding"		"mode_shift center_trackpad 10"
+						}
+						"settings"
+						{
+							"interruptable"		"0"
+						}
+					}
+				}
+			}
+			"right_bumper"
+			{
+				"activators"
+				{
+					"Full_Press"
+					{
+						"bindings"
+						{
+							"binding"		"key_press E, Interact (fast) / hold = Take All"
+						}
+					}
+				}
+			}
+			"button_capture"
+			{
+				"activators"
+				{
+					"Full_Press"
+					{
+						"bindings"
+						{
+							"binding"		"mode_shift joystick 5"
+						}
+						"settings"
+						{
+							"interruptable"		"0"
+						}
+					}
+				}
+			}
+			"always_on_action"
+			{
+				"activators"
+				{
+					"Full_Press"
+					{
+						"bindings"
+						{
+							"binding"		"controller_action set_led 0 90 255 100 100 1"
+						}
+					}
+				}
+			}
+		}
+	}
+	"group"
+	{
+		"id"		"12"
+		"mode"		"single_button"
+		"inputs"
+		{
+		}
+	}
+	"group"
+	{
+		"id"		"13"
+		"mode"		"single_button"
+		"inputs"
+		{
+		}
+	}
+	"group"
+	{
+		"id"		"14"
+		"mode"		"four_buttons"
+		"inputs"
+		{
+			"button_a"
+			{
+				"activators"
+				{
+					"Full_Press"
+					{
+						"bindings"
+						{
+							"binding"		"key_press SPACE, Handbrake"
+						}
+					}
+				}
+			}
+			"button_b"
+			{
+				"activators"
+				{
+					"Full_Press"
+					{
+						"bindings"
+						{
+							"binding"		"key_press G, Horn"
+						}
+					}
+				}
+			}
+			"button_x"
+			{
+				"activators"
+				{
+					"Full_Press"
+					{
+						"bindings"
+						{
+							"binding"		"key_press SPACE, Handbrake"
+						}
+					}
+				}
+			}
+			"button_y"
+			{
+				"activators"
+				{
+					"Long_Press"
+					{
+						"bindings"
+						{
+							"binding"		"key_press E, Get Out"
+							"binding"		"controller_action CHANGE_PRESET 1 1 1"
+						}
+						"settings"
+						{
+							"long_press_time"		"400"
+						}
+					}
+				}
+			}
+		}
+	}
+	"group"
+	{
+		"id"		"15"
+		"mode"		"dpad"
+		"inputs"
+		{
+			"dpad_north"
+			{
+				"activators"
+				{
+					"Full_Press"
+					{
+						"bindings"
+						{
+							"binding"		"key_press 3, Quick Slot 1"
+						}
+						"settings"
+						{
+							"interruptable"		"1"
+						}
+					}
+					"Long_Press"
+					{
+						"bindings"
+						{
+							"binding"		"key_press 5, Quick Slot 3 (hold)"
+						}
+						"settings"
+						{
+							"long_press_time"		"300"
+						}
+					}
+				}
+			}
+			"dpad_south"
+			{
+				"activators"
+				{
+					"Full_Press"
+					{
+						"bindings"
+						{
+							"binding"		"key_press 4, Quick Slot 2"
+						}
+						"settings"
+						{
+							"interruptable"		"1"
+						}
+					}
+					"Long_Press"
+					{
+						"bindings"
+						{
+							"binding"		"key_press 6, Quick Slot 4 (hold)"
+						}
+						"settings"
+						{
+							"long_press_time"		"300"
+						}
+					}
+				}
+			}
+			"dpad_west"
+			{
+				"activators"
+				{
+					"Full_Press"
+					{
+						"bindings"
+						{
+							"binding"		"mouse_button MIDDLE, Quick Mark"
+						}
+					}
+				}
+			}
+			"dpad_east"
+			{
+				"activators"
+				{
+					"Full_Press"
+					{
+						"bindings"
+						{
+							"binding"		"key_press RIGHT_BRACKET, Switch Radio"
+						}
+					}
+				}
+			}
+		}
+		"settings"
+		{
+			"requires_click"		"0"
+		}
+	}
+	"group"
+	{
+		"id"		"16"
+		"mode"		"dpad"
+		"inputs"
+		{
+			"dpad_west"
+			{
+				"activators"
+				{
+					"Full_Press"
+					{
+						"bindings"
+						{
+							"binding"		"key_press A, Steer Left"
+						}
+					}
+				}
+			}
+			"dpad_east"
+			{
+				"activators"
+				{
+					"Full_Press"
+					{
+						"bindings"
+						{
+							"binding"		"key_press D, Steer Right"
+						}
+					}
+				}
+			}
+			"click"
+			{
+				"activators"
+				{
+					"Full_Press"
+					{
+						"bindings"
+						{
+							"binding"		"mouse_button BACK, Push To Talk"
+							"binding"		"mouse_button FORWARD, Push To Talk"
+						}
+					}
+				}
+			}
+		}
+		"settings"
+		{
+			"requires_click"		"0"
+			"deadzone"		"5500"
+		}
+	}
+	"group"
+	{
+		"id"		"17"
+		"mode"		"joystick_mouse"
+		"inputs"
+		{
+			"click"
+			{
+				"activators"
+				{
+					"Full_Press"
+					{
+						"bindings"
+						{
+							"binding"		"key_press Q, Police Siren"
+						}
+					}
+				}
+			}
+		}
+		"settings"
+		{
+			"output_joystick"		"2"
+			"sensitivity"		"280"
+			"sensitivity_vert_scale"		"85"
+			"curve_exponent"		"2"
+			"acceleration_axis_style"		"1"
+			"deadzone_enable_type"		"2"
+			"deadzone_inner_radius"		"2800"
+			"deadzone_outer_radius"		"31000"
+		}
+	}
+	"group"
+	{
+		"id"		"18"
+		"mode"		"trigger"
+		"inputs"
+		{
+			"edge"
+			{
+				"activators"
+				{
+					"Full_Press"
+					{
+						"bindings"
+						{
+							"binding"		"key_press S, Brake / Reverse"
+						}
+					}
+				}
+			}
+		}
+		"settings"
+		{
+			"output_trigger"		"0"
+			"adaptive_threshold"		"0"
+			"edge_binding_radius"		"4600"
+		}
+	}
+	"group"
+	{
+		"id"		"19"
+		"mode"		"trigger"
+		"inputs"
+		{
+			"edge"
+			{
+				"activators"
+				{
+					"Full_Press"
+					{
+						"bindings"
+						{
+							"binding"		"key_press W, Accelerate"
+						}
+					}
+				}
+			}
+		}
+		"settings"
+		{
+			"output_trigger"		"0"
+			"adaptive_threshold"		"0"
+			"edge_binding_radius"		"4600"
+		}
+	}
+	"group"
+	{
+		"id"		"20"
+		"mode"		"absolute_mouse"
+		"inputs"
+		{
+			"click"
+			{
+				"activators"
+				{
+					"Full_Press"
+					{
+						"bindings"
+						{
+							"binding"		"key_press M, Map"
+						}
+					}
+				}
+			}
+		}
+		"settings"
+		{
+			"sensitivity"		"200"
+		}
+	}
+	"group"
+	{
+		"id"		"21"
+		"mode"		"switches"
+		"inputs"
+		{
+			"button_escape"
+			{
+				"activators"
+				{
+					"Full_Press"
+					{
+						"bindings"
+						{
+							"binding"		"key_press ESCAPE, Menu / Back"
+						}
+						"settings"
+						{
+							"interruptable"		"1"
+						}
+					}
+					"Long_Press"
+					{
+						"bindings"
+						{
+							"binding"		"controller_action CHANGE_PRESET 3 1 1"
+						}
+						"settings"
+						{
+							"long_press_time"		"600"
+						}
+					}
+				}
+			}
+			"button_menu"
+			{
+				"activators"
+				{
+					"Full_Press"
+					{
+						"bindings"
+						{
+							"binding"		"key_press TAB, Inventory"
+						}
+						"settings"
+						{
+							"interruptable"		"1"
+						}
+					}
+					"Long_Press"
+					{
+						"bindings"
+						{
+							"binding"		"key_press LEFT_ALT, Show Cursor / Split Stack (hold)"
+						}
+						"settings"
+						{
+							"long_press_time"		"250"
+						}
+					}
+				}
+			}
+			"left_bumper"
+			{
+				"activators"
+				{
+					"Full_Press"
+					{
+						"bindings"
+						{
+							"binding"		"mouse_button RIGHT, Aim"
+						}
+					}
+				}
+			}
+			"right_bumper"
+			{
+				"activators"
+				{
+					"Full_Press"
+					{
+						"bindings"
+						{
+							"binding"		"mouse_button LEFT, Shoot"
+						}
+					}
+				}
+			}
+			"always_on_action"
+			{
+				"activators"
+				{
+					"Full_Press"
+					{
+						"bindings"
+						{
+							"binding"		"controller_action set_led 255 110 0 100 100 1"
+						}
+					}
+				}
+			}
+		}
+	}
+	"group"
+	{
+		"id"		"22"
+		"mode"		"single_button"
+		"inputs"
+		{
+		}
+	}
+	"group"
+	{
+		"id"		"23"
+		"mode"		"single_button"
+		"inputs"
+		{
+		}
+	}
+	"group"
+	{
+		"id"		"24"
+		"mode"		"four_buttons"
+		"inputs"
+		{
+			"button_a"
+			{
+				"activators"
+				{
+					"Full_Press"
+					{
+						"bindings"
+						{
+							"binding"		"key_press SPACE, Thrust Up"
+						}
+					}
+				}
+			}
+			"button_b"
+			{
+				"activators"
+				{
+					"Full_Press"
+					{
+						"bindings"
+						{
+							"binding"		"key_press LEFT_CONTROL, Thrust Down"
+						}
+					}
+				}
+			}
+			"button_y"
+			{
+				"activators"
+				{
+					"Long_Press"
+					{
+						"bindings"
+						{
+							"binding"		"key_press E, Get Out"
+							"binding"		"controller_action CHANGE_PRESET 1 1 1"
+						}
+						"settings"
+						{
+							"long_press_time"		"400"
+						}
+					}
+				}
+			}
+		}
+	}
+	"group"
+	{
+		"id"		"25"
+		"mode"		"dpad"
+		"inputs"
+		{
+			"dpad_north"
+			{
+				"activators"
+				{
+					"Full_Press"
+					{
+						"bindings"
+						{
+							"binding"		"key_press 3, Quick Slot 1"
+						}
+						"settings"
+						{
+							"interruptable"		"1"
+						}
+					}
+					"Long_Press"
+					{
+						"bindings"
+						{
+							"binding"		"key_press 5, Quick Slot 3 (hold)"
+						}
+						"settings"
+						{
+							"long_press_time"		"300"
+						}
+					}
+				}
+			}
+			"dpad_south"
+			{
+				"activators"
+				{
+					"Full_Press"
+					{
+						"bindings"
+						{
+							"binding"		"key_press 4, Quick Slot 2"
+						}
+						"settings"
+						{
+							"interruptable"		"1"
+						}
+					}
+					"Long_Press"
+					{
+						"bindings"
+						{
+							"binding"		"key_press 6, Quick Slot 4 (hold)"
+						}
+						"settings"
+						{
+							"long_press_time"		"300"
+						}
+					}
+				}
+			}
+			"dpad_west"
+			{
+				"activators"
+				{
+					"Full_Press"
+					{
+						"bindings"
+						{
+							"binding"		"key_press 1, Weapon 1"
+						}
+					}
+				}
+			}
+			"dpad_east"
+			{
+				"activators"
+				{
+					"Full_Press"
+					{
+						"bindings"
+						{
+							"binding"		"key_press 2, Weapon 2"
+						}
+					}
+				}
+			}
+		}
+		"settings"
+		{
+			"requires_click"		"0"
+		}
+	}
+	"group"
+	{
+		"id"		"26"
+		"mode"		"dpad"
+		"inputs"
+		{
+			"dpad_north"
+			{
+				"activators"
+				{
+					"Full_Press"
+					{
+						"bindings"
+						{
+							"binding"		"key_press W, Pitch Forward"
+						}
+					}
+				}
+			}
+			"dpad_south"
+			{
+				"activators"
+				{
+					"Full_Press"
+					{
+						"bindings"
+						{
+							"binding"		"key_press S, Pitch Backward"
+						}
+					}
+				}
+			}
+			"dpad_west"
+			{
+				"activators"
+				{
+					"Full_Press"
+					{
+						"bindings"
+						{
+							"binding"		"key_press A, Roll Left"
+						}
+					}
+				}
+			}
+			"dpad_east"
+			{
+				"activators"
+				{
+					"Full_Press"
+					{
+						"bindings"
+						{
+							"binding"		"key_press D, Roll Right"
+						}
+					}
+				}
+			}
+			"click"
+			{
+				"activators"
+				{
+					"Full_Press"
+					{
+						"bindings"
+						{
+							"binding"		"mouse_button BACK, Push To Talk"
+							"binding"		"mouse_button FORWARD, Push To Talk"
+						}
+					}
+				}
+			}
+		}
+		"settings"
+		{
+			"requires_click"		"0"
+			"deadzone"		"5500"
+		}
+	}
+	"group"
+	{
+		"id"		"27"
+		"mode"		"joystick_mouse"
+		"inputs"
+		{
+		}
+		"settings"
+		{
+			"output_joystick"		"2"
+			"sensitivity"		"280"
+			"sensitivity_vert_scale"		"85"
+			"curve_exponent"		"2"
+			"acceleration_axis_style"		"1"
+			"deadzone_enable_type"		"2"
+			"deadzone_inner_radius"		"2800"
+			"deadzone_outer_radius"		"31000"
+		}
+	}
+	"group"
+	{
+		"id"		"28"
+		"mode"		"trigger"
+		"inputs"
+		{
+			"edge"
+			{
+				"activators"
+				{
+					"Full_Press"
+					{
+						"bindings"
+						{
+							"binding"		"key_press LEFT_CONTROL, Thrust Down"
+						}
+					}
+				}
+			}
+		}
+		"settings"
+		{
+			"output_trigger"		"0"
+			"adaptive_threshold"		"0"
+			"edge_binding_radius"		"4600"
+		}
+	}
+	"group"
+	{
+		"id"		"29"
+		"mode"		"trigger"
+		"inputs"
+		{
+			"edge"
+			{
+				"activators"
+				{
+					"Full_Press"
+					{
+						"bindings"
+						{
+							"binding"		"key_press SPACE, Thrust Up"
+						}
+					}
+				}
+			}
+		}
+		"settings"
+		{
+			"output_trigger"		"0"
+			"adaptive_threshold"		"0"
+			"edge_binding_radius"		"4600"
+		}
+	}
+	"group"
+	{
+		"id"		"30"
+		"mode"		"absolute_mouse"
+		"inputs"
+		{
+			"click"
+			{
+				"activators"
+				{
+					"Full_Press"
+					{
+						"bindings"
+						{
+							"binding"		"key_press M, Map"
+						}
+					}
+				}
+			}
+		}
+		"settings"
+		{
+			"sensitivity"		"200"
+		}
+	}
+	"group"
+	{
+		"id"		"31"
+		"mode"		"switches"
+		"inputs"
+		{
+			"button_escape"
+			{
+				"activators"
+				{
+					"Full_Press"
+					{
+						"bindings"
+						{
+							"binding"		"key_press ESCAPE, Menu / Back"
+						}
+						"settings"
+						{
+							"interruptable"		"1"
+						}
+					}
+					"Long_Press"
+					{
+						"bindings"
+						{
+							"binding"		"controller_action CHANGE_PRESET 1 1 1"
+						}
+						"settings"
+						{
+							"long_press_time"		"600"
+						}
+					}
+				}
+			}
+			"button_menu"
+			{
+				"activators"
+				{
+					"Full_Press"
+					{
+						"bindings"
+						{
+							"binding"		"key_press TAB, Inventory"
+						}
+						"settings"
+						{
+							"interruptable"		"1"
+						}
+					}
+					"Long_Press"
+					{
+						"bindings"
+						{
+							"binding"		"key_press LEFT_ALT, Show Cursor / Split Stack (hold)"
+						}
+						"settings"
+						{
+							"long_press_time"		"250"
+						}
+					}
+				}
+			}
+			"left_bumper"
+			{
+				"activators"
+				{
+					"Full_Press"
+					{
+						"bindings"
+						{
+							"binding"		"mouse_button RIGHT, Free Camera"
+						}
+					}
+				}
+			}
+			"right_bumper"
+			{
+				"activators"
+				{
+					"Full_Press"
+					{
+						"bindings"
+						{
+							"binding"		"mouse_button LEFT, Shoot"
+						}
+					}
+				}
+			}
+			"always_on_action"
+			{
+				"activators"
+				{
+					"Full_Press"
+					{
+						"bindings"
+						{
+							"binding"		"controller_action set_led 0 220 90 100 100 1"
+						}
+					}
+				}
+			}
+		}
+	}
+	"group"
+	{
+		"id"		"32"
+		"mode"		"single_button"
+		"inputs"
+		{
+		}
+	}
+	"group"
+	{
+		"id"		"33"
+		"mode"		"single_button"
+		"inputs"
+		{
+		}
+	}
+	"preset"
+	{
+		"id"		"0"
+		"name"		"Default"
+		"group_source_bindings"
+		{
+			"11"		"switch active"
+			"0"		"button_diamond active"
+			"1"		"button_diamond active modeshift"
+			"12"		"left_trackpad inactive"
+			"13"		"right_trackpad inactive"
+			"4"		"joystick active"
+			"5"		"joystick active modeshift"
+			"7"		"left_trigger active"
+			"8"		"right_trigger active"
+			"6"		"right_joystick active"
+			"2"		"dpad active"
+			"3"		"dpad active modeshift"
+			"9"		"center_trackpad active"
+			"10"		"center_trackpad active modeshift"
+		}
+	}
+	"preset"
+	{
+		"id"		"1"
+		"name"		"Preset_1000001"
+		"group_source_bindings"
+		{
+			"21"		"switch active"
+			"14"		"button_diamond active"
+			"22"		"left_trackpad inactive"
+			"23"		"right_trackpad inactive"
+			"16"		"joystick active"
+			"18"		"left_trigger active"
+			"19"		"right_trigger active"
+			"17"		"right_joystick active"
+			"15"		"dpad active"
+			"20"		"center_trackpad active"
+		}
+	}
+	"preset"
+	{
+		"id"		"2"
+		"name"		"Preset_1000002"
+		"group_source_bindings"
+		{
+			"31"		"switch active"
+			"24"		"button_diamond active"
+			"32"		"left_trackpad inactive"
+			"33"		"right_trackpad inactive"
+			"26"		"joystick active"
+			"28"		"left_trigger active"
+			"29"		"right_trigger active"
+			"27"		"right_joystick active"
+			"25"		"dpad active"
+			"30"		"center_trackpad active"
+		}
+	}
+	"settings"
+	{
+		"left_trackpad_mode"		"0"
+		"right_trackpad_mode"		"0"
+	}
+}

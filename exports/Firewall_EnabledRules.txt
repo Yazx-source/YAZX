@@ -1,0 +1,5 @@
+﻿# YAZX Firewall Rules Export (Enabled only)
+# Date: 2026-11-20 05:18
+# Total enabled rules: 0
+
+

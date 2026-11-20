@@ -1,0 +1,12 @@
+﻿
+
+Name                        : NVIDIA GeForce RTX 3060
+AdapterRAM                  : 4293918720
+DriverVersion               : 32.0.16.1088
+VideoProcessor              : NVIDIA GeForce RTX 3060
+CurrentRefreshRate          : 240
+CurrentHorizontalResolution : 1920
+CurrentVerticalResolution   : 1080
+
+
+

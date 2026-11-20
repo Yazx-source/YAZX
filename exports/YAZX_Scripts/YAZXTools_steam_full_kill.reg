@@ -1,0 +1,8 @@
+Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\DesktopBackground\Shell\9SteamFullKill]
+@="Steam Full Kill"
+"Icon"="shell32.dll,-27"
+
+[HKEY_CLASSES_ROOT\DesktopBackground\Shell\9SteamFullKill\command]
+@="cmd.exe /c icacls \"C:\\Program Files (x86)\\Steam\\bin\\cef\\cef.win64\\steamwebhelper.exe\" /remove:d Everyone >nul 2>&1 & taskkill /f /im RocketLeague.exe >nul 2>&1 & taskkill /f /im RocketLeague_x64.exe >nul 2>&1 & taskkill /f /im steamwebhelper.exe >nul 2>&1 & taskkill /f /im steam.exe >nul 2>&1"

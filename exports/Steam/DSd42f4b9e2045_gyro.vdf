@@ -1,0 +1,5 @@
+"gyro_data"
+{
+	"gyro_stationary_noise_tolerance"		"0.5"
+	"accelerometer_stationary_noise_tolerance"		"12"
+}

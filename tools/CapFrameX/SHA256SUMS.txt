@@ -1,0 +1,2 @@
+35f707f5764112eaa81376c4fd0dcdd23a5bef22e5b11eb1e2f24427d1116b2c  release_1.9.2_installer.zip
+0c3374d382abb359439f8898bdaaa1c4e6a7cc0fdd936022c0ead0ca213bda08  release_1.9.2_portable.zip

@@ -1,0 +1,7 @@
+﻿
+BankLabel   Capacity ConfiguredClockSpeed Speed Manufacturer PartNumber           ConfiguredVoltage MinVoltage
+---------   -------- -------------------- ----- ------------ ----------           ----------------- ----------
+BANK 0    8589934592                 3200  2400 Kingston     KF3200C16D4/8GX                   1350       1350
+BANK 0    8589934592                 3200  2400 Kingston     KF3200C16D4/8GX                   1350       1350
+
+

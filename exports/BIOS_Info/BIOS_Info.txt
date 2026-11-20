@@ -1,0 +1,59 @@
+﻿
+
+PSComputerName                 : DESKTOP-OA4S7VA
+Status                         : OK
+Name                           : F19
+Caption                        : F19
+SMBIOSPresent                  : True
+__GENUS                        : 2
+__CLASS                        : Win32_BIOS
+__SUPERCLASS                   : CIM_BIOSElement
+__DYNASTY                      : CIM_ManagedSystemElement
+__RELPATH                      : Win32_BIOS.Name="F19",SoftwareElementID="F19",SoftwareElementState=3,TargetOperatingSy
+                                 stem=0,Version="ALASKA - 1072009"
+__PROPERTY_COUNT               : 31
+__DERIVATION                   : {CIM_BIOSElement, CIM_SoftwareElement, CIM_LogicalElement, CIM_ManagedSystemElement}
+__SERVER                       : DESKTOP-OA4S7VA
+__NAMESPACE                    : root\cimv2
+__PATH                         : \\DESKTOP-OA4S7VA\root\cimv2:Win32_BIOS.Name="F19",SoftwareElementID="F19",SoftwareEle
+                                 mentState=3,TargetOperatingSystem=0,Version="ALASKA - 1072009"
+BiosCharacteristics            : {7, 11, 12, 15...}
+BIOSVersion                    : {ALASKA - 1072009, F19, American Megatrends - 5001B}
+BuildNumber                    : 
+CodeSet                        : 
+CurrentLanguage                : en|US|iso8859-1
+Description                    : F19
+EmbeddedControllerMajorVersion : 255
+EmbeddedControllerMinorVersion : 255
+IdentificationCode             : 
+InstallableLanguages           : 14
+InstallDate                    : 
+LanguageEdition                : 
+ListOfLanguages                : {en|US|iso8859-1, zh|TW|unicode, zh|CN|unicode, ru|RU|iso8859-5...}
+Manufacturer                   : American Megatrends International, LLC.
+OtherTargetOS                  : 
+PrimaryBIOS                    : True
+ReleaseDate                    : 20240927000000.000000+000
+SerialNumber                   : Default string
+SMBIOSBIOSVersion              : F19
+SMBIOSMajorVersion             : 3
+SMBIOSMinorVersion             : 6
+SoftwareElementID              : F19
+SoftwareElementState           : 3
+SystemBiosMajorVersion         : 5
+SystemBiosMinorVersion         : 27
+TargetOperatingSystem          : 0
+Version                        : ALASKA - 1072009
+Scope                          : System.Management.ManagementScope
+Path                           : \\DESKTOP-OA4S7VA\root\cimv2:Win32_BIOS.Name="F19",SoftwareElementID="F19",SoftwareEle
+                                 mentState=3,TargetOperatingSystem=0,Version="ALASKA - 1072009"
+Options                        : System.Management.ObjectGetOptions
+ClassPath                      : \\DESKTOP-OA4S7VA\root\cimv2:Win32_BIOS
+Properties                     : {BiosCharacteristics, BIOSVersion, BuildNumber, Caption...}
+SystemProperties               : {__GENUS, __CLASS, __SUPERCLASS, __DYNASTY...}
+Qualifiers                     : {dynamic, Locale, provider, UUID}
+Site                           : 
+Container                      : 
+
+
+

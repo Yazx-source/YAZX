@@ -1,4 +1,8 @@
-logs/
+﻿logs/
 *.log
 *.tmp
 tools/NVCleanInstall/
+tools/Sysinternals/SysinternalsSuite.zip
+tools/Sysinternals/extracted/ZoomIt.exe
+.github_token.tmp
+.github_device_code.json

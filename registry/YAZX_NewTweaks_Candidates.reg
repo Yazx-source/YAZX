@@ -1,0 +1,70 @@
+Windows Registry Editor Version 5.00
+
+; YAZX New Tweaks — CANDIDATE & EXPERIMENTAL Registry Settings
+; STATUS: NOT for auto-import. Each tweak must be evaluated individually.
+; DO NOT apply to current system.
+;
+; HOW TO USE:
+;   1. Review each tweak below
+;   2. Import individually (copy single sections to .reg files)
+;   3. Benchmark before/after each
+;   4. Revert if no measurable improvement
+
+; =====================================================================
+; CANDIDATE: GlobalTimerResolutionRequests [CANDIDATE]
+; =====================================================================
+; WHAT: Allows the OS to honor the highest timer resolution requested
+;        by any running process, system-wide.
+; WHY: Some games and media apps request high-res timers (0.5ms).
+;       Without this, Windows 11 24H2 may ignore those requests to
+;       save power.
+; NOTE: This is a SERVICE-LEVEL setting. It does NOT set the timer
+;       resolution itself — it allows applications and drivers that
+;       request higher resolution to get it. The actual timer resolution
+;       is still determined by running processes (e.g., game engines,
+;       multimedia timers, NtSetTimerResolution calls).
+; COMPATIBILITY: Windows 11 24H2 (Build 26100). Present since 22H2.
+; RISK: Low. May increase idle power by ~1W if a background process
+;       holds a high-res timer request. No stability risk.
+; RESTORE: Set to 0 or delete the value.
+; SOURCE: Microsoft documentation on timer resolution changes in Win11.
+;
+; [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\kernel]
+; "GlobalTimerResolutionRequests"=dword:00000001
+
+; =====================================================================
+; CANDIDATE: LargeSystemCache = 0 [CANDIDATE]
+; =====================================================================
+; WHAT: Tells the memory manager to prioritize application working sets
+;       over filesystem cache.
+; WHY: With 32GB RAM, the system has ample memory. Setting this to 0
+;       ensures games get priority over file caching.
+; NOTE: Windows default on workstation SKUs is already 0. This may
+;       already be the current value. Verify with:
+;       (Get-ItemProperty "HKLM:\SYSTEM\CCS\Control\Session Manager\Memory Management").LargeSystemCache
+; CURRENT VALUE: 0 (default on workstation — this confirms the default)
+; COMPATIBILITY: All Windows versions.
+; RISK: Minimal. If the value is already 0, this changes nothing.
+; RESTORE: Set to 0 (which is the default anyway).
+;
+; [HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management]
+; "LargeSystemCache"=dword:00000000
+
+; =====================================================================
+; EXPERIMENTAL: Disable Memory Compression [EXPERIMENTAL]
+; =====================================================================
+; WHAT: Disables Windows memory page compression/combining.
+; WHY: Reduces CPU overhead from compressing/decompressing memory pages.
+; NOTE: This is NOT a registry setting. It requires PowerShell:
+;       Disable-MMAgent -MemoryCompression
+; CURRENT STATE: Unknown (Get-MMAgent requires elevation, blocked pre-format)
+; COMPATIBILITY: Windows 10 1607+.
+; RISK: MEDIUM. With 32GB RAM the risk is low, but:
+;       - If a game or application causes high memory pressure, the
+;         system will page to disk instead of compressing, which is SLOWER
+;       - There is no published benchmark showing consistent gaming benefit
+;       - Microsoft enables it by default for a reason
+; RESTORE: Enable-MMAgent -MemoryCompression
+; VERDICT: Do NOT auto-apply. Test manually post-format and benchmark.
+;
+; (No registry key — PowerShell command only)

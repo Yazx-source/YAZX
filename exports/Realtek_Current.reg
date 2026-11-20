@@ -1,0 +1,34 @@
+﻿Windows Registry Editor Version 5.00
+
+; YAZX Realtek Gaming 2.5GbE - CURRENT Config (All Offloads OFF)
+; Maximum latency reduction at cost of CPU overhead
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Class\{4d36e972-e325-11ce-bfc1-08002be10318}\0001]
+"*SpeedDuplex"="2500"
+"*FlowControl"="0"
+"*InterruptModeration"="0"
+"*IPChecksumOffloadIPv4"="0"
+"*TCPChecksumOffloadIPv4"="0"
+"*UDPChecksumOffloadIPv4"="0"
+"*TCPChecksumOffloadIPv6"="3"
+"*UDPChecksumOffloadIPv6"="3"
+"*LsoV2IPv4"="0"
+"*LsoV2IPv6"="0"
+"*RSS"="1"
+"*NumRssQueues"="4"
+"*ReceiveBuffers"="2048"
+"*TransmitBuffers"="1024"
+"*EEE"="0"
+"AdvancedEEE"="0"
+"EnableGreenEthernet"="0"
+"GigaLite"="0"
+"PowerSavingMode"="0"
+"PowerDownPll"="0"
+"*WakeOnMagicPacket"="0"
+"*WakeOnPattern"="0"
+"S5WakeOnLan"="0"
+"*PMARPOffload"="0"
+"*PMNSOffload"="0"
+"*JumboPacket"="1514"
+"*PriorityVlanTag"="0"
+

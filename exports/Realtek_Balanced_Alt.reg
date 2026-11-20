@@ -1,0 +1,59 @@
+﻿Windows Registry Editor Version 5.00
+
+; YAZX Realtek Gaming 2.5GbE - BALANCED Config (Alternative)
+; Key difference: IPv4 Checksum Offloads re-enabled (Tx only)
+; This reduces CPU overhead while maintaining low latency for gaming
+; Compare with current all-OFF config to decide which performs better
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Class\{4d36e972-e325-11ce-bfc1-08002be10318}\0001]
+; --- Speed: Force 2.5 Gbps Full Duplex ---
+"*SpeedDuplex"="2500"
+
+; --- Flow Control: OFF (no pause frames = lower latency) ---
+"*FlowControl"="0"
+
+; --- Interrupt Moderation: OFF (lower latency, higher CPU) ---
+"*InterruptModeration"="0"
+
+; --- BALANCED CHANGE: IPv4 Checksum Offload Tx Only ---
+; Tx offload lets NIC calculate outgoing checksums (zero latency impact)
+; Rx stays on CPU for fastest receive validation
+"*IPChecksumOffloadIPv4"="1"
+"*TCPChecksumOffloadIPv4"="1"
+"*UDPChecksumOffloadIPv4"="1"
+
+; --- IPv6 Offloads: Keep Rx & Tx (unchanged from current) ---
+"*TCPChecksumOffloadIPv6"="3"
+"*UDPChecksumOffloadIPv6"="3"
+
+; --- LSO: OFF (no batching = immediate sends) ---
+"*LsoV2IPv4"="0"
+"*LsoV2IPv6"="0"
+
+; --- RSS: ON with 4 queues ---
+"*RSS"="1"
+"*NumRssQueues"="4"
+
+; --- Buffers: Doubled from default ---
+"*ReceiveBuffers"="2048"
+"*TransmitBuffers"="1024"
+
+; --- All power saving OFF ---
+"*EEE"="0"
+"AdvancedEEE"="0"
+"EnableGreenEthernet"="0"
+"GigaLite"="0"
+"PowerSavingMode"="0"
+"PowerDownPll"="0"
+
+; --- WoL / Pattern: OFF ---
+"*WakeOnMagicPacket"="0"
+"*WakeOnPattern"="0"
+"S5WakeOnLan"="0"
+"*PMARPOffload"="0"
+"*PMNSOffload"="0"
+
+; --- Other ---
+"*JumboPacket"="1514"
+"*PriorityVlanTag"="0"
+

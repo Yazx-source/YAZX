@@ -1,0 +1,8 @@
+"gyro_data"
+{
+	"gyro_stationary_noise_tolerance"		"0.5"
+	"accelerometer_stationary_noise_tolerance"		"12"
+	"gyro_drift_per_sample_x"		"0"
+	"gyro_drift_per_sample_y"		"0"
+	"gyro_drift_per_sample_z"		"0"
+}

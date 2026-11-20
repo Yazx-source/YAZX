@@ -1,0 +1,24 @@
+; YAZX Realtek RSS — P-Core Affinity CANDIDATE Template
+; STATUS: CANDIDATE — NOT for auto-import. Manual verification required.
+;
+; This file is a TEMPLATE only. It cannot be imported directly because:
+; 1. The adapter registry subkey (e.g., 0007) varies per installation
+; 2. P-core assignment must be verified against actual CPU topology
+; 3. RSS queue count depends on adapter driver version and capabilities
+; 4. Performance benefit is not guaranteed — benchmark required
+;
+; Use the PowerShell script (YAZX_Apply_RSS_Affinity.ps1) instead,
+; which detects the adapter dynamically and includes restore capability.
+;
+; REFERENCE VALUES (for documentation, not import):
+;   *NumRssQueues = 4
+;   *RssBaseProcNumber = 2  (Thread 2 = P-core 1)
+;   *RssMaxProcNumber = 8   (Thread 8 = P-core 4)
+;
+; CURRENT VALUES (pre-format):
+;   RSS Queues: 4 (auto-assigned)
+;   Base/Max Processor: Driver default (auto)
+;
+; Registry path pattern:
+;   HKLM\SYSTEM\CCS\Control\Class\{4d36e972-e325-11ce-bfc1-08002be10318}\XXXX
+;   where XXXX is the adapter instance number

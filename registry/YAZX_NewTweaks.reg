@@ -1,0 +1,37 @@
+Windows Registry Editor Version 5.00
+
+; YAZX New Tweaks — Discovered during Phase 2 Research
+; DO NOT apply to current system. For post-format use only.
+;
+; CLASSIFICATION:
+;   SAFE = Matches existing system state or well-documented setting
+;   CANDIDATE = May improve performance, requires testing
+;   EXPERIMENTAL = Unproven, risk of side effects
+;
+; This file contains ONLY the SAFE tweaks.
+; Candidate and experimental tweaks are in YAZX_NewTweaks_Candidates.reg
+
+; --- Connected Standby disabled [SAFE] ---
+; Desktop PC — Connected Standby is a laptop feature.
+; Prevents background wake-ups during sleep.
+; RESTORE: Delete this key or set to 1
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Power]
+"CsEnabled"=dword:00000000
+
+; --- Game Mode enabled [SAFE — matches current state] ---
+; AutoGameModeEnabled=1 is already set on this system.
+; Preserving current value for post-format restore.
+[HKEY_CURRENT_USER\Software\Microsoft\GameBar]
+"AutoGameModeEnabled"=dword:00000001
+"AllowAutoGameMode"=dword:00000001
+
+; --- GameDVR completely disabled [SAFE — matches current state] ---
+; GameDVR_Enabled=0 is already set on this system.
+; Preserving current values for post-format restore.
+[HKEY_CURRENT_USER\System\GameConfigStore]
+"GameDVR_Enabled"=dword:00000000
+"GameDVR_FSEBehavior"=dword:00000002
+"GameDVR_FSEBehaviorMode"=dword:00000002
+"GameDVR_HonorUserFSEBehaviorMode"=dword:00000001
+"GameDVR_DXGIHonorFSEWindowsCompatible"=dword:00000001
+"GameDVR_EFSEFeatureFlags"=dword:00000000

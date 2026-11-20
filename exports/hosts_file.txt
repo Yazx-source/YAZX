@@ -1,0 +1,188 @@
+# Copyright (c) 1993-2009 Microsoft Corp.
+#
+# This is a sample HOSTS file used by Microsoft TCP/IP for Windows.
+#
+# This file contains the mappings of IP addresses to host names. Each
+# entry should be kept on an individual line. The IP address should
+# be placed in the first column followed by the corresponding host name.
+# The IP address and the host name should be separated by at least one
+# space.
+#
+# Additionally, comments (such as these) may be inserted on individual
+# lines or following the machine name denoted by a '#' symbol.
+#
+# For example:
+#
+#      102.54.94.97     rhino.acme.com          # source server
+#       38.25.63.10     x.acme.com              # x client host
+
+# localhost name resolution is handled within DNS itself.
+#	127.0.0.1       localhost
+#	::1             localhost
+
+# Start of entries inserted by Spybot - Search & Destroy
+# This list is Copyright 2000-2017 Safer-Networking Ltd.
+# End of entries inserted by Spybot - Search & Destroy
+
+# Start of entries inserted by Spybot Anti-Beacon for Windows 10
+0.0.0.0	choice.microsoft.com
+0.0.0.0	choice.microsoft.com.nstac.net
+0.0.0.0	df.telemetry.microsoft.com
+0.0.0.0	oca.telemetry.microsoft.com
+0.0.0.0	oca.telemetry.microsoft.com.nsatc.net
+0.0.0.0	redir.metaservices.microsoft.com
+0.0.0.0	reports.wes.df.telemetry.microsoft.com
+0.0.0.0	services.wes.df.telemetry.microsoft.com
+0.0.0.0	settings-sandbox.data.microsoft.com
+0.0.0.0	settings-win.data.microsoft.com
+0.0.0.0	sqm.df.telemetry.microsoft.com
+0.0.0.0	sqm.telemetry.microsoft.com
+0.0.0.0	sqm.telemetry.microsoft.com.nsatc.net
+0.0.0.0	telecommand.telemetry.microsoft.com
+0.0.0.0	telecommand.telemetry.microsoft.com.nsatc.net
+0.0.0.0	telemetry.appex.bing.net
+0.0.0.0	telemetry.microsoft.com
+0.0.0.0	telemetry.urs.microsoft.com
+0.0.0.0	vortex-sandbox.data.microsoft.com
+0.0.0.0	vortex-win.data.microsoft.com
+0.0.0.0	vortex.data.microsoft.com
+0.0.0.0	watson.telemetry.microsoft.com
+0.0.0.0	watson.telemetry.microsoft.com.nsatc.net
+0.0.0.0	watson.ppe.telemetry.microsoft.com
+0.0.0.0	wes.df.telemetry.microsoft.com
+0.0.0.0	vortex-bn2.metron.live.com.nsatc.net
+0.0.0.0	vortex-cy2.metron.live.com.nsatc.net
+0.0.0.0	watson.live.com
+0.0.0.0	watson.microsoft.com
+0.0.0.0	feedback.search.microsoft.com
+0.0.0.0	feedback.windows.com
+0.0.0.0	corp.sts.microsoft.com
+0.0.0.0	diagnostics.support.microsoft.com
+0.0.0.0	i1.services.social.microsoft.com
+0.0.0.0	i1.services.social.microsoft.com.nsatc.net
+0.0.0.0	vortex-bn2.metron.live.com.nsatc.net
+0.0.0.0	vortex-cy2.metron.live.com.nsatc.net
+0.0.0.0	ca.telemetry.microsoft.com
+0.0.0.0	cache.datamart.windows.com
+0.0.0.0	diagnostics.support.microsoft.com
+0.0.0.0	spynet2.microsoft.com
+0.0.0.0	spynetalt.microsoft.com
+# End of entries inserted by Spybot Anti-Beacon for Windows 10
+0.0.0.0	oca.telemetry.microsoft.com # managed by privacy.sexy
+::1	oca.telemetry.microsoft.com # managed by privacy.sexy
+0.0.0.0	oca.microsoft.com # managed by privacy.sexy
+0.0.0.0	kmwatsonc.events.data.microsoft.com # managed by privacy.sexy
+::1	kmwatsonc.events.data.microsoft.com # managed by privacy.sexy
+0.0.0.0	watson.telemetry.microsoft.com # managed by privacy.sexy
+::1	watson.telemetry.microsoft.com # managed by privacy.sexy
+0.0.0.0	umwatsonc.events.data.microsoft.com # managed by privacy.sexy
+::1	umwatsonc.events.data.microsoft.com # managed by privacy.sexy
+0.0.0.0	ceuswatcab01.blob.core.windows.net # managed by privacy.sexy
+0.0.0.0	ceuswatcab02.blob.core.windows.net # managed by privacy.sexy
+::1	ceuswatcab02.blob.core.windows.net # managed by privacy.sexy
+0.0.0.0	eaus2watcab01.blob.core.windows.net # managed by privacy.sexy
+::1	eaus2watcab01.blob.core.windows.net # managed by privacy.sexy
+0.0.0.0	eaus2watcab02.blob.core.windows.net # managed by privacy.sexy
+::1	eaus2watcab02.blob.core.windows.net # managed by privacy.sexy
+0.0.0.0	weus2watcab01.blob.core.windows.net # managed by privacy.sexy
+::1	weus2watcab01.blob.core.windows.net # managed by privacy.sexy
+0.0.0.0	weus2watcab02.blob.core.windows.net # managed by privacy.sexy
+0.0.0.0	co4.telecommand.telemetry.microsoft.com # managed by privacy.sexy
+::1	co4.telecommand.telemetry.microsoft.com # managed by privacy.sexy
+0.0.0.0	cs11.wpc.v0cdn.net # managed by privacy.sexy
+::1	cs11.wpc.v0cdn.net # managed by privacy.sexy
+0.0.0.0	cs1137.wpc.gammacdn.net # managed by privacy.sexy
+::1	cs1137.wpc.gammacdn.net # managed by privacy.sexy
+0.0.0.0	modern.watson.data.microsoft.com # managed by privacy.sexy
+::1	modern.watson.data.microsoft.com # managed by privacy.sexy
+0.0.0.0	functional.events.data.microsoft.com # managed by privacy.sexy
+::1	functional.events.data.microsoft.com # managed by privacy.sexy
+0.0.0.0	browser.events.data.msn.com # managed by privacy.sexy
+::1	browser.events.data.msn.com # managed by privacy.sexy
+0.0.0.0	self.events.data.microsoft.com # managed by privacy.sexy
+0.0.0.0	v10.events.data.microsoft.com # managed by privacy.sexy
+::1	v10.events.data.microsoft.com # managed by privacy.sexy
+0.0.0.0	v10c.events.data.microsoft.com # managed by privacy.sexy
+::1	v10c.events.data.microsoft.com # managed by privacy.sexy
+0.0.0.0	us-v10c.events.data.microsoft.com # managed by privacy.sexy
+::1	us-v10c.events.data.microsoft.com # managed by privacy.sexy
+0.0.0.0	eu-v10c.events.data.microsoft.com # managed by privacy.sexy
+::1	eu-v10c.events.data.microsoft.com # managed by privacy.sexy
+0.0.0.0	v10.vortex-win.data.microsoft.com # managed by privacy.sexy
+::1	v10.vortex-win.data.microsoft.com # managed by privacy.sexy
+0.0.0.0	vortex-win.data.microsoft.com # managed by privacy.sexy
+::1	vortex-win.data.microsoft.com # managed by privacy.sexy
+0.0.0.0	telecommand.telemetry.microsoft.com # managed by privacy.sexy
+::1	telecommand.telemetry.microsoft.com # managed by privacy.sexy
+0.0.0.0	www.telecommandsvc.microsoft.com # managed by privacy.sexy
+::1	www.telecommandsvc.microsoft.com # managed by privacy.sexy
+0.0.0.0	umwatson.events.data.microsoft.com # managed by privacy.sexy
+0.0.0.0	watsonc.events.data.microsoft.com # managed by privacy.sexy
+::1	watsonc.events.data.microsoft.com # managed by privacy.sexy
+0.0.0.0	eu-watsonc.events.data.microsoft.com # managed by privacy.sexy
+::1	eu-watsonc.events.data.microsoft.com # managed by privacy.sexy
+0.0.0.0	config.edge.skype.com # managed by privacy.sexy
+::1	config.edge.skype.com # managed by privacy.sexy
+0.0.0.0	telemetry.dropbox.com # managed by privacy.sexy
+::1	telemetry.dropbox.com # managed by privacy.sexy
+0.0.0.0	telemetry.v.dropbox.com # managed by privacy.sexy
+::1	telemetry.v.dropbox.com # managed by privacy.sexy
+
+# === YAZX Privacy Shield — Additional Blocks ===
+
+# Microsoft Activity & Edge telemetry
+0.0.0.0	activity.windows.com
+0.0.0.0	edge.activity.windows.com
+0.0.0.0	edge.microsoft.com
+0.0.0.0	msedge.net
+0.0.0.0	a-ring.msedge.net
+0.0.0.0	b-ring.msedge.net
+0.0.0.0	fp.msedge.net
+0.0.0.0	I-ring.msedge.net
+0.0.0.0	x-ring.msedge.net
+0.0.0.0	us.events.data.microsoft.com
+0.0.0.0	bingapis.com
+0.0.0.0	business.bing.com
+0.0.0.0	cortana.ai
+0.0.0.0	teredo.ipv6.microsoft.com
+0.0.0.0	win10.ipv6.microsoft.com
+
+# NVIDIA telemetry (NVCleanstall strips GFE — safe to block)
+0.0.0.0	telemetry.nvidia.com
+0.0.0.0	gfe.nvidia.com
+0.0.0.0	gfwsl.geforce.com
+0.0.0.0	events.gfe.nvidia.com
+0.0.0.0	urs.nvidia.com
+0.0.0.0	metric.gfe.nvidia.com
+
+# Google ads & tracking
+0.0.0.0	google-analytics.com
+0.0.0.0	www.google-analytics.com
+0.0.0.0	ssl.google-analytics.com
+0.0.0.0	googletagmanager.com
+0.0.0.0	www.googletagmanager.com
+0.0.0.0	googlesyndication.com
+0.0.0.0	pagead2.googlesyndication.com
+0.0.0.0	doubleclick.net
+0.0.0.0	ad.doubleclick.net
+0.0.0.0	googleadservices.com
+0.0.0.0	www.googleadservices.com
+
+# Facebook tracking pixels
+0.0.0.0	connect.facebook.net
+0.0.0.0	pixel.facebook.com
+
+# Twitter/X ads & analytics
+0.0.0.0	analytics.twitter.com
+0.0.0.0	static.ads-twitter.com
+0.0.0.0	ads-api.twitter.com
+
+# Other trackers
+0.0.0.0	bam.nr-data.net
+0.0.0.0	crash.steampowered.com
+0.0.0.0	tracking.epicgames.com
+0.0.0.0	cc-api-data.adobe.io
+0.0.0.0	scorecardresearch.com
+0.0.0.0	sb.scorecardresearch.com
+0.0.0.0	quantserve.com
+0.0.0.0	pixel.quantserve.com

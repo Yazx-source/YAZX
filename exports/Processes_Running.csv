@@ -1,0 +1,89 @@
+﻿"Name","Id","CPU","WorkingSet64","Path"
+"audiodg","1888","1947.21875","31399936",
+"brave","4768","36.5625","284983296","C:\Program Files\BraveSoftware\Brave-Browser\Application\brave.exe"
+"brave","4296","0.734375","25841664","C:\Program Files\BraveSoftware\Brave-Browser\Application\brave.exe"
+"brave","4064","214.5625","523227136","C:\Program Files\BraveSoftware\Brave-Browser\Application\brave.exe"
+"brave","6836","52.0625","498573312","C:\Program Files\BraveSoftware\Brave-Browser\Application\brave.exe"
+"brave","4908","0.078125","34426880","C:\Program Files\BraveSoftware\Brave-Browser\Application\brave.exe"
+"brave","4780","82.625","236118016","C:\Program Files\BraveSoftware\Brave-Browser\Application\brave.exe"
+"brave","2272","5.40625","52195328","C:\Program Files\BraveSoftware\Brave-Browser\Application\brave.exe"
+"brave","1244","1.078125","55025664","C:\Program Files\BraveSoftware\Brave-Browser\Application\brave.exe"
+"brave","1096","1.859375","95068160","C:\Program Files\BraveSoftware\Brave-Browser\Application\brave.exe"
+"brave","4032","72.359375","396677120","C:\Program Files\BraveSoftware\Brave-Browser\Application\brave.exe"
+"brave","3996","0.109375","23650304","C:\Program Files\BraveSoftware\Brave-Browser\Application\brave.exe"
+"brave","3284","0.015625","9723904","C:\Program Files\BraveSoftware\Brave-Browser\Application\brave.exe"
+"claude","6104","0.96875","145444864","C:\Program Files\Claude\claude.exe"
+"claude","5728","419.859375","867966976","C:\Program Files\Claude\claude.exe"
+"claude","5468","5.21875","77365248","C:\Program Files\Claude\claude.exe"
+"claude","6616","0.640625","123285504","C:\Program Files\Claude\claude.exe"
+"claude","7888","97.9375","350285824","C:\Users\Y\AppData\Roaming\Claude\claude-code\2.1.321\d0e23af87588\claude.exe"
+"claude","7020","0.53125","128774144","C:\Program Files\Claude\claude.exe"
+"claude","6812","0.484375","146563072","C:\Program Files\Claude\claude.exe"
+"claude","5444","100.71875","140865536","C:\Program Files\Claude\claude.exe"
+"claude","2068","13.625","253984768","C:\Users\Y\AppData\Roaming\Claude\claude-code\2.1.321\d0e23af87588\claude.exe"
+"claude","708","0.421875","97390592","C:\Program Files\Claude\claude.exe"
+"claude","320","27.84375","281104384","C:\Users\Y\AppData\Roaming\Claude\claude-code\2.1.321\d0e23af87588\claude.exe"
+"claude","2364","0.015625","38256640","C:\Program Files\Claude\claude.exe"
+"claude","5368","0.15625","115294208","C:\Program Files\Claude\claude.exe"
+"claude","4752","135.4375","467939328","C:\Program Files\Claude\claude.exe"
+"claude","2824","0.90625","159993856","C:\Program Files\Claude\claude.exe"
+"cmd","9092","0","6746112","C:\WINDOWS\System32\cmd.exe"
+"conhost","3760","0.671875","10096640","C:\WINDOWS\system32\conhost.exe"
+"conhost","5780","0.03125","10100736","C:\WINDOWS\system32\conhost.exe"
+"conhost","7916","0.03125","8470528","C:\WINDOWS\system32\conhost.exe"
+"conhost","324","0.015625","8536064","C:\WINDOWS\system32\conhost.exe"
+"conhost","2032","0.015625","8790016","C:\WINDOWS\system32\conhost.exe"
+"conhost","2188","0.015625","7536640","C:\WINDOWS\system32\conhost.exe"
+"csrss","1016",,"7778304",
+"csrss","912",,"8024064",
+"ctfmon","5504","9.03125","37277696",
+"DataExchangeHost","6352","0.53125","41275392","C:\Windows\System32\DataExchangeHost.exe"
+"Discord","6320","761.296875","110215168","C:\Users\Y\AppData\Local\Discord\app-1.0.9269\Discord.exe"
+"Discord","6444","9.96875","66719744","C:\Users\Y\AppData\Local\Discord\app-1.0.9269\Discord.exe"
+"Discord","7348","2.03125","10031104","C:\Users\Y\AppData\Local\Discord\app-1.0.9269\Discord.exe"
+"Discord","5296","0.046875","36220928","C:\Users\Y\AppData\Local\Discord\app-1.0.9269\Discord.exe"
+"Discord","5872","36.34375","144494592","C:\Users\Y\AppData\Local\Discord\app-1.0.9269\Discord.exe"
+"Discord","6136","1809.828125","514306048","C:\Users\Y\AppData\Local\Discord\app-1.0.9269\Discord.exe"
+"dllhost","5048","0.140625","18505728","C:\WINDOWS\system32\DllHost.exe"
+"dllhost","2368","0.09375","18055168","C:\WINDOWS\system32\DllHost.exe"
+"dwm","1484",,"139755520",
+"explorer","5844","68.21875","335970304","C:\WINDOWS\explorer.exe"
+"fontdrvhost","1268",,"5046272",
+"fontdrvhost","1260",,"9097216",
+"Idle","0",,"8192",
+"lsass","1084",,"24203264",
+"NVDisplay.Container","2848",,"64724992",
+"NVDisplay.Container","1572",,"51240960",
+"powershell","5772","23.390625","99164160","C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe"
+"powershell","4804","3.484375","81960960","C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe"
+"powershell","3916","17.703125","83988480","C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe"
+"ProcessGovernor","724",,"14622720",
+"Registry","272",,"64806912",
+"RuntimeBroker","4076","0.3125","43466752","C:\Windows\System32\RuntimeBroker.exe"
+"SearchHost","4728","2.34375","216203264","C:\WINDOWS\SystemApps\MicrosoftWindows.Client.CBS_cw5n1h2txyewy\SearchHost.exe"
+"services","1072",,"9928704",
+"SetTimerResolutionService","1988",,"41922560",
+"ShellHost","3276","0.515625","64258048","C:\Windows\System32\ShellHost.exe"
+"sihost","4492","0.171875","49119232","C:\WINDOWS\system32\sihost.exe"
+"smss","740",,"1720320",
+"srvstub","1976",,"4907008",
+"StartMenu","3568","0.140625","18878464","C:\Program Files\Open-Shell\StartMenu.exe"
+"StartMenuExperienceHost","3184","1.40625","123486208","C:\WINDOWS\SystemApps\Microsoft.Windows.StartMenuExperienceHost_cw5n1h2txyewy\StartMenuExperienceHost.exe"
+"svchost","1928",,"17272832",
+"svchost","1828",,"17080320",
+"svchost","1820",,"11149312",
+"svchost","1936",,"20099072",
+"svchost","4284",,"19255296",
+"svchost","2496",,"17293312",
+"svchost","1944",,"26558464",
+"svchost","1612",,"14647296",
+"svchost","1360",,"15695872",
+"svchost","1232",,"30597120",
+"svchost","1640",,"14663680",
+"svchost","1788",,"11333632",
+"svchost","1740",,"21422080",
+"svchost","1672",,"8511488",
+"System","4",,"2134016",
+"wininit","1008",,"11808768",
+"winlogon","868",,"17125376",
+"wlrmdr","2536","0.296875","11501568","C:\WINDOWS\system32\wlrmdr.exe"
