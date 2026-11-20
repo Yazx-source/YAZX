@@ -1,0 +1,31 @@
+Windows Registry Editor Version 5.00
+
+; YAZX NVIDIA Registry Tweaks
+; Containers disabled, GPU scheduling on, MPO off, TDR delay
+
+; --- Hardware GPU Scheduling ---
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\GraphicsDrivers]
+"HwSchMode"=dword:00000002
+"TdrDelay"=dword:0000003c
+"TdrDdiDelay"=dword:0000003c
+
+; --- Disable MPO ---
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\DWM]
+"OverlayTestMode"=dword:00000005
+
+; --- Disable NVIDIA Container services ---
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\NVDisplay.ContainerLocalSystem]
+"Start"=dword:00000004
+
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\NvContainerLocalSystem]
+"Start"=dword:00000004
+
+; --- NVIDIA Telemetry Disable ---
+[HKEY_LOCAL_MACHINE\SOFTWARE\NVIDIA Corporation\NvControlPanel2\Client]
+"OptInOrOutPreference"=dword:00000000
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\NVIDIA Corporation\Global\FTS]
+"EnableRID66610"=dword:00000000
+"EnableRID64640"=dword:00000000
+"EnableRID44231"=dword:00000000
+

@@ -30,7 +30,7 @@ One-click restore of all tweaks, programs, and configurations after a fresh inst
 | 08 | Services | Disable unnecessary Windows services |
 | 09 | BCD Tweaks | Timer configuration (useplatformtick, disabledynamictick) |
 | 10 | MSI Mode | Message Signaled Interrupts on 7 devices |
-| 11 | Power Plan | Import TTCH Ultimate Performance plan |
+| 11 | Power Plan | YAZX Ultimate Performance (QuakedK method) |
 | 12 | Privacy | Telemetry disable, tracking cleanup |
 | 13 | Oneclick | Run [QuakedK's Oneclick](https://github.com/QuakedK/Oneclick) **LAST** |
 
@@ -79,7 +79,7 @@ One-click restore of all tweaks, programs, and configurations after a fresh inst
 
 ## Credits
 - [QuakedK/Oneclick](https://github.com/QuakedK/Oneclick) - Base debloat and optimization
-- TTCH - Timer Resolution, Power Plan, Gaming Mode
+- TTCH - Timer Resolution, Gaming Mode
 - YAZX - Custom configs, game rules, automation
 
 ## Important Notes

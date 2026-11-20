@@ -1,47 +1,32 @@
 param($YazxDir, $BackupDir, $LogFile)
 # YAZX Module 11 - Power Plan
-# Imports and activates TTCH Ultimate Performance plan
+# Enables Ultimate Performance plan (QuakedK method) and applies YAZX power tweaks
 
 function Log($msg) { "[$((Get-Date).ToString('yyyy-MM-dd HH:mm:ss'))] $msg" | Out-File $LogFile -Append -Encoding UTF8 }
 
 Write-Host "`n  === YAZX Module 11: Power Plan ===" -ForegroundColor Cyan
 Log "Module 11 PowerPlan: Started"
 
-# Try to find the power plan file
-$planFile = $null
-$locations = @(
-    "$YazxDir\configs\active_plan.pow",
-    "$BackupDir\yazx_PowerPlans\active_plan.pow",
-    "$YazxDir\configs\EonX.pow",
-    "$BackupDir\yazx_PowerPlans\EonX.pow"
-)
-foreach ($loc in $locations) {
-    if (Test-Path $loc) { $planFile = $loc; break }
-}
-
-if ($planFile) {
-    # Import the plan
-    $guid = [guid]::NewGuid().ToString()
-    $result = powercfg -import $planFile $guid 2>&1
-    if ($LASTEXITCODE -eq 0) {
-        # Activate it
-        powercfg /setactive $guid
-        Write-Host "  [OK] Power plan imported and activated" -ForegroundColor Green
-        Log "PowerPlan: Imported from $planFile, GUID=$guid"
-    } else {
-        Write-Host "  [!] Import failed: $result" -ForegroundColor Red
-        Log "PowerPlan: Import failed - $result"
-    }
+# Enable hidden Ultimate Performance scheme (QuakedK approach)
+Write-Host "  Creating YAZX Ultimate Performance plan..." -ForegroundColor Yellow
+$dupOutput = powercfg -duplicatescheme e9a42b02-d5df-448d-aa00-03f14749eb61 2>&1
+if ($dupOutput -match '([0-9a-f-]{36})') {
+    $guid = $Matches[1]
+    powercfg -changename $guid "YAZX Ultimate Performance" "YAZX gaming power plan based on Ultimate Performance"
+    powercfg /setactive $guid
+    Write-Host "  [OK] YAZX Ultimate Performance created and activated" -ForegroundColor Green
+    Log "PowerPlan: Created YAZX Ultimate Performance, GUID=$guid"
 } else {
-    Write-Host "  [!] No power plan file found" -ForegroundColor Red
-    Write-Host "  Enabling built-in Ultimate Performance..." -ForegroundColor Yellow
-    # Enable hidden Ultimate Performance scheme
-    powercfg -duplicatescheme e9a42b02-d5df-448d-aa00-03f14749eb61
+    # Already exists - find and activate it
     $schemes = powercfg /list 2>&1
-    $ultPerf = ($schemes | Select-String "Ultimate Performance").ToString()
-    if ($ultPerf -match '([0-9a-f-]{36})') {
+    $existing = $schemes | Select-String "YAZX Ultimate Performance|Ultimate Performance"
+    if ($existing -and $existing.ToString() -match '([0-9a-f-]{36})') {
         powercfg /setactive $Matches[1]
         Write-Host "  [OK] Ultimate Performance activated" -ForegroundColor Green
+        Log "PowerPlan: Activated existing Ultimate Performance"
+    } else {
+        Write-Host "  [!] Could not create Ultimate Performance plan" -ForegroundColor Red
+        Log "PowerPlan: Failed to create plan"
     }
 }
 

@@ -1,0 +1,41 @@
+Windows Registry Editor Version 5.00
+
+; YAZX System Tweaks
+; UAC, WER, Maintenance, Prefetch
+
+; --- UAC - EnableLUA OFF (required for gaming admin access) ---
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System]
+"EnableLUA"=dword:00000000
+"ConsentPromptBehaviorAdmin"=dword:00000000
+"PromptOnSecureDesktop"=dword:00000000
+
+; --- Windows Error Reporting Disabled ---
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\Windows Error Reporting]
+"Disabled"=dword:00000001
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\Windows Error Reporting]
+"Disabled"=dword:00000001
+
+; --- Disable Automatic Maintenance ---
+[HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Schedule\Maintenance]
+"MaintenanceDisabled"=dword:00000001
+
+; --- Prefetch / Superfetch ---
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management\PrefetchParameters]
+"EnablePrefetcher"=dword:00000000
+"EnableSuperfetch"=dword:00000000
+"EnableBoottrace"=dword:00000000
+
+; --- Windows Update - Disable Auto ---
+[HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU]
+"NoAutoUpdate"=dword:00000001
+
+; --- Disable Windows Defender (policy) ---
+[HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows Defender]
+"DisableAntiSpyware"=dword:00000001
+
+; --- Font Rendering ---
+[HKEY_CURRENT_USER\Control Panel\Desktop]
+"FontSmoothingType"=dword:00000002
+"FontSmoothing"="2"
+

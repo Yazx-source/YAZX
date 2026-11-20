@@ -62,20 +62,23 @@ echo   [7]  Registry - Network   - TCP/Adapter optimization
 echo   [8]  Services             - Disable unnecessary services
 echo   [9]  BCD Tweaks           - Boot timer configuration
 echo   [10] MSI Mode             - Interrupt mode (7 devices)
-echo   [11] Power Plan           - TTCH Ultimate Performance
+echo   [11] Power Plan           - YAZX Ultimate Performance
 echo   [12] Privacy              - Hosts/Telemetry cleanup
 echo   [13] Oneclick             - Run Oneclick tweaker (LAST!)
 echo.
 echo   [A]  Run ALL (1-13 in order)
+echo   [R]  Registry FULL Restore (from backup exports)
 echo   [Q]  Quit
 echo.
 
-choice /c 123456789ABCDQ /n /m "  Select: "
+choice /c 123456789ABCDERQ /n /m "  Select: "
 
-if errorlevel 14 exit /b
-if errorlevel 13 goto run_oneclick
-if errorlevel 12 goto run_privacy
-if errorlevel 11 goto run_power
+if errorlevel 16 exit /b
+if errorlevel 15 goto run_reg_full_restore
+if errorlevel 14 goto run_oneclick
+if errorlevel 13 goto run_privacy
+if errorlevel 12 goto run_power
+if errorlevel 11 goto run_msi
 if errorlevel 10 goto run_all
 set "module_choice=%errorlevel%"
 
@@ -98,12 +101,21 @@ powershell -ExecutionPolicy Bypass -File "%YAZX_DIR%\modules\01_SystemCheck.ps1"
 powershell -ExecutionPolicy Bypass -File "%YAZX_DIR%\modules\02_NVIDIADriver.ps1" -YazxDir "%YAZX_DIR%" -BackupDir "%BACKUP_DIR%" -LogFile "%LOG_FILE%"
 powershell -ExecutionPolicy Bypass -File "%YAZX_DIR%\modules\03_Programs.ps1" -YazxDir "%YAZX_DIR%" -BackupDir "%BACKUP_DIR%" -LogFile "%LOG_FILE%"
 powershell -ExecutionPolicy Bypass -File "%YAZX_DIR%\modules\04_Configs.ps1" -YazxDir "%YAZX_DIR%" -BackupDir "%BACKUP_DIR%" -LogFile "%LOG_FILE%"
+echo.
+echo  Applying registry tweaks...
+regedit /s "%YAZX_DIR%\registry\YAZX_System.reg"
+echo  [%DATE% %TIME%] Registry System: Applied (UAC, WER, Maintenance) >> "%LOG_FILE%"
 regedit /s "%YAZX_DIR%\registry\YAZX_Cosmetic.reg"
 echo  [%DATE% %TIME%] Registry Cosmetic: Applied >> "%LOG_FILE%"
 regedit /s "%YAZX_DIR%\registry\YAZX_Gaming.reg"
 echo  [%DATE% %TIME%] Registry Gaming: Applied >> "%LOG_FILE%"
 regedit /s "%YAZX_DIR%\registry\YAZX_Network.reg"
 echo  [%DATE% %TIME%] Registry Network: Applied >> "%LOG_FILE%"
+regedit /s "%YAZX_DIR%\registry\YAZX_NVIDIA.reg"
+echo  [%DATE% %TIME%] Registry NVIDIA: Applied >> "%LOG_FILE%"
+regedit /s "%YAZX_DIR%\registry\YAZX_Hardware.reg"
+echo  [%DATE% %TIME%] Registry Hardware: Applied (AHCI, NVMe, USB) >> "%LOG_FILE%"
+echo  [OK] All registry tweaks applied.
 powershell -ExecutionPolicy Bypass -File "%YAZX_DIR%\modules\08_Services.ps1" -YazxDir "%YAZX_DIR%" -BackupDir "%BACKUP_DIR%" -LogFile "%LOG_FILE%"
 powershell -ExecutionPolicy Bypass -File "%YAZX_DIR%\modules\09_BCDTweaks.ps1" -YazxDir "%YAZX_DIR%" -BackupDir "%BACKUP_DIR%" -LogFile "%LOG_FILE%"
 powershell -ExecutionPolicy Bypass -File "%YAZX_DIR%\modules\10_MSIMode.ps1" -YazxDir "%YAZX_DIR%" -BackupDir "%BACKUP_DIR%" -LogFile "%LOG_FILE%"
@@ -139,12 +151,69 @@ goto done
 
 :run_reg_gaming
 regedit /s "%YAZX_DIR%\registry\YAZX_Gaming.reg"
-echo  [%DATE% %TIME%] Registry Gaming: Applied >> "%LOG_FILE%"
+regedit /s "%YAZX_DIR%\registry\YAZX_NVIDIA.reg"
+regedit /s "%YAZX_DIR%\registry\YAZX_Hardware.reg"
+echo  [%DATE% %TIME%] Registry Gaming + NVIDIA + Hardware: Applied >> "%LOG_FILE%"
 goto done
 
 :run_reg_network
 regedit /s "%YAZX_DIR%\registry\YAZX_Network.reg"
 echo  [%DATE% %TIME%] Registry Network: Applied >> "%LOG_FILE%"
+goto done
+
+:run_msi
+powershell -ExecutionPolicy Bypass -File "%YAZX_DIR%\modules\10_MSIMode.ps1" -YazxDir "%YAZX_DIR%" -BackupDir "%BACKUP_DIR%" -LogFile "%LOG_FILE%"
+goto done
+
+:run_reg_full_restore
+echo.
+echo  ══════════════════════════════════════════
+echo   Registry FULL Restore from Backup
+echo  ══════════════════════════════════════════
+echo.
+echo  This imports ALL registry exports from the backup folder.
+echo  Source: %BACKUP_DIR%\yazx_AllTweakRegistry
+echo.
+echo  [1] AllTweakRegistry (41 files - comprehensive system state)
+echo  [2] TweakRegistry    (36 files - targeted tweak parameters)
+echo  [3] Both
+echo  [Q] Cancel
+echo.
+choice /c 123Q /n /m "  Select restore source: "
+if errorlevel 4 goto done
+if errorlevel 3 goto restore_both
+if errorlevel 2 goto restore_tweak
+if errorlevel 1 goto restore_all
+
+:restore_all
+echo  Importing AllTweakRegistry...
+for %%f in ("%BACKUP_DIR%\yazx_AllTweakRegistry\*.reg") do (
+    regedit /s "%%f"
+    echo  [OK] Imported: %%~nxf
+)
+echo  [%DATE% %TIME%] AllTweakRegistry: Full restore completed >> "%LOG_FILE%"
+goto done
+
+:restore_tweak
+echo  Importing TweakRegistry...
+for %%f in ("%BACKUP_DIR%\yazx_TweakRegistry\*.reg") do (
+    regedit /s "%%f"
+    echo  [OK] Imported: %%~nxf
+)
+echo  [%DATE% %TIME%] TweakRegistry: Full restore completed >> "%LOG_FILE%"
+goto done
+
+:restore_both
+echo  Importing AllTweakRegistry...
+for %%f in ("%BACKUP_DIR%\yazx_AllTweakRegistry\*.reg") do (
+    regedit /s "%%f"
+)
+echo  Importing TweakRegistry...
+for %%f in ("%BACKUP_DIR%\yazx_TweakRegistry\*.reg") do (
+    regedit /s "%%f"
+)
+echo  [%DATE% %TIME%] Both AllTweakRegistry + TweakRegistry: Full restore completed >> "%LOG_FILE%"
+echo  [OK] Full registry restore complete.
 goto done
 
 :run_services

@@ -1,0 +1,26 @@
+Windows Registry Editor Version 5.00
+
+; YAZX Hardware Tweaks
+; AHCI, NVMe, USB optimizations
+
+; --- AHCI Link Power Management ---
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\storahci\Parameters\Device]
+"EnableHIPM"=dword:00000000
+"EnableDIPM"=dword:00000000
+"EnableHDPM"=dword:00000000
+
+; --- NVMe Power State Transition Latency ---
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\stornvme\Parameters\Device]
+"IdleTimeout"=dword:00000000
+
+; --- USB Selective Suspend Disable ---
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\USB]
+"DisableSelectiveSuspend"=dword:00000001
+
+; --- USB Power Management ---
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\Class\{36FC9E60-C465-11CF-8056-444553540000}]
+"EnhancedPowerManagementEnabled"=dword:00000000
+"AllowIdleIrpInD3"=dword:00000000
+"IdleInWorkingState"=dword:00000000
+"SelectiveSuspendEnabled"=dword:00000000
+

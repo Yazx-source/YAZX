@@ -1,5 +1,0 @@
-﻿
-Existing Power Schemes (* Active)
------------------------------------
-Power Scheme GUID: a067b7a6-e004-4aaf-bb8c-af7aacab57d8  (TTCH ULTIMATE PERFORMANCE)
-Power Scheme GUID: fd7463fc-d008-4a42-9497-1007fc9baaf0  (TTCH ULTIMATE PERFORMANCE) *
