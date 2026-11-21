@@ -102,7 +102,7 @@ echo   [F]  Oneclick             - Run Oneclick tweaker (LAST!)
 echo   [G]  New Tweaks           - VBS/HVCI/Audio + candidate review
 echo   [H]  Autologgers          - Disable ETW autologger sessions
 echo.
-echo   [A]  Run ALL (1-9,C-H in order)
+echo   [A]  Run ALL (Smart Defaults, one-click)
 echo   [V]  Phase 2.5 Exports    - Kernel/Power/VST/Profiles (manual review)
 echo   [R]  Registry FULL Restore (from backup exports)
 echo   [Q]  Quit
@@ -135,12 +135,18 @@ if "%module_choice%"=="9" goto run_bcd
 
 :run_all
 echo.
-echo  Running ALL modules in order...
-echo  [%DATE% %TIME%] Running ALL modules >> "%LOG_FILE%"
-powershell -ExecutionPolicy Bypass -File "%YAZX_DIR%\modules\01_SystemCheck.ps1" -YazxDir "%YAZX_DIR%" -BackupDir "%BACKUP_DIR%" -LogFile "%LOG_FILE%"
-powershell -ExecutionPolicy Bypass -File "%YAZX_DIR%\modules\02_NVIDIADriver.ps1" -YazxDir "%YAZX_DIR%" -BackupDir "%BACKUP_DIR%" -LogFile "%LOG_FILE%"
-powershell -ExecutionPolicy Bypass -File "%YAZX_DIR%\modules\03_Programs.ps1" -YazxDir "%YAZX_DIR%" -BackupDir "%BACKUP_DIR%" -LogFile "%LOG_FILE%"
-powershell -ExecutionPolicy Bypass -File "%YAZX_DIR%\modules\04_Configs.ps1" -YazxDir "%YAZX_DIR%" -BackupDir "%BACKUP_DIR%" -LogFile "%LOG_FILE%"
+echo  ═══════════════════════════════════════════
+echo   YAZX Smart Setup — Running ALL with defaults
+echo  ═══════════════════════════════════════════
+echo.
+echo  Creating system restore point...
+powershell -Command "try { Checkpoint-Computer -Description 'YAZX Pre-Setup' -RestorePointType 'MODIFY_SETTINGS' -ErrorAction Stop; Write-Host '  [OK] Restore point created' } catch { Write-Host '  [!] Restore point skipped (not available)' }"
+echo  [%DATE% %TIME%] Running ALL modules (Auto mode) >> "%LOG_FILE%"
+echo.
+powershell -ExecutionPolicy Bypass -File "%YAZX_DIR%\modules\01_SystemCheck.ps1" -YazxDir "%YAZX_DIR%" -BackupDir "%BACKUP_DIR%" -LogFile "%LOG_FILE%" -Auto
+powershell -ExecutionPolicy Bypass -File "%YAZX_DIR%\modules\02_NVIDIADriver.ps1" -YazxDir "%YAZX_DIR%" -BackupDir "%BACKUP_DIR%" -LogFile "%LOG_FILE%" -Auto
+powershell -ExecutionPolicy Bypass -File "%YAZX_DIR%\modules\03_Programs.ps1" -YazxDir "%YAZX_DIR%" -BackupDir "%BACKUP_DIR%" -LogFile "%LOG_FILE%" -Auto
+powershell -ExecutionPolicy Bypass -File "%YAZX_DIR%\modules\04_Configs.ps1" -YazxDir "%YAZX_DIR%" -BackupDir "%BACKUP_DIR%" -LogFile "%LOG_FILE%" -Auto
 echo.
 echo  Applying registry tweaks...
 regedit /s "%YAZX_DIR%\registry\YAZX_System.reg"
@@ -156,24 +162,26 @@ echo  [%DATE% %TIME%] Registry NVIDIA: Applied >> "%LOG_FILE%"
 regedit /s "%YAZX_DIR%\registry\YAZX_Hardware.reg"
 echo  [%DATE% %TIME%] Registry Hardware: Applied (AHCI, NVMe, USB) >> "%LOG_FILE%"
 echo  [OK] All registry tweaks applied.
-powershell -ExecutionPolicy Bypass -File "%YAZX_DIR%\modules\08_Services.ps1" -YazxDir "%YAZX_DIR%" -BackupDir "%BACKUP_DIR%" -LogFile "%LOG_FILE%"
-powershell -ExecutionPolicy Bypass -File "%YAZX_DIR%\modules\09_BCDTweaks.ps1" -YazxDir "%YAZX_DIR%" -BackupDir "%BACKUP_DIR%" -LogFile "%LOG_FILE%"
-powershell -ExecutionPolicy Bypass -File "%YAZX_DIR%\modules\10_MSIMode.ps1" -YazxDir "%YAZX_DIR%" -BackupDir "%BACKUP_DIR%" -LogFile "%LOG_FILE%"
-powershell -ExecutionPolicy Bypass -File "%YAZX_DIR%\modules\11_PowerPlan.ps1" -YazxDir "%YAZX_DIR%" -BackupDir "%BACKUP_DIR%" -LogFile "%LOG_FILE%"
-powershell -ExecutionPolicy Bypass -File "%YAZX_DIR%\modules\12_Privacy.ps1" -YazxDir "%YAZX_DIR%" -BackupDir "%BACKUP_DIR%" -LogFile "%LOG_FILE%"
+powershell -ExecutionPolicy Bypass -File "%YAZX_DIR%\modules\08_Services.ps1" -YazxDir "%YAZX_DIR%" -BackupDir "%BACKUP_DIR%" -LogFile "%LOG_FILE%" -Auto
+powershell -ExecutionPolicy Bypass -File "%YAZX_DIR%\modules\09_BCDTweaks.ps1" -YazxDir "%YAZX_DIR%" -BackupDir "%BACKUP_DIR%" -LogFile "%LOG_FILE%" -Auto
+powershell -ExecutionPolicy Bypass -File "%YAZX_DIR%\modules\10_MSIMode.ps1" -YazxDir "%YAZX_DIR%" -BackupDir "%BACKUP_DIR%" -LogFile "%LOG_FILE%" -Auto
+powershell -ExecutionPolicy Bypass -File "%YAZX_DIR%\modules\11_PowerPlan.ps1" -YazxDir "%YAZX_DIR%" -BackupDir "%BACKUP_DIR%" -LogFile "%LOG_FILE%" -Auto
+powershell -ExecutionPolicy Bypass -File "%YAZX_DIR%\modules\12_Privacy.ps1" -YazxDir "%YAZX_DIR%" -BackupDir "%BACKUP_DIR%" -LogFile "%LOG_FILE%" -Auto
 echo.
 regedit /s "%YAZX_DIR%\registry\YAZX_NewTweaks.reg"
-echo  [%DATE% %TIME%] Registry NewTweaks: Applied (CsEnabled, GameMode, GameDVR) >> "%LOG_FILE%"
-powershell -ExecutionPolicy Bypass -File "%YAZX_DIR%\modules\14_NewTweaks.ps1" -YazxDir "%YAZX_DIR%" -BackupDir "%BACKUP_DIR%" -LogFile "%LOG_FILE%"
-powershell -ExecutionPolicy Bypass -File "%YAZX_DIR%\modules\15_Autologgers.ps1" -YazxDir "%YAZX_DIR%" -BackupDir "%BACKUP_DIR%" -LogFile "%LOG_FILE%"
+echo  [%DATE% %TIME%] Registry NewTweaks: Applied >> "%LOG_FILE%"
+powershell -ExecutionPolicy Bypass -File "%YAZX_DIR%\modules\14_NewTweaks.ps1" -YazxDir "%YAZX_DIR%" -BackupDir "%BACKUP_DIR%" -LogFile "%LOG_FILE%" -Auto
+powershell -ExecutionPolicy Bypass -File "%YAZX_DIR%\modules\15_Autologgers.ps1" -YazxDir "%YAZX_DIR%" -BackupDir "%BACKUP_DIR%" -LogFile "%LOG_FILE%" -Auto
 echo.
-echo  [!] Candidate tweaks (Timer Resolution, Memory Compression, P-core policy)
-echo      are NOT auto-applied. See registry\YAZX_NewTweaks_Candidates.reg
+echo  ═══════════════════════════════════════════
+echo   ALL 15 modules applied with YAZX defaults
+echo  ═══════════════════════════════════════════
 echo.
 echo  [!] Module 13 (Oneclick) must be run manually - download from:
 echo      https://github.com/QuakedK/Oneclick/releases
 echo.
-echo  [%DATE% %TIME%] ALL modules completed (15 modules). Oneclick skipped (run manually). >> "%LOG_FILE%"
+echo  Log file: %LOG_FILE%
+echo  [%DATE% %TIME%] ALL modules completed (15 modules, Auto mode). >> "%LOG_FILE%"
 goto done
 
 :run_syscheck

@@ -1,8 +1,9 @@
-param($YazxDir, $BackupDir, $LogFile)
+param($YazxDir, $BackupDir, $LogFile, [switch]$Auto)
 # YAZX Module 09 - BCD Timer Tweaks
 # From TTCH TIMERS configuration
 
-function Log($msg) { "[$((Get-Date).ToString('yyyy-MM-dd HH:mm:ss'))] $msg" | Out-File $LogFile -Append -Encoding UTF8 }
+. "$PSScriptRoot\YAZX_Common.ps1"
+function Log($msg) { YAZX-Log $LogFile $msg }
 
 Write-Host "`n  === YAZX Module 09: BCD Tweaks ===" -ForegroundColor Cyan
 Log "Module 09 BCDTweaks: Started"

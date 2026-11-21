@@ -1,8 +1,9 @@
-param($YazxDir, $BackupDir, $LogFile)
+param($YazxDir, $BackupDir, $LogFile, [switch]$Auto)
 # YAZX Module 11 - Power Plan
 # Enables Ultimate Performance plan (QuakedK method) and applies YAZX power tweaks
 
-function Log($msg) { "[$((Get-Date).ToString('yyyy-MM-dd HH:mm:ss'))] $msg" | Out-File $LogFile -Append -Encoding UTF8 }
+. "$PSScriptRoot\YAZX_Common.ps1"
+function Log($msg) { YAZX-Log $LogFile $msg }
 
 Write-Host "`n  === YAZX Module 11: Power Plan ===" -ForegroundColor Cyan
 Log "Module 11 PowerPlan: Started"

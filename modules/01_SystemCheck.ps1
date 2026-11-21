@@ -1,8 +1,9 @@
-param($YazxDir, $BackupDir, $LogFile)
+param($YazxDir, $BackupDir, $LogFile, [switch]$Auto)
 # YAZX Module 01 - System Check
 # Verifies system compatibility before applying tweaks
 
-function Log($msg) { "[$((Get-Date).ToString('yyyy-MM-dd HH:mm:ss'))] $msg" | Out-File $LogFile -Append -Encoding UTF8 }
+. "$PSScriptRoot\YAZX_Common.ps1"
+function Log($msg) { YAZX-Log $LogFile $msg }
 
 Write-Host "`n  === YAZX Module 01: System Check ===" -ForegroundColor Cyan
 Log "Module 01 SystemCheck: Started"

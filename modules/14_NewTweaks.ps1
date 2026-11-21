@@ -1,155 +1,154 @@
 param(
     [string]$YazxDir,
     [string]$BackupDir,
-    [string]$LogFile
+    [string]$LogFile,
+    [switch]$Auto
 )
 
-# YAZX Module 14: New Tweaks
-# Auto-applies: VBS/HVCI disable, Audio optimization
-# Shows diagnostic report for 5 candidate tweaks (manual review required)
+# YAZX Module 14: Advanced Tweaks
+# Interactive with YAZX smart defaults — press Enter to apply recommended
+# -Auto: applies all YAZX defaults without prompting
+
+. "$PSScriptRoot\YAZX_Common.ps1"
 
 Write-Host ""
-Write-Host "  Module 14: New Tweaks — Candidate Review"
-Write-Host "  =========================================="
-Write-Host "  STATUS: Diagnostic mode (no changes applied)"
-Write-Host "  To apply a specific tweak, run with its flag."
-Write-Host ""
-
-$timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
-
-# --- Diagnostic: Show current state of each candidate ---
-
-Write-Host "  === Current System State ==="
-Write-Host ""
-
-# 1. GlobalTimerResolutionRequests
-Write-Host "  [1] GlobalTimerResolutionRequests"
-try {
-    $val = (Get-ItemProperty "HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\kernel" -Name "GlobalTimerResolutionRequests" -ErrorAction Stop).GlobalTimerResolutionRequests
-    Write-Host "      Current: $val"
-} catch {
-    Write-Host "      Current: NOT SET (default = applications may be ignored)"
+Write-Host "  ============================================" -ForegroundColor Cyan
+Write-Host "    YAZX Module 14: Advanced Tweaks" -ForegroundColor Cyan
+Write-Host "  ============================================" -ForegroundColor Cyan
+if ($Auto) {
+    Write-Host "  Mode: AUTO (applying YAZX defaults)" -ForegroundColor Green
+} else {
+    Write-Host "  Mode: INTERACTIVE (Enter = YAZX default)" -ForegroundColor Yellow
 }
-Write-Host "      Candidate value: 1 (honor app timer requests)"
-Write-Host "      Classification: CANDIDATE"
-Write-Host "      Risk: Low (may increase idle power ~1W)"
-Write-Host "      Restore: Set to 0 or delete value"
 Write-Host ""
+YAZX-Log $LogFile "Module 14 AdvancedTweaks: Started (Auto=$($Auto.IsPresent))"
 
-# 2. LargeSystemCache
-Write-Host "  [2] LargeSystemCache"
-try {
-    $val = (Get-ItemProperty "HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management" -Name "LargeSystemCache" -ErrorAction Stop).LargeSystemCache
-    Write-Host "      Current: $val"
-} catch {
-    Write-Host "      Current: NOT SET (default on workstation = 0)"
-}
-Write-Host "      Candidate value: 0 (prioritize app memory)"
-Write-Host "      Classification: CANDIDATE (may already be default)"
-Write-Host "      Risk: Minimal"
-Write-Host "      Restore: Set to 0 (default)"
+# ══════════════════════════════════════
+# SECTION A: Always Applied (no choice)
+# ══════════════════════════════════════
+Write-Host "  --- Always Applied ---" -ForegroundColor Cyan
+
+# A1. VBS / HVCI / Core Isolation
+Write-Host "  [A1] VBS / HVCI / Core Isolation" -ForegroundColor Yellow
+YAZX-Apply -LogFile $LogFile -Path "HKLM:\SYSTEM\CurrentControlSet\Control\DeviceGuard" `
+    -Name "EnableVirtualizationBasedSecurity" -Value 0 -Desc "VBS"
+YAZX-Apply -LogFile $LogFile -Path "HKLM:\SYSTEM\CurrentControlSet\Control\DeviceGuard" `
+    -Name "RequirePlatformSecurityFeatures" -Value 0 -Desc "VBS PlatformSecurity"
+YAZX-Apply -LogFile $LogFile -Path "HKLM:\SYSTEM\CurrentControlSet\Control\DeviceGuard\Scenarios\HypervisorEnforcedCodeIntegrity" `
+    -Name "Enabled" -Value 0 -Desc "HVCI"
+YAZX-Apply -LogFile $LogFile -Path "HKLM:\SYSTEM\CurrentControlSet\Control\CI\Config" `
+    -Name "VulnerableDriverBlocklistEnable" -Value 0 -Desc "Driver Blocklist"
+
+# A2. Audio Optimization
 Write-Host ""
-
-# 3. Memory Compression
-Write-Host "  [3] Memory Compression"
-try {
-    $mc = (Get-MMAgent -ErrorAction Stop).MemoryCompression
-    Write-Host "      Current: $mc"
-} catch {
-    Write-Host "      Current: UNKNOWN (requires admin elevation)"
-}
-Write-Host "      Candidate: Disabled"
-Write-Host "      Classification: EXPERIMENTAL"
-Write-Host "      Risk: MEDIUM — may cause paging to disk under memory pressure"
-Write-Host "      Restore: Enable-MMAgent -MemoryCompression"
-Write-Host ""
-
-# 4. Heterogeneous Thread Policy
-Write-Host "  [4] Heterogeneous Thread Policy (P-core preference)"
-try {
-    $result = powercfg /qh SCHEME_CURRENT SUB_PROCESSOR 93b8b6dc-0698-4d1c-9ee4-0644e900c85d 2>&1
-    $current = ($result | Select-String "Current.*:").ToString() -replace '.*:\s*', ''
-    Write-Host "      Current: $current"
-} catch {
-    Write-Host "      Current: UNKNOWN"
-}
-Write-Host "      Candidate value: 4 (Prefer performant processors)"
-Write-Host "      Classification: CANDIDATE"
-Write-Host "      Risk: Low (well-documented Windows setting for hybrid CPUs)"
-Write-Host "      Restore: powercfg /setacvalueindex SCHEME_CURRENT SUB_PROCESSOR SCHEDPOLICY 0"
-Write-Host ""
-
-# 5. PCIe ASPM
-Write-Host "  [5] PCIe ASPM (Link State Power Management)"
-try {
-    $result = powercfg /qh SCHEME_CURRENT 501a4d13-42af-4429-9fd1-a8218c268e20 ee12f906-d277-404b-b6da-e5fa1a576df5 2>&1
-    $current = ($result | Select-String "Current.*:").ToString() -replace '.*:\s*', ''
-    Write-Host "      Current: $current"
-} catch {
-    Write-Host "      Current: UNKNOWN"
-}
-Write-Host "      Candidate value: 0 (Off — no link state power saving)"
-Write-Host "      Classification: CANDIDATE"
-Write-Host "      Risk: Low (increases PCIe power, prevents micro-latency)"
-Write-Host "      Restore: powercfg /setacvalueindex ... 2 (Moderate)"
-Write-Host ""
-
-# === Auto-Applied Tweaks (from Oneclick comparison) ===
-Write-Host ""
-Write-Host "  === Auto-Applied Tweaks ===" -ForegroundColor Cyan
-Write-Host ""
-
-# 6. VBS / HVCI / Core Isolation — Disable for gaming performance
-Write-Host "  [6] VBS / HVCI / Core Isolation" -ForegroundColor Yellow
-$vbsPath = "HKLM:\SYSTEM\CurrentControlSet\Control\DeviceGuard"
-$hvciPath = "HKLM:\SYSTEM\CurrentControlSet\Control\DeviceGuard\Scenarios\HypervisorEnforcedCodeIntegrity"
-$ciPath = "HKLM:\SYSTEM\CurrentControlSet\Control\CI\Config"
-
-if (-not (Test-Path $vbsPath)) { New-Item -Path $vbsPath -Force | Out-Null }
-Set-ItemProperty -Path $vbsPath -Name "EnableVirtualizationBasedSecurity" -Value 0 -Type DWord -Force
-Set-ItemProperty -Path $vbsPath -Name "RequirePlatformSecurityFeatures" -Value 0 -Type DWord -Force
-
-if (-not (Test-Path $hvciPath)) { New-Item -Path $hvciPath -Force | Out-Null }
-Set-ItemProperty -Path $hvciPath -Name "Enabled" -Value 0 -Type DWord -Force
-
-if (-not (Test-Path $ciPath)) { New-Item -Path $ciPath -Force | Out-Null }
-Set-ItemProperty -Path $ciPath -Name "VulnerableDriverBlocklistEnable" -Value 0 -Type DWord -Force
-
-Write-Host "  [OK] VBS/HVCI/Core Isolation disabled" -ForegroundColor Green
-
-# 7. Audio Optimization — Disable enhancements and spatial audio
-Write-Host ""
-Write-Host "  [7] Audio Optimization" -ForegroundColor Yellow
-$audioPath = "HKCU:\SOFTWARE\Microsoft\Multimedia\Audio"
-if (-not (Test-Path $audioPath)) { New-Item -Path $audioPath -Force | Out-Null }
-Set-ItemProperty -Path $audioPath -Name "DisableSpatialAudio" -Value 1 -Type DWord -Force -ErrorAction SilentlyContinue
-Write-Host "  [OK] Spatial audio disabled" -ForegroundColor Green
-
+Write-Host "  [A2] Audio Optimization" -ForegroundColor Yellow
+YAZX-Apply -LogFile $LogFile -Path "HKCU:\SOFTWARE\Microsoft\Multimedia\Audio" `
+    -Name "DisableSpatialAudio" -Value 1 -Desc "Spatial Audio"
 $devEnum = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\MMDevices\Audio\Render"
 if (Test-Path $devEnum) {
+    $audioDevs = 0
     Get-ChildItem $devEnum -ErrorAction SilentlyContinue | ForEach-Object {
         $propPath = "$($_.PSPath)\Properties"
         if (Test-Path $propPath) {
             Set-ItemProperty -Path $propPath -Name "{b3f8fa53-0004-438e-9003-51a46e139bfc},3" -Value 0 -Type DWord -Force -ErrorAction SilentlyContinue
+            $audioDevs++
         }
     }
-    Write-Host "  [OK] Audio enhancements disabled for render devices" -ForegroundColor Green
+    Write-Host "    [OK] Audio enhancements disabled ($audioDevs devices)" -ForegroundColor Green
+    YAZX-Log $LogFile "Audio enhancements: disabled on $audioDevs render devices"
 }
-Log "Audio optimization: Spatial audio off, enhancements disabled"
 
+# ══════════════════════════════════════
+# SECTION B: Smart Defaults (with choices)
+# ══════════════════════════════════════
 Write-Host ""
-Write-Host "  === Candidate Instructions ==="
-Write-Host "  The 5 candidates above require manual review."
-Write-Host "  To apply, import from:"
-Write-Host "    registry\YAZX_NewTweaks_Candidates.reg (Timer, LargeSystemCache)"
-Write-Host "  Or run PowerShell commands manually:"
-Write-Host "    Disable-MMAgent -MemoryCompression  (Memory Compression)"
-Write-Host "    powercfg /setacvalueindex SCHEME_CURRENT SUB_PROCESSOR SCHEDPOLICY 4"
-Write-Host "    powercfg /setacvalueindex SCHEME_CURRENT 501a4d13... ee12f906... 0"
-Write-Host ""
-Write-Host "  Benchmark each candidate individually before keeping it."
+Write-Host "  --- Tweaks with Options ---" -ForegroundColor Cyan
 Write-Host ""
 
-if ($LogFile) {
-    Add-Content $LogFile "[$timestamp] Module 14: VBS/HVCI disabled. Diagnostic shown for 5 candidates."
+# B1. Timer Resolution Honoring
+Write-Host "  [B1] Timer Resolution" -ForegroundColor Yellow
+$timerVal = YAZX-Choose -Title "Timer Resolution Honoring" -Labels @(
+    "Enable — honor app timer requests (lowest latency)",
+    "Disable — Windows default behavior"
+) -Values @(1, 0) -Default 0 -Auto $Auto.IsPresent
+YAZX-Apply -LogFile $LogFile `
+    -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\kernel" `
+    -Name "GlobalTimerResolutionRequests" -Value $timerVal -Desc "TimerResolution"
+
+# B2. Large System Cache
+Write-Host ""
+Write-Host "  [B2] Large System Cache" -ForegroundColor Yellow
+$cacheVal = YAZX-Choose -Title "System Cache Priority" -Labels @(
+    "0 — Prioritize application memory (gaming)",
+    "1 — Prioritize system file cache (server)"
+) -Values @(0, 1) -Default 0 -Auto $Auto.IsPresent
+YAZX-Apply -LogFile $LogFile `
+    -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\Memory Management" `
+    -Name "LargeSystemCache" -Value $cacheVal -Desc "LargeSystemCache"
+
+# B3. Memory Compression
+Write-Host ""
+Write-Host "  [B3] Memory Compression" -ForegroundColor Yellow
+$mcChoice = YAZX-Choose -Title "Memory Compression (16GB+ RAM recommended to disable)" -Labels @(
+    "Disable — lower CPU overhead, uses more RAM",
+    "Enable — Windows default, compresses idle pages"
+) -Values @("disable", "enable") -Default 0 -Auto $Auto.IsPresent
+try {
+    if ($mcChoice -eq "disable") {
+        Disable-MMAgent -MemoryCompression -ErrorAction Stop
+        Write-Host "    [OK] Memory Compression = Disabled" -ForegroundColor Green
+    } else {
+        Enable-MMAgent -MemoryCompression -ErrorAction Stop
+        Write-Host "    [OK] Memory Compression = Enabled" -ForegroundColor Green
+    }
+    YAZX-Log $LogFile "MemoryCompression: $mcChoice"
+} catch {
+    Write-Host "    [!] Memory Compression: requires admin" -ForegroundColor Yellow
+    YAZX-Log $LogFile "MemoryCompression: failed (not admin?)"
 }
+
+# B4. Heterogeneous Thread Policy (P-core preference)
+Write-Host ""
+Write-Host "  [B4] Thread Scheduling Policy (Hybrid CPU)" -ForegroundColor Yellow
+$cpu = (Get-CimInstance Win32_Processor -ErrorAction SilentlyContinue).Name
+$isHybrid = $cpu -match "12[0-9]{2}|13[0-9]{2}|14[0-9]{2}|Ultra"
+if ($isHybrid) {
+    $schedVal = YAZX-Choose -Title "Heterogeneous Thread Policy" -Labels @(
+        "4 — Prefer P-cores (best for gaming)",
+        "0 — Automatic (Windows decides)",
+        "5 — Force P-cores only (aggressive)"
+    ) -Values @(4, 0, 5) -Default 0 -Auto $Auto.IsPresent
+    powercfg /setacvalueindex scheme_current 54533251-82be-4824-96c1-47b60b740d00 93b8b6dc-0698-4d1c-9ee4-0644e900c85d $schedVal 2>$null
+    powercfg /setactive scheme_current 2>$null
+    Write-Host "    [OK] Thread Policy = $schedVal" -ForegroundColor Green
+    YAZX-Log $LogFile "ThreadPolicy: set to $schedVal"
+} else {
+    Write-Host "    [--] Skipped (non-hybrid CPU: $cpu)" -ForegroundColor Gray
+    YAZX-Log $LogFile "ThreadPolicy: skipped (non-hybrid CPU)"
+}
+
+# B5. PCIe ASPM (Link State Power Management)
+Write-Host ""
+Write-Host "  [B5] PCIe ASPM" -ForegroundColor Yellow
+$aspmVal = YAZX-Choose -Title "PCIe Link State Power Management" -Labels @(
+    "0 — Off (lowest latency, more power)",
+    "1 — L0s only (light saving)",
+    "2 — L1 and L0s (most power saving)"
+) -Values @(0, 1, 2) -Default 0 -Auto $Auto.IsPresent
+powercfg /setacvalueindex scheme_current 501a4d13-42af-4429-9fd1-a8218c268e20 ee12f906-d277-404b-b6da-e5fa1a576df5 $aspmVal 2>$null
+powercfg /setactive scheme_current 2>$null
+Write-Host "    [OK] PCIe ASPM = $aspmVal" -ForegroundColor Green
+YAZX-Log $LogFile "PCIe_ASPM: set to $aspmVal"
+
+# ══════════════════════════════════════
+# Summary
+# ══════════════════════════════════════
+Write-Host ""
+Write-Host "  ============================================" -ForegroundColor Cyan
+Write-Host "    Module 14 Complete" -ForegroundColor Green
+Write-Host "    VBS/HVCI: Off | Audio: Optimized" -ForegroundColor Green
+Write-Host "    Timer=$timerVal | Cache=$cacheVal | MC=$mcChoice" -ForegroundColor Green
+Write-Host "    Threads=$(if($isHybrid){$schedVal}else{'N/A'}) | ASPM=$aspmVal" -ForegroundColor Green
+Write-Host "  ============================================" -ForegroundColor Cyan
+Write-Host ""
+YAZX-Log $LogFile "Module 14 AdvancedTweaks: Completed (all applied)"

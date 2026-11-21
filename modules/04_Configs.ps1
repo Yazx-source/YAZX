@@ -1,8 +1,9 @@
-param($YazxDir, $BackupDir, $LogFile)
+param($YazxDir, $BackupDir, $LogFile, [switch]$Auto)
 # YAZX Module 04 - Restore All Configurations
 # Copies config files from backup to correct locations
 
-function Log($msg) { "[$((Get-Date).ToString('yyyy-MM-dd HH:mm:ss'))] $msg" | Out-File $LogFile -Append -Encoding UTF8 }
+. "$PSScriptRoot\YAZX_Common.ps1"
+function Log($msg) { YAZX-Log $LogFile $msg }
 
 Write-Host "`n  === YAZX Module 04: Configs ===" -ForegroundColor Cyan
 Log "Module 04 Configs: Started"
