@@ -1,0 +1,9 @@
+# YAZX QoS - Custom App Network Priority
+# Format: AppName, executable.exe, DSCP
+# DSCP 46 = Highest (EF), 34 = High (AF41), 26 = Medium (AF31)
+# Lines starting with # are ignored
+#
+# Example:
+# Fortnite, FortniteClient-Win64-Shipping.exe, 46
+# Apex Legends, r5apex.exe, 46
+# Overwatch, Overwatch.exe, 46

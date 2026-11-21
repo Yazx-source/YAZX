@@ -256,6 +256,59 @@ if ($nipFiles) {
 }
 Log "NVCP: $nvRestore items restored"
 
+# === Phase 6: Policy-based QoS (Per-App Network Priority) ===
+
+Write-Host ""
+Write-Host "  --- QoS Network Priority (Gaming Apps) ---" -ForegroundColor Yellow
+
+$qosApplied = 0
+
+$qosPolicies = @(
+    @{ Name="YAZX - Rocket League";  App="RocketLeague.exe";       DSCP=46 }
+)
+
+foreach ($qos in $qosPolicies) {
+    try {
+        $existing = Get-NetQosPolicy -Name $qos.Name -PolicyStore localhost -ErrorAction SilentlyContinue
+        if ($existing) { Remove-NetQosPolicy -Name $qos.Name -PolicyStore localhost -Confirm:$false -ErrorAction SilentlyContinue }
+        New-NetQosPolicy -Name $qos.Name -AppPathNameMatchCondition $qos.App -DSCPAction $qos.DSCP -PolicyStore localhost -ErrorAction Stop | Out-Null
+        $dscpLabel = if ($qos.DSCP -eq 46) { "EF (Highest)" } elseif ($qos.DSCP -eq 34) { "AF41 (High)" } else { "$($qos.DSCP)" }
+        Write-Host "  [OK] $($qos.App) = DSCP $($qos.DSCP) ($dscpLabel)" -ForegroundColor Green
+        $qosApplied++
+    } catch {
+        Write-Host "  [!] Failed: $($qos.Name) - $($_.Exception.Message)" -ForegroundColor Yellow
+    }
+}
+
+$qosCustom = "$YazxDir\configs\qos_apps.txt"
+if (Test-Path $qosCustom) {
+    Get-Content $qosCustom -ErrorAction SilentlyContinue | Where-Object { $_.Trim() -and -not $_.StartsWith("#") } | ForEach-Object {
+        $parts = $_ -split "\s*[,|]\s*"
+        if ($parts.Count -ge 2) {
+            $appName = $parts[0].Trim()
+            $appExe = $parts[1].Trim()
+            $dscp = if ($parts.Count -ge 3) { [int]$parts[2].Trim() } else { 46 }
+            $policyName = "YAZX - $appName"
+            try {
+                $existing = Get-NetQosPolicy -Name $policyName -PolicyStore localhost -ErrorAction SilentlyContinue
+                if ($existing) { Remove-NetQosPolicy -Name $policyName -PolicyStore localhost -Confirm:$false -ErrorAction SilentlyContinue }
+                New-NetQosPolicy -Name $policyName -AppPathNameMatchCondition $appExe -DSCPAction $dscp -PolicyStore localhost -ErrorAction Stop | Out-Null
+                Write-Host "  [OK] $appExe = DSCP $dscp (custom)" -ForegroundColor Green
+                $qosApplied++
+            } catch {
+                Write-Host "  [!] Failed: $policyName" -ForegroundColor Yellow
+            }
+        }
+    }
+}
+
+if ($qosApplied -gt 0) {
+    Log "QoS: $qosApplied policies applied (DSCP priority)"
+} else {
+    Write-Host "  [!] No QoS policies applied" -ForegroundColor Yellow
+    Log "QoS: No policies applied"
+}
+
 # === Summary ===
 
 Write-Host ""
@@ -269,8 +322,9 @@ if ($nicKey) {
 Write-Host "    GPU tweaks       : $gpuApplied applied" -ForegroundColor $(if ($gpuApplied -gt 0) { "Green" } else { "Gray" })
 Write-Host "    Nagle disabled   : $nagleApplied interface(s)" -ForegroundColor $(if ($nagleApplied -gt 0) { "Green" } else { "Gray" })
 Write-Host "    NVCP restored    : $nvRestore item(s)" -ForegroundColor $(if ($nvRestore -gt 0) { "Green" } else { "Gray" })
+Write-Host "    QoS policies     : $qosApplied app(s)" -ForegroundColor $(if ($qosApplied -gt 0) { "Green" } else { "Gray" })
 Write-Host "    [!] Reboot required for changes to take effect" -ForegroundColor Yellow
 Write-Host "  ============================================" -ForegroundColor Cyan
 Write-Host ""
 
-Log "Module 17 DeviceManager: $disabled devices, $applied NIC, $gpuApplied GPU, $nagleApplied Nagle, $nvRestore NVCP. Completed"
+Log "Module 17 DeviceManager: $disabled devices, $applied NIC, $gpuApplied GPU, $nagleApplied Nagle, $nvRestore NVCP, $qosApplied QoS. Completed"

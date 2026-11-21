@@ -102,6 +102,7 @@ echo   [F]  Oneclick             - Run Oneclick tweaker (LAST!)
 echo   [G]  New Tweaks           - VBS/HVCI/Audio + candidate review
 echo   [H]  Autologgers          - Disable ETW autologger sessions
 echo   [I]  Device Manager       - Disable devices + NIC optimization
+echo   [J]  YAZX Shield          - Post-Oneclick conflict protection
 echo.
 echo   [T]  Download Tools       - Auto-download all optimization tools
 echo   [A]  Run ALL (Smart Defaults, one-click)
@@ -110,12 +111,13 @@ echo   [R]  Registry FULL Restore (from backup exports)
 echo   [Q]  Quit
 echo.
 
-choice /c 123456789ACDEFGHITVRQ /n /m "  Select: "
+choice /c 123456789ACDEFGHIJTVRQ /n /m "  Select: "
 
-if errorlevel 21 exit /b
-if errorlevel 20 goto run_reg_full_restore
-if errorlevel 19 goto run_phase25
-if errorlevel 18 goto run_downloadtools
+if errorlevel 22 exit /b
+if errorlevel 21 goto run_reg_full_restore
+if errorlevel 20 goto run_phase25
+if errorlevel 19 goto run_downloadtools
+if errorlevel 18 goto run_shield
 if errorlevel 17 goto run_devmgr
 if errorlevel 16 goto run_autologgers
 if errorlevel 15 goto run_newtweaks
@@ -180,13 +182,15 @@ echo  [%DATE% %TIME%] Registry NewTweaks: Applied >> "%LOG_FILE%"
 powershell -ExecutionPolicy Bypass -File "%YAZX_DIR%\modules\14_NewTweaks.ps1" -YazxDir "%YAZX_DIR%" -BackupDir "%BACKUP_DIR%" -LogFile "%LOG_FILE%" -Auto
 powershell -ExecutionPolicy Bypass -File "%YAZX_DIR%\modules\15_Autologgers.ps1" -YazxDir "%YAZX_DIR%" -BackupDir "%BACKUP_DIR%" -LogFile "%LOG_FILE%" -Auto
 powershell -ExecutionPolicy Bypass -File "%YAZX_DIR%\modules\17_DeviceManager.ps1" -YazxDir "%YAZX_DIR%" -BackupDir "%BACKUP_DIR%" -LogFile "%LOG_FILE%" -Auto
+powershell -ExecutionPolicy Bypass -File "%YAZX_DIR%\modules\19_YAZXShield.ps1" -YazxDir "%YAZX_DIR%" -BackupDir "%BACKUP_DIR%" -LogFile "%LOG_FILE%" -Auto
 echo.
 echo  ═══════════════════════════════════════════
-echo   ALL 17 modules applied with YAZX defaults
+echo   ALL modules applied with YAZX defaults
 echo  ═══════════════════════════════════════════
 echo.
 echo  [!] Module 13 (Oneclick) must be run manually - download from:
 echo      https://github.com/QuakedK/Oneclick/releases
+echo  [!] After Oneclick: run YAZX Shield [J] to fix conflicts
 echo.
 echo  Log file: %LOG_FILE%
 echo  [%DATE% %TIME%] ALL modules completed (17 modules, Auto mode). >> "%LOG_FILE%"
@@ -345,11 +349,16 @@ goto done
 powershell -ExecutionPolicy Bypass -File "%YAZX_DIR%\modules\17_DeviceManager.ps1" -YazxDir "%YAZX_DIR%" -BackupDir "%BACKUP_DIR%" -LogFile "%LOG_FILE%"
 goto done
 
+:run_shield
+powershell -ExecutionPolicy Bypass -File "%YAZX_DIR%\modules\19_YAZXShield.ps1" -YazxDir "%YAZX_DIR%" -BackupDir "%BACKUP_DIR%" -LogFile "%LOG_FILE%"
+goto done
+
 :run_oneclick
 echo.
 echo  Oneclick must be downloaded and run separately:
 echo  https://github.com/QuakedK/Oneclick/releases
 echo  Run it AFTER all other YAZX modules.
+echo  Then run YAZX Shield [J] to fix conflicts.
 echo.
 echo  [%DATE% %TIME%] Oneclick: User directed to download >> "%LOG_FILE%"
 goto done
