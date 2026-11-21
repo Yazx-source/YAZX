@@ -58,18 +58,7 @@ if (Test-Path $npiSrc) {
     Write-Host "      Download from: https://github.com/Orbmu2k/nvidiaProfileInspector" -ForegroundColor White
 }
 
-# Disable NVIDIA Container services (QuakedK's tweak)
-Write-Host "`n  --- NVIDIA Container Services ---" -ForegroundColor Yellow
-$containers = @("NVDisplay.ContainerLocalSystem", "NvContainerLocalSystem")
-foreach ($svc in $containers) {
-    $s = Get-Service $svc -ErrorAction SilentlyContinue
-    if ($s) {
-        sc.exe config $svc start=disabled 2>$null | Out-Null
-        Stop-Service $svc -Force -ErrorAction SilentlyContinue
-        Write-Host "  [OK] Disabled: $svc" -ForegroundColor Green
-        Log "NVIDIA Container: $svc disabled"
-    }
-}
+# NVIDIA Container services are disabled by Module 08 (Services).
 
 # NVCleanInstall recommended settings
 Write-Host "`n  --- NVCleanInstall Settings (for manual use) ---" -ForegroundColor Yellow

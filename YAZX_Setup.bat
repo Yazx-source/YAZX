@@ -20,7 +20,17 @@ if '%errorlevel%' NEQ '0' (
 :: Set paths
 set "YAZX_DIR=%~dp0"
 set "YAZX_DIR=%YAZX_DIR:~0,-1%"
-set "BACKUP_DIR=E:\YAZX_Backup"
+:: Auto-detect backup folder: check script drive first, then other drives
+set "SCRIPT_DRIVE=%~d0"
+set "BACKUP_DIR="
+if exist "%SCRIPT_DRIVE%\YAZX_Backup" (
+    set "BACKUP_DIR=%SCRIPT_DRIVE%\YAZX_Backup"
+) else (
+    for %%D in (E D C F G) do (
+        if not defined BACKUP_DIR if exist "%%D:\YAZX_Backup" set "BACKUP_DIR=%%D:\YAZX_Backup"
+    )
+)
+if not defined BACKUP_DIR set "BACKUP_DIR=%SCRIPT_DRIVE%\YAZX_Backup"
 set "LOG_DIR=%YAZX_DIR%\logs"
 set "LOG_FILE=%LOG_DIR%\YAZX_Setup_Log.txt"
 
@@ -54,17 +64,22 @@ echo  Tool Status:
 set "TOOLS_OK=0"
 set "TOOLS_MISS=0"
 for %%d in (Sysinternals MouseTester WinMTR CapFrameX OO_ShutUp10 USBTreeView ISLC LatencyMon QuickCPU GPU-Z ThrottleStop DDU IRQControl) do (
-    set /a TOOLS_OK+=1
+    if exist "%YAZX_DIR%\tools\%%d" (
+        set /a TOOLS_OK+=1
+    ) else (
+        set /a TOOLS_MISS+=1
+    )
 )
 for %%d in (CrystalDiskInfo CrystalDiskMark HWiNFO SG_TCP_Optimizer) do (
     set "HAS_FILE="
     for %%f in ("%YAZX_DIR%\tools\%%d\*.*") do set "HAS_FILE=1"
     if not defined HAS_FILE set /a TOOLS_MISS+=1
 )
+set /a TOOLS_TOTAL=%TOOLS_OK%+%TOOLS_MISS%
 if %TOOLS_MISS% GTR 0 (
-    echo  [!] 13 tools ready, %TOOLS_MISS% not downloaded (optional - see TOOL_DOWNLOAD_LIST.md)
+    echo  [!] %TOOLS_OK% of %TOOLS_TOTAL% tools ready, %TOOLS_MISS% not found
 ) else (
-    echo  [+] All 17 tools present
+    echo  [+] All %TOOLS_TOTAL% tools present
 )
 echo.
 echo  Modules (ordered by risk - lowest first):
@@ -78,29 +93,29 @@ echo   [6]  Registry - Gaming    - GPU/MMCSS/Memory/Priority
 echo   [7]  Registry - Network   - TCP/Adapter optimization
 echo   [8]  Services             - Disable unnecessary services
 echo   [9]  BCD Tweaks           - Boot timer configuration
-echo   [10] MSI Mode             - Interrupt mode (7 devices)
-echo   [11] Power Plan           - YAZX Ultimate Performance
-echo   [12] Privacy              - Hosts/Telemetry cleanup
-echo   [13] Oneclick             - Run Oneclick tweaker (LAST!)
-echo   [14] New Tweaks           - CsEnabled/GameMode (SAFE tweaks only)
+echo   [C]  MSI Mode             - Interrupt mode (7 devices)
+echo   [D]  Power Plan           - YAZX Ultimate Performance
+echo   [E]  Privacy              - Hosts/Telemetry cleanup
+echo   [F]  Oneclick             - Run Oneclick tweaker (LAST!)
+echo   [G]  New Tweaks           - CsEnabled/GameMode (SAFE tweaks only)
 echo.
-echo   [A]  Run ALL (1-14 in order)
+echo   [A]  Run ALL (1-9,C-G in order)
 echo   [V]  Phase 2.5 Exports    - Kernel/Power/VST/Profiles (manual review)
 echo   [R]  Registry FULL Restore (from backup exports)
 echo   [Q]  Quit
 echo.
 
-choice /c 123456789ABCDEFGVRQ /n /m "  Select: "
+choice /c 123456789ACDEFGVRQ /n /m "  Select: "
 
-if errorlevel 19 exit /b
-if errorlevel 18 goto run_reg_full_restore
-if errorlevel 17 goto run_phase25
-if errorlevel 16 goto run_newtweaks
-if errorlevel 15 goto run_oneclick
-if errorlevel 14 goto run_privacy
-if errorlevel 13 goto run_power
-if errorlevel 12 goto run_msi
-if errorlevel 11 goto run_all
+if errorlevel 18 exit /b
+if errorlevel 17 goto run_reg_full_restore
+if errorlevel 16 goto run_phase25
+if errorlevel 15 goto run_newtweaks
+if errorlevel 14 goto run_oneclick
+if errorlevel 13 goto run_privacy
+if errorlevel 12 goto run_power
+if errorlevel 11 goto run_msi
+if errorlevel 10 goto run_all
 set "module_choice=%errorlevel%"
 
 :: Map choices

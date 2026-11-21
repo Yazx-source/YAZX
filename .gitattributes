@@ -1,0 +1,8 @@
+# Force Windows line endings for all scripts and registry files
+*.bat text eol=crlf
+*.cmd text eol=crlf
+*.ps1 text eol=crlf
+*.reg text eol=crlf
+*.txt text eol=crlf
+*.md text eol=crlf
+*.ini text eol=crlf

@@ -34,16 +34,26 @@ foreach ($dev in $deviceClasses) {
                     Write-Host "  [OK] MSI Mode: $devDesc ($($dev.Name))" -ForegroundColor Green
                     $enabled++
                 }
-            } catch {}
+            } catch {
+                Write-Host "  [!] Failed to set MSI for $($dev.Name): $_" -ForegroundColor Yellow
+            }
         }
     }
 }
 
-# Also set MSI mode limit for NVIDIA GPU
-$gpuPath = "HKLM:\SYSTEM\CurrentControlSet\Control\Class\{4d36e968-e325-11ce-bfc1-08002be10318}\0000\Device Parameters\Interrupt Management\MessageSignaledInterruptProperties"
-if (Test-Path $gpuPath) {
-    Set-ItemProperty -Path $gpuPath -Name "MessageNumberLimit" -Value 2 -Type DWord -Force -ErrorAction SilentlyContinue
-    Write-Host "  [OK] GPU MSI MessageNumberLimit = 2" -ForegroundColor Green
+# Set MSI mode limit for NVIDIA GPU (find correct subkey by DriverDesc)
+$gpuBasePath = "HKLM:\SYSTEM\CurrentControlSet\Control\Class\{4d36e968-e325-11ce-bfc1-08002be10318}"
+$gpuSubKeys = Get-ChildItem $gpuBasePath -ErrorAction SilentlyContinue | Where-Object { $_.PSChildName -match "^\d{4}$" }
+foreach ($sk in $gpuSubKeys) {
+    $desc = (Get-ItemProperty $sk.PSPath -Name "DriverDesc" -ErrorAction SilentlyContinue).DriverDesc
+    if ($desc -match "NVIDIA|RTX|GeForce") {
+        $gpuMsiPath = "$($sk.PSPath)\Device Parameters\Interrupt Management\MessageSignaledInterruptProperties"
+        if (Test-Path $gpuMsiPath) {
+            Set-ItemProperty -Path $gpuMsiPath -Name "MessageNumberLimit" -Value 2 -Type DWord -Force -ErrorAction SilentlyContinue
+            Write-Host "  [OK] GPU MSI MessageNumberLimit = 2 ($desc)" -ForegroundColor Green
+        }
+        break
+    }
 }
 
 Log "Module 10 MSIMode: $enabled devices configured. Completed"

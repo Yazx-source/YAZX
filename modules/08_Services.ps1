@@ -45,9 +45,11 @@ $disableServices = @(
     @{Name="SEMgrSvc"; Desc="Payments and NFC"}
     @{Name="PcaSvc"; Desc="Program Compatibility Assistant"}
 
-    # From Oneclick Process Destroyer
-    @{Name="EventSystem"; Desc="COM+ Event System"}
-    @{Name="gpsvc"; Desc="Group Policy Client"}
+    # From Oneclick Process Destroyer (aggressive - run AFTER Oneclick prepares the system)
+    # WARNING: EventSystem and gpsvc are core Windows services.
+    # Only safe to disable after Oneclick has been run and system is configured.
+    @{Name="EventSystem"; Desc="COM+ Event System (disable after Oneclick)"}
+    @{Name="gpsvc"; Desc="Group Policy Client (disable after Oneclick)"}
     @{Name="NgcCtnrSvc"; Desc="Microsoft Passport Container"}
     @{Name="NgcSvc"; Desc="Microsoft Passport"}
     @{Name="WpnUserService"; Desc="Windows Push Notifications"}

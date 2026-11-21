@@ -1,4 +1,4 @@
-﻿# YAZX Memory Tool v4 - Fast bulk-scan + validation + full descriptions
+# YAZX Memory Tool v4 - Fast bulk-scan + validation + full descriptions
 # Free play / private lobby only, with Easy Anti-Cheat disabled
 
 Add-Type @"

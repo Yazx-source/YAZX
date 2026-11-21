@@ -7,17 +7,9 @@ function Log($msg) { "[$((Get-Date).ToString('yyyy-MM-dd HH:mm:ss'))] $msg" | Ou
 Write-Host "`n  === YAZX Module 12: Privacy ===" -ForegroundColor Cyan
 Log "Module 12 Privacy: Started"
 
-# --- Disable Telemetry Services ---
-Write-Host "  --- Telemetry Services ---" -ForegroundColor Yellow
-$telServices = @("DiagTrack", "dmwappushservice", "diagnosticshub.standardcollector.service")
-foreach ($svc in $telServices) {
-    $s = Get-Service $svc -ErrorAction SilentlyContinue
-    if ($s) {
-        sc.exe config $svc start=disabled 2>$null | Out-Null
-        Stop-Service $svc -Force -ErrorAction SilentlyContinue
-        Write-Host "  [OK] Disabled: $svc" -ForegroundColor Green
-    }
-}
+# --- Telemetry Services ---
+# NOTE: Service disabling is handled by Module 08 (Services).
+# This module focuses on registry, tasks, and network privacy settings.
 
 # --- Telemetry Registry ---
 Write-Host "  --- Telemetry Registry ---" -ForegroundColor Yellow
@@ -66,7 +58,9 @@ Set-ItemProperty -Path $actPath -Name "UploadUserActivities" -Value 0 -Type DWor
 Write-Host "  [OK] Activity History disabled" -ForegroundColor Green
 
 # --- Disable Location Tracking ---
-Set-ItemProperty -Path "HKLM:\SOFTWARE\Policies\Microsoft\Windows\LocationAndSensors" -Name "DisableLocation" -Value 1 -Type DWord -Force -ErrorAction SilentlyContinue
+$locPath = "HKLM:\SOFTWARE\Policies\Microsoft\Windows\LocationAndSensors"
+if (-not (Test-Path $locPath)) { New-Item -Path $locPath -Force | Out-Null }
+Set-ItemProperty -Path $locPath -Name "DisableLocation" -Value 1 -Type DWord -Force
 Write-Host "  [OK] Location tracking disabled" -ForegroundColor Green
 
 # --- TCP Auto-Tuning (Gaming Mode by TTCH) ---

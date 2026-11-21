@@ -8,25 +8,33 @@ Write-Host "`n  === YAZX Module 11: Power Plan ===" -ForegroundColor Cyan
 Log "Module 11 PowerPlan: Started"
 
 # Enable hidden Ultimate Performance scheme (QuakedK approach)
-Write-Host "  Creating YAZX Ultimate Performance plan..." -ForegroundColor Yellow
-$dupOutput = powercfg -duplicatescheme e9a42b02-d5df-448d-aa00-03f14749eb61 2>&1
-if ($dupOutput -match '([0-9a-f-]{36})') {
+Write-Host "  Checking for existing YAZX power plan..." -ForegroundColor Yellow
+$schemes = powercfg /list 2>&1
+$existing = $schemes | Select-String "YAZX Ultimate Performance"
+if ($existing -and $existing.ToString() -match '([0-9a-f-]{36})') {
     $guid = $Matches[1]
-    powercfg -changename $guid "YAZX Ultimate Performance" "YAZX gaming power plan based on Ultimate Performance"
     powercfg /setactive $guid
-    Write-Host "  [OK] YAZX Ultimate Performance created and activated" -ForegroundColor Green
-    Log "PowerPlan: Created YAZX Ultimate Performance, GUID=$guid"
+    Write-Host "  [OK] YAZX Ultimate Performance found and activated" -ForegroundColor Green
+    Log "PowerPlan: Activated existing YAZX Ultimate Performance, GUID=$guid"
 } else {
-    # Already exists - find and activate it
-    $schemes = powercfg /list 2>&1
-    $existing = $schemes | Select-String "YAZX Ultimate Performance|Ultimate Performance"
-    if ($existing -and $existing.ToString() -match '([0-9a-f-]{36})') {
-        powercfg /setactive $Matches[1]
-        Write-Host "  [OK] Ultimate Performance activated" -ForegroundColor Green
-        Log "PowerPlan: Activated existing Ultimate Performance"
+    Write-Host "  Creating YAZX Ultimate Performance plan..." -ForegroundColor Yellow
+    $dupOutput = powercfg -duplicatescheme e9a42b02-d5df-448d-aa00-03f14749eb61 2>&1
+    if ($dupOutput -match '([0-9a-f-]{36})') {
+        $guid = $Matches[1]
+        powercfg -changename $guid "YAZX Ultimate Performance" "YAZX gaming power plan based on Ultimate Performance"
+        powercfg /setactive $guid
+        Write-Host "  [OK] YAZX Ultimate Performance created and activated" -ForegroundColor Green
+        Log "PowerPlan: Created YAZX Ultimate Performance, GUID=$guid"
     } else {
-        Write-Host "  [!] Could not create Ultimate Performance plan" -ForegroundColor Red
-        Log "PowerPlan: Failed to create plan"
+        $fallback = $schemes | Select-String "Ultimate Performance"
+        if ($fallback -and $fallback.ToString() -match '([0-9a-f-]{36})') {
+            powercfg /setactive $Matches[1]
+            Write-Host "  [OK] Ultimate Performance activated" -ForegroundColor Green
+            Log "PowerPlan: Activated existing Ultimate Performance"
+        } else {
+            Write-Host "  [!] Could not create Ultimate Performance plan" -ForegroundColor Red
+            Log "PowerPlan: Failed to create plan"
+        }
     }
 }
 

@@ -1,4 +1,4 @@
-﻿param(
+param(
     [string]$YazxDir,
     [string]$LogFile
 )

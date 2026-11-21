@@ -127,13 +127,17 @@ Write-Host "  --- Timer Resolution Service ---" -ForegroundColor Yellow
 $trSrc = "$YazxDir\configs\TimerResolution\SetTimerResolutionService.exe"
 if (-not (Test-Path $trSrc)) { $trSrc = "$BackupDir\yazx_TimerResolution\SetTimerResolutionService.exe" }
 if (Test-Path $trSrc) {
-    $trDst = "C:\TTCH Timer Resolution"
+    $trDst = "C:\TTCH_TimerResolution"
     New-Item -ItemType Directory -Path $trDst -Force | Out-Null
     Copy-Item $trSrc "$trDst\SetTimerResolutionService.exe" -Force
-    # Install as service
-    sc.exe create "STR" binPath= "$trDst\SetTimerResolutionService.exe" start= auto 2>$null | Out-Null
+    $existingSvc = Get-Service "STR" -ErrorAction SilentlyContinue
+    if (-not $existingSvc) {
+        sc.exe create "STR" binPath= "`"$trDst\SetTimerResolutionService.exe`"" start= auto 2>$null | Out-Null
+        Write-Host "  [OK] Timer Resolution Service created" -ForegroundColor Green
+    } else {
+        Write-Host "  [OK] Timer Resolution Service already exists" -ForegroundColor Green
+    }
     sc.exe start "STR" 2>$null | Out-Null
-    Write-Host "  [OK] Timer Resolution Service installed" -ForegroundColor Green
     Log "TimerResolution: Service installed"; $ok++
 } else { $skip++ }
 
