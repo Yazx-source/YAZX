@@ -149,6 +149,7 @@ foreach ($sk in $gpuSubs) {
     }
 }
 
+if (-not $nicKey) { $applied = 0 }
 $gpuApplied = 0
 if ($gpuKey) {
     $gpuTweaks = @{

@@ -102,9 +102,10 @@ $customQosFile = "$YazxDir\configs\qos_apps.txt"
 if (Test-Path $customQosFile) {
     $customLines = Get-Content $customQosFile -ErrorAction SilentlyContinue | Where-Object { $_.Trim() -and -not $_.StartsWith("#") }
     foreach ($line in $customLines) {
-        $parts = $line -split ","
-        if ($parts.Count -ge 3) {
-            $qosPolicies += @{ Name="YAZX - $($parts[0].Trim())"; App=$parts[1].Trim(); DSCP=[int]$parts[2].Trim() }
+        $parts = $line -split "\s*[,|]\s*"
+        if ($parts.Count -ge 2) {
+            $dscp = if ($parts.Count -ge 3) { [int]$parts[2].Trim() } else { 46 }
+            $qosPolicies += @{ Name="YAZX - $($parts[0].Trim())"; App=$parts[1].Trim(); DSCP=$dscp }
         }
     }
 }

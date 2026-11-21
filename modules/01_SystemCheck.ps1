@@ -59,7 +59,7 @@ if (Test-Path $BackupDir) {
 
 # Check EnableLUA
 $lua = Get-ItemPropertyValue "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" "EnableLUA" -ErrorAction SilentlyContinue
-Write-Host "  EnableLUA: $lua $(if($lua -eq 0){'(Disabled - correct)'}else{'(Enabled - needs fix!)'})" -ForegroundColor $(if($lua -eq 0){'Green'}else{'Red'})
+Write-Host "  EnableLUA: $lua $(if($lua -eq 1){'(Enabled - correct)'}else{'(Disabled - YAZX needs 1!)'})" -ForegroundColor $(if($lua -eq 1){'Green'}else{'Red'})
 
 # Check Appinfo service
 $appinfo = Get-Service AppInfo -ErrorAction SilentlyContinue

@@ -84,7 +84,7 @@ Write-Host "  --- LibreWolf ---" -ForegroundColor Yellow
 $lwSrc = "$BackupDir\yazx_LibreWolf"
 if (-not (Test-Path $lwSrc)) { $lwSrc = "$YazxDir\configs\LibreWolf" }
 if (Test-Path $lwSrc) {
-    $lwBase = "C:\Users\$env:USERNAME\AppData\Roaming\librewolf"
+    $lwBase = "$env:APPDATA\librewolf"
     $lwProfiles = "$lwBase\Profiles"
     if (Test-Path $lwProfiles) {
         $defaultProfile = $null

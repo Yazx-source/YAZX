@@ -193,7 +193,7 @@ echo      https://github.com/QuakedK/Oneclick/releases
 echo  [!] After Oneclick: run YAZX Shield [J] to fix conflicts
 echo.
 echo  Log file: %LOG_FILE%
-echo  [%DATE% %TIME%] ALL modules completed (17 modules, Auto mode). >> "%LOG_FILE%"
+echo  [%DATE% %TIME%] ALL modules completed (14 modules + registry imports, Auto mode). >> "%LOG_FILE%"
 goto done
 
 :run_syscheck
