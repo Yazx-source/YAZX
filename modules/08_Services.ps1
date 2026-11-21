@@ -82,7 +82,7 @@ if ($Auto) {
     Write-Host ""
     Write-Host "  [!] EventSystem and gpsvc are core Windows services." -ForegroundColor Yellow
     Write-Host "      Only disable these if Oneclick Process Destroyer was already run." -ForegroundColor Yellow
-    $confirm = YAZX-Choose -Title "Disable EventSystem and gpsvc?" -Options @("Yes - Oneclick was run", "No - Skip these")
+    $confirm = YAZX-Choose -Title "Disable EventSystem and gpsvc?" -Labels @("Yes - Oneclick was run", "No - Skip these") -Values @(1, 0)
     if ($confirm -eq 1) { $runCore = $true }
 }
 if ($runCore) {

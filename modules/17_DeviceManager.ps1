@@ -240,7 +240,7 @@ foreach ($regFile in @("NVIDIA_HKCU.reg", "NVIDIA_HKLM.reg")) {
 }
 
 # 5c: NPI profiles notification
-$npiConfigs = "$YazxDir\configs"
+$npiConfigs = "$YazxDir\configs\NVIDIA_Inspector"
 $nipFiles = Get-ChildItem "$npiConfigs\*.nip" -ErrorAction SilentlyContinue
 if ($nipFiles) {
     Write-Host "  [OK] NPI profiles available ($($nipFiles.Count) profiles in configs\)" -ForegroundColor Green
