@@ -85,6 +85,30 @@ function Expand-ToolZip {
     }
 }
 
+function Confirm-ToolHash {
+    param([string]$FilePath, [string]$ToolDir)
+    if (-not $knownHashes.ContainsKey($ToolDir)) { return $true }
+    $entry = $knownHashes[$ToolDir]
+    $actual = (Get-FileHash $FilePath -Algorithm SHA256).Hash
+    if ($actual -eq $entry.Hash) {
+        Write-Host "    [OK] SHA-256 verified" -ForegroundColor DarkGreen
+        return $true
+    }
+    if ($entry.Mode -eq "strict") {
+        Write-Host "    [!!] SHA-256 MISMATCH - file rejected (pinned version)" -ForegroundColor Red
+        Write-Host "    Expected: $($entry.Hash)" -ForegroundColor Red
+        Write-Host "    Got:      $actual" -ForegroundColor Red
+        Remove-Item $FilePath -Force -ErrorAction SilentlyContinue
+        YAZX-Log $LogFile "SECURITY: Hash mismatch for $ToolDir (strict) - file deleted"
+        return $false
+    }
+    Write-Host "    [!] SHA-256 differs from known hash (tool may have been updated)" -ForegroundColor Yellow
+    Write-Host "    Known:  $($entry.Hash)" -ForegroundColor Yellow
+    Write-Host "    Got:    $actual" -ForegroundColor Yellow
+    YAZX-Log $LogFile "WARNING: Hash differs for $ToolDir (warn mode) - file kept"
+    return $true
+}
+
 # === Tool Catalog (18 tools) ===
 
 $catalog = @(
@@ -176,6 +200,26 @@ $catalog = @(
        For="Network optimization" }
 )
 
+# === Known SHA-256 Hashes (from YAZX_TOOL_LIBRARY.md) ===
+# strict = reject on mismatch (version-pinned URL)
+# warn   = alert but keep (mutable/latest URL, hash may change on update)
+
+$knownHashes = @{
+    Sysinternals     = @{ Hash="E7F49D1F4477E416B3051636DC44929B20AE025B46A1EE4CD8C1F1E869AF6AE6"; Mode="warn" }
+    ISLC             = @{ Hash="FC4961D4FFA095EB150B29CEB9D26A77098988C6549FE6187DBB80BFA2A6A381"; Mode="strict" }
+    DDU              = @{ Hash="3D53FCC3506F4B9A55204B0C7E98F0B0E7A67ABA113856B87AC6F4F631E481A6"; Mode="warn" }
+    LatencyMon       = @{ Hash="C124342DA2A844DA0699901476B27226DA1D0D30BF8E940C9F847D67D46A1157"; Mode="warn" }
+    OO_ShutUp10      = @{ Hash="EA2790422AA81D62F22AE93E995C205D4D7A6AC9825877CF34AD4E65A8253ECE"; Mode="warn" }
+    IRQControl       = @{ Hash="0B3113EB359C88678310A2DFD66EBE9AB80CEED1D60EA4FB2EBCB5F5B67451D7"; Mode="warn" }
+    QuickCPU         = @{ Hash="9668D980F36087B56849D207A5ABEB709686D9167F621AB2076F8BEBE52AED6A"; Mode="warn" }
+    USBTreeView      = @{ Hash="558620110D614A0859D08550C9D0259C2CABC7D8444DC8DF43754A64380B85D4"; Mode="warn" }
+    MouseTester      = @{ Hash="D7E63DD67C8948777A43BB65D9D8F377A5E81254DA480DAAFF70E2BC121A01E1"; Mode="strict" }
+    WinMTR           = @{ Hash="2DA85A22A319E87705FA846E949E28B9A23726D161816228D49AF402D55EA60E"; Mode="strict" }
+    CapFrameX        = @{ Hash="0C3374D382ABB359439F8898BDAAA1C4E6A7CC0FDD936022C0EAD0CA213BDA08"; Mode="strict" }
+    GPU_Z            = @{ Hash="3B15545F3EDF7F2C714A32C7EE2BEDD9823FEE7D23A20E15F2E29CD2FEE25323"; Mode="warn" }
+    ThrottleStop     = @{ Hash="7B5E1A650A845CDAB200BD6A7766D8F56AE458F633A6F2F3DF5A9EC72847098A"; Mode="warn" }
+}
+
 # === Process each tool ===
 
 $stats = @{ OK=0; Downloaded=0; Winget=0; Failed=0 }
@@ -200,6 +244,9 @@ foreach ($tool in $catalog) {
         $outFile = Join-Path $outDir $tool.File
         Write-Host "    Downloading..." -NoNewline -ForegroundColor Gray
         $success = Get-ToolFile -Url $tool.Url -OutPath $outFile
+        if ($success) {
+            $success = Confirm-ToolHash -FilePath $outFile -ToolDir $tool.Dir
+        }
         if ($success -and $tool.ContainsKey('ExtractTo') -and $tool.File -like "*.zip") {
             $extractDest = Join-Path $outDir $tool.ExtractTo
             Expand-ToolZip -Zip $outFile -Dest $extractDest
@@ -211,6 +258,9 @@ foreach ($tool in $catalog) {
         $outFile = Join-Path $outDir $tool.File
         Write-Host "    GitHub release..." -NoNewline -ForegroundColor Gray
         $success = Get-GitHubLatest -Repo $tool.GHRepo -AssetFilter $tool.GHAsset -OutPath $outFile
+        if ($success) {
+            $success = Confirm-ToolHash -FilePath $outFile -ToolDir $tool.Dir
+        }
         if ($success -and $tool.ContainsKey('ExtractTo') -and $tool.File -like "*.zip") {
             $extractDest = Join-Path $outDir $tool.ExtractTo
             Expand-ToolZip -Zip $outFile -Dest $extractDest

@@ -249,29 +249,55 @@ if errorlevel 1 goto restore_all
 :restore_all
 echo  Importing AllTweakRegistry...
 for %%f in ("%BACKUP_DIR%\yazx_AllTweakRegistry\*.reg") do (
-    regedit /s "%%f"
-    echo  [OK] Imported: %%~nxf
+    findstr /b /c:"Windows Registry Editor" "%%f" >nul 2>&1
+    if errorlevel 1 (
+        echo  [!!] SKIPPED invalid reg file: %%~nxf
+        echo  [%DATE% %TIME%] SECURITY: Skipped non-registry file: %%~nxf >> "%LOG_FILE%"
+    ) else (
+        regedit /s "%%f"
+        echo  [OK] Imported: %%~nxf
+        echo  [%DATE% %TIME%] AllTweakRegistry: Imported %%~nxf >> "%LOG_FILE%"
+    )
 )
-echo  [%DATE% %TIME%] AllTweakRegistry: Full restore completed >> "%LOG_FILE%"
+echo  [%DATE% %TIME%] AllTweakRegistry: Restore completed >> "%LOG_FILE%"
 goto done
 
 :restore_tweak
 echo  Importing TweakRegistry...
 for %%f in ("%BACKUP_DIR%\yazx_TweakRegistry\*.reg") do (
-    regedit /s "%%f"
-    echo  [OK] Imported: %%~nxf
+    findstr /b /c:"Windows Registry Editor" "%%f" >nul 2>&1
+    if errorlevel 1 (
+        echo  [!!] SKIPPED invalid reg file: %%~nxf
+        echo  [%DATE% %TIME%] SECURITY: Skipped non-registry file: %%~nxf >> "%LOG_FILE%"
+    ) else (
+        regedit /s "%%f"
+        echo  [OK] Imported: %%~nxf
+        echo  [%DATE% %TIME%] TweakRegistry: Imported %%~nxf >> "%LOG_FILE%"
+    )
 )
-echo  [%DATE% %TIME%] TweakRegistry: Full restore completed >> "%LOG_FILE%"
+echo  [%DATE% %TIME%] TweakRegistry: Restore completed >> "%LOG_FILE%"
 goto done
 
 :restore_both
 echo  Importing AllTweakRegistry...
 for %%f in ("%BACKUP_DIR%\yazx_AllTweakRegistry\*.reg") do (
-    regedit /s "%%f"
+    findstr /b /c:"Windows Registry Editor" "%%f" >nul 2>&1
+    if errorlevel 1 (
+        echo  [!!] SKIPPED invalid reg file: %%~nxf
+    ) else (
+        regedit /s "%%f"
+        echo  [OK] Imported: %%~nxf
+    )
 )
 echo  Importing TweakRegistry...
 for %%f in ("%BACKUP_DIR%\yazx_TweakRegistry\*.reg") do (
-    regedit /s "%%f"
+    findstr /b /c:"Windows Registry Editor" "%%f" >nul 2>&1
+    if errorlevel 1 (
+        echo  [!!] SKIPPED invalid reg file: %%~nxf
+    ) else (
+        regedit /s "%%f"
+        echo  [OK] Imported: %%~nxf
+    )
 )
 echo  [%DATE% %TIME%] Both AllTweakRegistry + TweakRegistry: Full restore completed >> "%LOG_FILE%"
 echo  [OK] Full registry restore complete.

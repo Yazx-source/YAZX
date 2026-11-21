@@ -141,18 +141,28 @@ Write-Host "  --- Timer Resolution Service ---" -ForegroundColor Yellow
 $trSrc = "$YazxDir\configs\TimerResolution\SetTimerResolutionService.exe"
 if (-not (Test-Path $trSrc)) { $trSrc = "$BackupDir\yazx_TimerResolution\SetTimerResolutionService.exe" }
 if (Test-Path $trSrc) {
-    $trDst = "C:\TTCH_TimerResolution"
-    New-Item -ItemType Directory -Path $trDst -Force | Out-Null
-    Copy-Item $trSrc "$trDst\SetTimerResolutionService.exe" -Force
-    $existingSvc = Get-Service "STR" -ErrorAction SilentlyContinue
-    if (-not $existingSvc) {
-        sc.exe create "STR" binPath= "`"$trDst\SetTimerResolutionService.exe`"" start= auto 2>$null | Out-Null
-        Write-Host "  [OK] Timer Resolution Service created" -ForegroundColor Green
+    $expectedHash = "004CB6E0FB1A27CD676582DE32EA26FD901BC35ADCAB06511A3475EDDBDFB0FE"
+    $actualHash = (Get-FileHash $trSrc -Algorithm SHA256).Hash
+    if ($actualHash -ne $expectedHash) {
+        Write-Host "  [!!] SetTimerResolutionService.exe SHA-256 MISMATCH - skipped" -ForegroundColor Red
+        Write-Host "  Expected: $expectedHash" -ForegroundColor Red
+        Write-Host "  Got:      $actualHash" -ForegroundColor Red
+        Log "SECURITY: TimerResolution binary hash mismatch - skipped"
+        $skip++
     } else {
-        Write-Host "  [OK] Timer Resolution Service already exists" -ForegroundColor Green
+        $trDst = "C:\TTCH_TimerResolution"
+        New-Item -ItemType Directory -Path $trDst -Force | Out-Null
+        Copy-Item $trSrc "$trDst\SetTimerResolutionService.exe" -Force
+        $existingSvc = Get-Service "STR" -ErrorAction SilentlyContinue
+        if (-not $existingSvc) {
+            sc.exe create "STR" binPath= "`"$trDst\SetTimerResolutionService.exe`"" start= auto 2>$null | Out-Null
+            Write-Host "  [OK] Timer Resolution Service created (hash verified)" -ForegroundColor Green
+        } else {
+            Write-Host "  [OK] Timer Resolution Service already exists" -ForegroundColor Green
+        }
+        sc.exe start "STR" 2>$null | Out-Null
+        Log "TimerResolution: Service installed (SHA-256 verified)"; $ok++
     }
-    sc.exe start "STR" 2>$null | Out-Null
-    Log "TimerResolution: Service installed"; $ok++
 } else { $skip++ }
 
 # --- Open Shell ---

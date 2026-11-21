@@ -46,11 +46,7 @@ $disableServices = @(
     @{Name="SEMgrSvc"; Desc="Payments and NFC"}
     @{Name="PcaSvc"; Desc="Program Compatibility Assistant"}
 
-    # From Oneclick Process Destroyer (aggressive - run AFTER Oneclick prepares the system)
-    # WARNING: EventSystem and gpsvc are core Windows services.
-    # Only safe to disable after Oneclick has been run and system is configured.
-    @{Name="EventSystem"; Desc="COM+ Event System (disable after Oneclick)"}
-    @{Name="gpsvc"; Desc="Group Policy Client (disable after Oneclick)"}
+    # From Oneclick Process Destroyer
     @{Name="NgcCtnrSvc"; Desc="Microsoft Passport Container"}
     @{Name="NgcSvc"; Desc="Microsoft Passport"}
     @{Name="WpnUserService"; Desc="Windows Push Notifications"}
@@ -71,6 +67,35 @@ foreach ($svc in $disableServices) {
         Write-Host "  [OK] Disabled: $($svc.Name) ($($svc.Desc))" -ForegroundColor Green
         $disabled++
     }
+}
+
+# --- Core Services (requires Oneclick confirmation) ---
+$coreServices = @(
+    @{Name="EventSystem"; Desc="COM+ Event System"}
+    @{Name="gpsvc"; Desc="Group Policy Client"}
+)
+$runCore = $false
+if ($Auto) {
+    Write-Host "  [!] Skipping EventSystem/gpsvc in Auto mode (requires Oneclick confirmation)" -ForegroundColor Yellow
+    Log "Services: EventSystem/gpsvc skipped (Auto mode, needs Oneclick confirmation)"
+} else {
+    Write-Host ""
+    Write-Host "  [!] EventSystem and gpsvc are core Windows services." -ForegroundColor Yellow
+    Write-Host "      Only disable these if Oneclick Process Destroyer was already run." -ForegroundColor Yellow
+    $confirm = YAZX-Choose -Title "Disable EventSystem and gpsvc?" -Options @("Yes - Oneclick was run", "No - Skip these")
+    if ($confirm -eq 1) { $runCore = $true }
+}
+if ($runCore) {
+    foreach ($svc in $coreServices) {
+        $s = Get-Service $svc.Name -ErrorAction SilentlyContinue
+        if ($s) {
+            sc.exe config $svc.Name start=disabled 2>$null | Out-Null
+            Stop-Service $svc.Name -Force -ErrorAction SilentlyContinue
+            Write-Host "  [OK] Disabled: $($svc.Name) ($($svc.Desc))" -ForegroundColor Green
+            $disabled++
+        }
+    }
+    Log "Services: EventSystem/gpsvc disabled (user confirmed Oneclick)"
 }
 
 # --- Windows Update Recovery Prevention ---
