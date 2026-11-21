@@ -196,6 +196,66 @@ if ($nagleApplied -eq 0) {
     Log "NIC: Nagle algorithm disabled on $nagleApplied interface(s)"
 }
 
+# === Phase 5: NVIDIA Control Panel Settings Restoration ===
+
+Write-Host ""
+Write-Host "  --- NVIDIA Control Panel Settings ---" -ForegroundColor Yellow
+
+$nvRestore = 0
+$nvDrsSrc = "$BackupDir\yazx_NVIDIA_Settings"
+
+# 5a: Restore DRS database (all NVCP 3D settings)
+$drsTarget = "$env:ProgramData\NVIDIA Corporation\Drs"
+if ((Test-Path "$nvDrsSrc\nvdrsdb0.bin") -and (Test-Path $drsTarget)) {
+    $nvsvc = Get-Service "NVDisplay.ContainerLocalSystem" -ErrorAction SilentlyContinue
+    $wasRunning = $nvsvc -and $nvsvc.Status -eq 'Running'
+    if ($wasRunning) { Stop-Service "NVDisplay.ContainerLocalSystem" -Force -ErrorAction SilentlyContinue; Start-Sleep -Seconds 2 }
+    Copy-Item "$nvDrsSrc\nvdrsdb0.bin" "$drsTarget\nvdrsdb0.bin" -Force -ErrorAction SilentlyContinue
+    Copy-Item "$nvDrsSrc\nvdrsdb1.bin" "$drsTarget\nvdrsdb1.bin" -Force -ErrorAction SilentlyContinue
+    Copy-Item "$nvDrsSrc\nvdrssel.bin" "$drsTarget\nvdrssel.bin" -Force -ErrorAction SilentlyContinue
+    if ($wasRunning) { Start-Service "NVDisplay.ContainerLocalSystem" -ErrorAction SilentlyContinue }
+    Write-Host "  [OK] NVCP 3D settings restored (DRS database)" -ForegroundColor Green
+    Log "NVCP: DRS database restored to $drsTarget"
+    $nvRestore++
+} elseif (-not (Test-Path $drsTarget)) {
+    Write-Host "  [!] NVIDIA driver not installed yet - install driver first" -ForegroundColor Yellow
+    Log "NVCP: Skipped DRS restore (driver not installed)"
+} else {
+    Write-Host "  [!] DRS backup not found in $nvDrsSrc" -ForegroundColor Yellow
+}
+
+# 5b: Import NVIDIA registry settings
+foreach ($regFile in @("NVIDIA_HKCU.reg", "NVIDIA_HKLM.reg")) {
+    $regPath = "$nvDrsSrc\$regFile"
+    if (Test-Path $regPath) {
+        $header = Get-Content $regPath -TotalCount 1 -ErrorAction SilentlyContinue
+        if ($header -match "^Windows Registry Editor") {
+            regedit /s $regPath
+            Write-Host "  [OK] Imported: $regFile" -ForegroundColor Green
+            $nvRestore++
+        } else {
+            Write-Host "  [!] Invalid reg header: $regFile - skipped" -ForegroundColor Yellow
+        }
+    }
+}
+
+# 5c: NPI profiles notification
+$npiConfigs = "$YazxDir\configs"
+$nipFiles = Get-ChildItem "$npiConfigs\*.nip" -ErrorAction SilentlyContinue
+if ($nipFiles) {
+    Write-Host "  [OK] NPI profiles available ($($nipFiles.Count) profiles in configs\)" -ForegroundColor Green
+    Write-Host "       Load via NVIDIA Profile Inspector: File > Import" -ForegroundColor Gray
+    $nvRestore++
+} else {
+    $nipBackup = Get-ChildItem "$BackupDir\yazx_NVIDIA_ProfileInspector\*.nip" -ErrorAction SilentlyContinue
+    if ($nipBackup) {
+        Write-Host "  [OK] NPI profiles in backup ($($nipBackup.Count) profiles)" -ForegroundColor Green
+        Write-Host "       Load via NVIDIA Profile Inspector: File > Import" -ForegroundColor Gray
+        $nvRestore++
+    }
+}
+Log "NVCP: $nvRestore items restored"
+
 # === Summary ===
 
 Write-Host ""
@@ -208,8 +268,9 @@ if ($nicKey) {
 }
 Write-Host "    GPU tweaks       : $gpuApplied applied" -ForegroundColor $(if ($gpuApplied -gt 0) { "Green" } else { "Gray" })
 Write-Host "    Nagle disabled   : $nagleApplied interface(s)" -ForegroundColor $(if ($nagleApplied -gt 0) { "Green" } else { "Gray" })
+Write-Host "    NVCP restored    : $nvRestore item(s)" -ForegroundColor $(if ($nvRestore -gt 0) { "Green" } else { "Gray" })
 Write-Host "    [!] Reboot required for changes to take effect" -ForegroundColor Yellow
 Write-Host "  ============================================" -ForegroundColor Cyan
 Write-Host ""
 
-Log "Module 17 DeviceManager: $disabled devices, $applied NIC, $gpuApplied GPU, $nagleApplied Nagle. Completed"
+Log "Module 17 DeviceManager: $disabled devices, $applied NIC, $gpuApplied GPU, $nagleApplied Nagle, $nvRestore NVCP. Completed"
