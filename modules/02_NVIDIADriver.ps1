@@ -94,7 +94,6 @@ if ($nvDrvPath) {
     if (-not (Test-Path $ftsPath)) { New-Item -Path $ftsPath -Force | Out-Null }
     Set-ItemProperty -Path $ftsPath -Name "EnableRID73779" -Value 1 -Type DWord -Force
     Set-ItemProperty -Path $ftsPath -Name "EnableRID74361" -Value 1 -Type DWord -Force
-    Set-ItemProperty -Path $ftsPath -Name "EnableRID73different" -Value 0 -Type DWord -Force
     Write-Host "  [OK] FTS flags set" -ForegroundColor Green
 
     # Disable NVIDIA telemetry
@@ -116,8 +115,8 @@ if ($nvDrvPath) {
     Write-Host "  [!] NVIDIA driver not found, skipping registry tweaks" -ForegroundColor Yellow
 }
 
-# Disable NVIDIA scheduled tasks
-Get-ScheduledTask | Where-Object { $_.TaskName -match "Nvidia|NvTm" } | ForEach-Object {
+# Disable NVIDIA scheduled tasks (runs regardless of driver detection)
+Get-ScheduledTask -ErrorAction SilentlyContinue | Where-Object { $_.TaskName -match "Nvidia|NvTm" } | ForEach-Object {
     Disable-ScheduledTask -TaskName $_.TaskName -ErrorAction SilentlyContinue | Out-Null
     Write-Host "  [OK] Disabled task: $($_.TaskName)" -ForegroundColor Green
 }

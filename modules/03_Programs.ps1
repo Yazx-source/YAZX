@@ -78,16 +78,16 @@ foreach ($prog in $programs) {
 # VC++ Redistributables (auto-install missing via winget)
 Write-Host "`n  --- Visual C++ Redistributables ---" -ForegroundColor Yellow
 $vcRedists = @(
-    @{Year="2005"; WingetId="Microsoft.VCRedist.2005.x64"},
-    @{Year="2008"; WingetId="Microsoft.VCRedist.2008.x64"},
-    @{Year="2010"; WingetId="Microsoft.VCRedist.2010.x64"},
-    @{Year="2012"; WingetId="Microsoft.VCRedist.2012.x64"},
-    @{Year="2013"; WingetId="Microsoft.VCRedist.2013.x64"},
-    @{Year="2015+"; WingetId="Microsoft.VCRedist.2015+.x64"}
+    @{Year="2005"; Match="2005"; WingetId="Microsoft.VCRedist.2005.x64"},
+    @{Year="2008"; Match="2008"; WingetId="Microsoft.VCRedist.2008.x64"},
+    @{Year="2010"; Match="2010"; WingetId="Microsoft.VCRedist.2010.x64"},
+    @{Year="2012"; Match="2012"; WingetId="Microsoft.VCRedist.2012.x64"},
+    @{Year="2013"; Match="2013"; WingetId="Microsoft.VCRedist.2013.x64"},
+    @{Year="2015-2022"; Match="201[5-9]|202[0-9]"; WingetId="Microsoft.VCRedist.2015+.x64"}
 )
 foreach ($vc in $vcRedists) {
     $found = Get-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\*" -ErrorAction SilentlyContinue |
-        Where-Object { $_.DisplayName -match "Visual C\+\+ $($vc.Year -replace '\+','\\+')" }
+        Where-Object { $_.DisplayName -match "Visual C\+\+.*($($vc.Match))" }
     if ($found) {
         Write-Host "  [OK] VC++ $($vc.Year)" -ForegroundColor Green
     } elseif ($hasWinget) {

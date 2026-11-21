@@ -4,10 +4,9 @@ param(
     [string]$LogFile
 )
 
-# YAZX Module 14: New Tweaks — CANDIDATE Operations
-# STATUS: This module does NOT auto-apply anything.
-# Each tweak requires explicit -Apply flag or manual confirmation.
-# Run without flags to see diagnostic report only.
+# YAZX Module 14: New Tweaks
+# Auto-applies: VBS/HVCI disable, Audio optimization
+# Shows diagnostic report for 5 candidate tweaks (manual review required)
 
 Write-Host ""
 Write-Host "  Module 14: New Tweaks — Candidate Review"

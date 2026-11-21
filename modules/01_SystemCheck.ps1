@@ -77,11 +77,16 @@ try {
     $nvDpc = (Get-ItemProperty "HKLM:\SYSTEM\CurrentControlSet\Services\nvlddmkm\Parameters" -Name "RmGpsPsEnablePerCpuCoreDpc" -ErrorAction SilentlyContinue).RmGpsPsEnablePerCpuCoreDpc
     Write-Host "  NVIDIA PerCpuCoreDpc: $(if($nvDpc -eq 1){'Enabled'}else{'Not set'})" -ForegroundColor White
 
-    $msi = Get-ChildItem "HKLM:\SYSTEM\CurrentControlSet\Enum" -Recurse -ErrorAction SilentlyContinue |
-        Where-Object { $_.PSChildName -eq "Device Parameters" } |
-        Get-ItemProperty -Name "MSISupported" -ErrorAction SilentlyContinue |
-        Where-Object { $_.MSISupported -eq 1 }
-    $msiCount = ($msi | Measure-Object).Count
+    $msiCount = 0
+    @("PCI", "HDAUDIO", "USB") | ForEach-Object {
+        $enumPath = "HKLM:\SYSTEM\CurrentControlSet\Enum\$_"
+        if (Test-Path $enumPath) {
+            Get-ChildItem $enumPath -Recurse -Depth 4 -ErrorAction SilentlyContinue |
+                Where-Object { $_.PSChildName -eq "Device Parameters" } |
+                Get-ItemProperty -Name "MSISupported" -ErrorAction SilentlyContinue |
+                Where-Object { $_.MSISupported -eq 1 } | ForEach-Object { $msiCount++ }
+        }
+    }
     Write-Host "  MSI-enabled devices: $msiCount" -ForegroundColor White
     Log "DPC: TimerRes=$dpcTimer, NvDpc=$nvDpc, MSI=$msiCount"
 } catch {
