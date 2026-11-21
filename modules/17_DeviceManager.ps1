@@ -132,6 +132,70 @@ if ($nicKey) {
     Log "NIC: Realtek Gaming 2.5GbE not found"
 }
 
+# === Phase 3: NVIDIA GPU Performance Registry ===
+
+Write-Host ""
+Write-Host "  --- NVIDIA GPU Performance Tweaks ---" -ForegroundColor Yellow
+
+$gpuBase = "HKLM:\SYSTEM\CurrentControlSet\Control\Class\{4d36e968-e325-11ce-bfc1-08002be10318}"
+$gpuKey = $null
+$gpuSubs = Get-ChildItem $gpuBase -ErrorAction SilentlyContinue | Where-Object { $_.PSChildName -match '^\d{4}$' }
+foreach ($sk in $gpuSubs) {
+    $desc = (Get-ItemProperty $sk.PSPath -ErrorAction SilentlyContinue).DriverDesc
+    if ($desc -match "NVIDIA|RTX|GeForce") {
+        $gpuKey = $sk.PSPath
+        Write-Host "  Found: $desc" -ForegroundColor Gray
+        break
+    }
+}
+
+$gpuApplied = 0
+if ($gpuKey) {
+    $gpuTweaks = @{
+        "DisableDynamicPstate"  = @{ Value=1;    Type="DWord"; Desc="Disable dynamic P-state switching" }
+        "PerfLevelSrc"          = @{ Value=8738;  Type="DWord"; Desc="Force max performance (0x2222)" }
+        "RMHdcpKeyglobZero"     = @{ Value=1;    Type="DWord"; Desc="Disable HDCP overhead" }
+        "RmProfilingAdminOnly"  = @{ Value=1;    Type="DWord"; Desc="Admin-only GPU profiling" }
+    }
+    foreach ($key in $gpuTweaks.Keys) {
+        $t = $gpuTweaks[$key]
+        try {
+            Set-ItemProperty -Path $gpuKey -Name $key -Value $t.Value -Type $t.Type -Force -ErrorAction Stop
+            Write-Host "  [OK] $($t.Desc)" -ForegroundColor Green
+            $gpuApplied++
+        } catch {
+            Write-Host "  [!] Failed: $($t.Desc)" -ForegroundColor Yellow
+        }
+    }
+    Log "GPU: $gpuApplied NVIDIA performance tweaks applied"
+} else {
+    Write-Host "  [!] No NVIDIA GPU found - skipping" -ForegroundColor Yellow
+}
+
+# === Phase 4: Nagle Algorithm Disable (per NIC interface) ===
+
+Write-Host ""
+Write-Host "  --- Nagle Algorithm Disable (TCP Optimization) ---" -ForegroundColor Yellow
+
+$nagleApplied = 0
+$ifBase = "HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Interfaces"
+Get-ChildItem $ifBase -ErrorAction SilentlyContinue | ForEach-Object {
+    $dhcp = (Get-ItemProperty $_.PSPath -Name "DhcpIPAddress" -ErrorAction SilentlyContinue).DhcpIPAddress
+    $static = (Get-ItemProperty $_.PSPath -Name "IPAddress" -ErrorAction SilentlyContinue).IPAddress
+    $ip = if ($dhcp -and $dhcp -ne "0.0.0.0") { $dhcp } elseif ($static) { ($static | Where-Object { $_ -and $_ -ne "0.0.0.0" }) | Select-Object -First 1 } else { $null }
+    if ($ip) {
+        Set-ItemProperty -Path $_.PSPath -Name "TcpAckFrequency" -Value 1 -Type DWord -Force -ErrorAction SilentlyContinue
+        Set-ItemProperty -Path $_.PSPath -Name "TCPNoDelay" -Value 1 -Type DWord -Force -ErrorAction SilentlyContinue
+        Write-Host "  [OK] Nagle disabled on interface $ip ($($_.PSChildName))" -ForegroundColor Green
+        $nagleApplied++
+    }
+}
+if ($nagleApplied -eq 0) {
+    Write-Host "  [!] No active NIC interfaces found" -ForegroundColor Yellow
+} else {
+    Log "NIC: Nagle algorithm disabled on $nagleApplied interface(s)"
+}
+
 # === Summary ===
 
 Write-Host ""
@@ -142,8 +206,10 @@ Write-Host "    Devices disabled : $disabled" -ForegroundColor $(if ($disabled -
 if ($nicKey) {
     Write-Host "    NIC settings     : $applied applied" -ForegroundColor Green
 }
+Write-Host "    GPU tweaks       : $gpuApplied applied" -ForegroundColor $(if ($gpuApplied -gt 0) { "Green" } else { "Gray" })
+Write-Host "    Nagle disabled   : $nagleApplied interface(s)" -ForegroundColor $(if ($nagleApplied -gt 0) { "Green" } else { "Gray" })
 Write-Host "    [!] Reboot required for changes to take effect" -ForegroundColor Yellow
 Write-Host "  ============================================" -ForegroundColor Cyan
 Write-Host ""
 
-Log "Module 17 DeviceManager: $disabled devices disabled. Completed"
+Log "Module 17 DeviceManager: $disabled devices, $applied NIC, $gpuApplied GPU, $nagleApplied Nagle. Completed"
