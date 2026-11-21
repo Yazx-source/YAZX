@@ -9,30 +9,31 @@ Log "Module 03 Programs: Started"
 
 # Program list with install methods
 $programs = @(
-    @{Name="7-Zip"; Check="C:\Program Files\7-Zip\7z.exe"; Url="https://www.7-zip.org/a/7z2402-x64.exe"; Silent="/S"}
+    @{Name="7-Zip"; Check="C:\Program Files\7-Zip\7z.exe"; WingetId="7zip.7zip"; Url="https://www.7-zip.org/a/7z2402-x64.exe"; Silent="/S"}
     @{Name="Process Lasso"; Check="C:\Program Files\Process Lasso\ProcessLasso.exe"; Backup="yazx_ProcessLasso"; Url="https://dl.bitsum.com/files/processlassosetup64.exe"; Silent="/S"}
     @{Name="MSI Afterburner"; Check="C:\Program Files (x86)\MSI Afterburner\MSIAfterburner.exe"; Backup="yazx_MSI_Afterburner"; Url="https://download.msi.com/uti_exe/vga/MSIAfterburnerSetup466.zip"; Silent="/S"}
-    @{Name="Equalizer APO"; Check="C:\Program Files\EqualizerAPO\Editor.exe"; Backup="yazx_EqualizerAPO"; Url="https://sourceforge.net/projects/equalizerapo/files/latest/download"; Silent="/S"}
+    @{Name="Equalizer APO"; Check="C:\Program Files\EqualizerAPO\Editor.exe"; WingetId="jthedering.EqualizerAPO"; Backup="yazx_EqualizerAPO"; Url="https://sourceforge.net/projects/equalizerapo/files/latest/download"; Silent="/S"}
     @{Name="Open-Shell"; Check="C:\Program Files\Open-Shell\StartMenu.exe"; Backup="yazx_OpenShell"; Silent="QUIET"}
     @{Name="ParkControl"; Check="C:\Program Files\ParkControl\ParkControl.exe"; Backup="yazx_ParkControl"; Url="https://dl.bitsum.com/files/parkcontrolsetup64.exe"; Silent="/S"}
     @{Name="Mem Reduct"; Check="C:\Program Files\Mem Reduct\memreduct.exe"; Backup="yazx_MemReduct"; Portable=$true}
-    @{Name="LibreWolf"; Check="C:\Program Files\LibreWolf\librewolf.exe"; Url="https://librewolf.net/installation/windows/"; Manual=$true}
-    @{Name="Steam"; Check="C:\Program Files (x86)\Steam\steam.exe"; Url="https://cdn.akamai.steamstatic.com/client/installer/SteamSetup.exe"; Silent="/S"}
-    @{Name="Discord"; Check="$env:LOCALAPPDATA\Discord\Update.exe"; Url="https://discord.com/api/downloads/distributions/app/installers/latest?channel=stable&platform=win&arch=x64"; Silent="-s"}
-    @{Name="Brave"; Check="C:\Program Files\BraveSoftware\Brave-Browser\Application\brave.exe"; Url="https://laptop-updates.brave.com/latest/winx64"; Silent="--silent --install"}
-    @{Name="Git"; Check="C:\Program Files\Git\git-cmd.exe"; Url="https://github.com/git-for-windows/git/releases/latest"; Manual=$true}
-    @{Name="VS Code"; Check="$env:LOCALAPPDATA\Programs\Microsoft VS Code\Code.exe"; Url="https://code.visualstudio.com/sha/download?build=stable&os=win32-x64-user"; Silent="/VERYSILENT"}
+    @{Name="LibreWolf"; Check="C:\Program Files\LibreWolf\librewolf.exe"; WingetId="LibreWolf.LibreWolf"; Url="https://librewolf.net/installation/windows/"; Manual=$true}
+    @{Name="Steam"; Check="C:\Program Files (x86)\Steam\steam.exe"; WingetId="Valve.Steam"; Url="https://cdn.akamai.steamstatic.com/client/installer/SteamSetup.exe"; Silent="/S"}
+    @{Name="Discord"; Check="$env:LOCALAPPDATA\Discord\Update.exe"; WingetId="Discord.Discord"; Url="https://discord.com/api/downloads/distributions/app/installers/latest?channel=stable&platform=win&arch=x64"; Silent="-s"}
+    @{Name="Brave"; Check="C:\Program Files\BraveSoftware\Brave-Browser\Application\brave.exe"; WingetId="Brave.Brave"; Url="https://laptop-updates.brave.com/latest/winx64"; Silent="--silent --install"}
+    @{Name="Git"; Check="C:\Program Files\Git\git-cmd.exe"; WingetId="Git.Git"; Url="https://github.com/git-for-windows/git/releases/latest"; Manual=$true}
+    @{Name="VS Code"; Check="$env:LOCALAPPDATA\Programs\Microsoft VS Code\Code.exe"; WingetId="Microsoft.VisualStudioCode"; Url="https://code.visualstudio.com/sha/download?build=stable&os=win32-x64-user"; Silent="/VERYSILENT"}
     @{Name="Revo Uninstaller"; Check="C:\Program Files\VS Revo Group\Revo Uninstaller Pro\RevoUninPro.exe"; Backup="yazx_RevoUninstaller"; Manual=$true}
-    @{Name="ExplorerPatcher"; Check="$null"; Backup="yazx_ExplorerPatcher"; Manual=$true}
-    @{Name="RW-Everything"; Check="$null"; Backup="yazx_BIOS"; Portable=$true}
+    @{Name="ExplorerPatcher"; Backup="yazx_ExplorerPatcher"; Manual=$true}
+    @{Name="RW-Everything"; Backup="yazx_BIOS"; Portable=$true}
 )
 
 $installed = 0
 $needInstall = 0
+$hasWinget = [bool](Get-Command winget -ErrorAction SilentlyContinue)
 
 foreach ($prog in $programs) {
     $exists = $false
-    if ($prog.Check -and $prog.Check -ne '$null') {
+    if ($prog.ContainsKey('Check')) {
         $exists = Test-Path $prog.Check
     }
 
@@ -41,13 +42,24 @@ foreach ($prog in $programs) {
         $installed++
     } else {
         $needInstall++
-        if ($prog.Manual) {
+        if ($prog.Manual -and -not $prog.ContainsKey('WingetId')) {
             Write-Host "  [!!] $($prog.Name) - Manual install needed" -ForegroundColor Red
             if ($prog.Url) { Write-Host "       URL: $($prog.Url)" -ForegroundColor Gray }
             if ($prog.Backup -and (Test-Path "$BackupDir\$($prog.Backup)")) {
                 Write-Host "       Backup available: $BackupDir\$($prog.Backup)" -ForegroundColor Yellow
             }
             Log "$($prog.Name): Manual install needed"
+        } elseif ($hasWinget -and $prog.ContainsKey('WingetId')) {
+            Write-Host "  [=>] $($prog.Name) - Installing via winget..." -ForegroundColor Yellow
+            $wingetResult = winget install --id $prog.WingetId --accept-package-agreements --accept-source-agreements --silent 2>&1
+            if ($LASTEXITCODE -eq 0) {
+                Write-Host "  [OK] $($prog.Name) - Installed via winget" -ForegroundColor Green
+                Log "$($prog.Name): Installed via winget ($($prog.WingetId))"
+            } else {
+                Write-Host "  [!] $($prog.Name) - Winget failed, manual install needed" -ForegroundColor Yellow
+                if ($prog.Url) { Write-Host "       URL: $($prog.Url)" -ForegroundColor Gray }
+                Log "$($prog.Name): Winget failed, needs manual install"
+            }
         } elseif ($prog.Portable -and $prog.Backup -and (Test-Path "$BackupDir\$($prog.Backup)")) {
             Write-Host "  [=>] $($prog.Name) - Copying from backup..." -ForegroundColor Yellow
             $dst = "C:\Program Files\$($prog.Name)"

@@ -82,6 +82,8 @@ if %TOOLS_MISS% GTR 0 (
     echo  [+] All %TOOLS_TOTAL% tools present
 )
 echo.
+
+:menu
 echo  Modules (ordered by risk - lowest first):
 echo.
 echo   [1]  System Check         - Verify compatibility
@@ -584,8 +586,16 @@ goto done
 :done
 echo.
 echo  ═══════════════════════════════════
-echo       YAZX Setup Complete!
+echo       Module Complete
 echo  ═══════════════════════════════════
+echo.
+choice /c MQ /n /m "  [M] Return to Menu  [Q] Quit: "
+if errorlevel 2 goto quit
+goto menu
+
+:quit
+echo.
 echo  [%DATE% %TIME%] YAZX Setup Ended. >> "%LOG_FILE%"
+echo  YAZX Setup finished. Goodbye!
 echo.
 pause

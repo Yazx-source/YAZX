@@ -83,9 +83,22 @@ Write-Host "  --- LibreWolf ---" -ForegroundColor Yellow
 $lwSrc = "$BackupDir\yazx_LibreWolf"
 if (-not (Test-Path $lwSrc)) { $lwSrc = "$YazxDir\configs\LibreWolf" }
 if (Test-Path $lwSrc) {
-    $lwProfiles = "C:\Users\$env:USERNAME\AppData\Roaming\librewolf\Profiles"
+    $lwBase = "C:\Users\$env:USERNAME\AppData\Roaming\librewolf"
+    $lwProfiles = "$lwBase\Profiles"
     if (Test-Path $lwProfiles) {
-        $defaultProfile = Get-ChildItem $lwProfiles -Directory | Select-Object -First 1
+        $defaultProfile = $null
+        $iniPath = "$lwBase\profiles.ini"
+        if (Test-Path $iniPath) {
+            $iniContent = Get-Content $iniPath -Raw
+            if ($iniContent -match '(?m)Path=Profiles[/\\]([^\r\n]+)') {
+                $profName = $Matches[1]
+                $profPath = Join-Path $lwProfiles $profName
+                if (Test-Path $profPath) { $defaultProfile = Get-Item $profPath }
+            }
+        }
+        if (-not $defaultProfile) {
+            $defaultProfile = Get-ChildItem $lwProfiles -Directory | Sort-Object LastWriteTime -Descending | Select-Object -First 1
+        }
         if ($defaultProfile) {
             Copy-Item "$lwSrc\prefs.js" "$($defaultProfile.FullName)\prefs.js" -Force -ErrorAction SilentlyContinue
             Copy-Item "$lwSrc\user.js" "$($defaultProfile.FullName)\user.js" -Force -ErrorAction SilentlyContinue
