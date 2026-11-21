@@ -78,5 +78,49 @@ Write-Host "      [x] Disable Multiplane Overlay (MPO)" -ForegroundColor Gray
 Write-Host "      [x] Disable NVIDIA HD Audio device sleep timer" -ForegroundColor Gray
 Write-Host "      [x] Perform a Clean Installation" -ForegroundColor Gray
 
+# --- NVIDIA Registry Tweaks (from Oneclick comparison) ---
+Write-Host "`n  --- NVIDIA Registry Tweaks ---" -ForegroundColor Yellow
+
+# Per-CPU core DPC handling
+$nvDrvPath = (Get-ItemProperty "HKLM:\SYSTEM\CurrentControlSet\Services\nvlddmkm" -Name "ImagePath" -ErrorAction SilentlyContinue).ImagePath
+if ($nvDrvPath) {
+    $nvParamsPath = "HKLM:\SYSTEM\CurrentControlSet\Services\nvlddmkm\Parameters"
+    if (-not (Test-Path $nvParamsPath)) { New-Item -Path $nvParamsPath -Force | Out-Null }
+    Set-ItemProperty -Path $nvParamsPath -Name "RmGpsPsEnablePerCpuCoreDpc" -Value 1 -Type DWord -Force
+    Write-Host "  [OK] RmGpsPsEnablePerCpuCoreDpc = 1" -ForegroundColor Green
+
+    # FTS (Frame Transport Settings)
+    $ftsPath = "HKLM:\SYSTEM\CurrentControlSet\Services\nvlddmkm\FTS"
+    if (-not (Test-Path $ftsPath)) { New-Item -Path $ftsPath -Force | Out-Null }
+    Set-ItemProperty -Path $ftsPath -Name "EnableRID73779" -Value 1 -Type DWord -Force
+    Set-ItemProperty -Path $ftsPath -Name "EnableRID74361" -Value 1 -Type DWord -Force
+    Set-ItemProperty -Path $ftsPath -Name "EnableRID73different" -Value 0 -Type DWord -Force
+    Write-Host "  [OK] FTS flags set" -ForegroundColor Green
+
+    # Disable NVIDIA telemetry
+    $nvTelPaths = @(
+        "HKLM:\SOFTWARE\NVIDIA Corporation\NvControlPanel2\Client",
+        "HKLM:\SOFTWARE\NVIDIA Corporation\Global\FTS"
+    )
+    foreach ($tp in $nvTelPaths) {
+        if (-not (Test-Path $tp)) { New-Item -Path $tp -Force | Out-Null }
+    }
+    Set-ItemProperty -Path "HKLM:\SOFTWARE\NVIDIA Corporation\NvControlPanel2\Client" -Name "OptInOrOutPreference" -Value 0 -Type DWord -Force
+    Set-ItemProperty -Path "HKLM:\SOFTWARE\NVIDIA Corporation\Global\FTS" -Name "EnableRID66610" -Value 0 -Type DWord -Force
+    Set-ItemProperty -Path "HKLM:\SOFTWARE\NVIDIA Corporation\Global\FTS" -Name "EnableRID64640" -Value 0 -Type DWord -Force
+    Set-ItemProperty -Path "HKLM:\SOFTWARE\NVIDIA Corporation\Global\FTS" -Name "EnableRID44231" -Value 0 -Type DWord -Force
+    Write-Host "  [OK] NVIDIA telemetry disabled" -ForegroundColor Green
+
+    Log "NVIDIA registry tweaks: Applied (DPC, FTS, telemetry)"
+} else {
+    Write-Host "  [!] NVIDIA driver not found, skipping registry tweaks" -ForegroundColor Yellow
+}
+
+# Disable NVIDIA scheduled tasks
+Get-ScheduledTask | Where-Object { $_.TaskName -match "Nvidia|NvTm" } | ForEach-Object {
+    Disable-ScheduledTask -TaskName $_.TaskName -ErrorAction SilentlyContinue | Out-Null
+    Write-Host "  [OK] Disabled task: $($_.TaskName)" -ForegroundColor Green
+}
+
 Log "Module 02 NVIDIADriver: Completed"
 Write-Host "`n  [OK] NVIDIA module complete." -ForegroundColor Green

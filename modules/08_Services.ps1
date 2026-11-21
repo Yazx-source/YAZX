@@ -72,5 +72,33 @@ foreach ($svc in $disableServices) {
     }
 }
 
-Log "Module 08 Services: $disabled services disabled. Completed"
-Write-Host "`n  [OK] $disabled services disabled.`n" -ForegroundColor Green
+# --- Windows Update Recovery Prevention ---
+Write-Host "`n  --- Windows Update Recovery Prevention ---" -ForegroundColor Yellow
+
+# Disable WU scheduled task triggers that re-enable updates
+$wuTasks = @(
+    "\Microsoft\Windows\WindowsUpdate\Scheduled Start",
+    "\Microsoft\Windows\WindowsUpdate\sih",
+    "\Microsoft\Windows\WindowsUpdate\sihboot",
+    "\Microsoft\Windows\UpdateOrchestrator\Schedule Scan",
+    "\Microsoft\Windows\UpdateOrchestrator\Schedule Scan Static Task",
+    "\Microsoft\Windows\UpdateOrchestrator\UpdateModelTask",
+    "\Microsoft\Windows\UpdateOrchestrator\USO_UxBroker",
+    "\Microsoft\Windows\WaaSMedic\PerformRemediation"
+)
+foreach ($task in $wuTasks) {
+    schtasks /change /tn $task /disable 2>$null | Out-Null
+}
+Write-Host "  [OK] Windows Update task triggers disabled" -ForegroundColor Green
+
+# Prevent WaaS Medic from re-enabling services
+$medicPath = "HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate"
+if (-not (Test-Path $medicPath)) { New-Item -Path $medicPath -Force | Out-Null }
+Set-ItemProperty -Path $medicPath -Name "DisableWUfBSafeguards" -Value 1 -Type DWord -Force
+$medicAU = "$medicPath\AU"
+if (-not (Test-Path $medicAU)) { New-Item -Path $medicAU -Force | Out-Null }
+Set-ItemProperty -Path $medicAU -Name "NoAutoUpdate" -Value 1 -Type DWord -Force
+Write-Host "  [OK] WaaS Medic recovery prevention applied" -ForegroundColor Green
+
+Log "Module 08 Services: $disabled services disabled + WU recovery prevention. Completed"
+Write-Host "`n  [OK] $disabled services disabled + WU hardened.`n" -ForegroundColor Green

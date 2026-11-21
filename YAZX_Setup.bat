@@ -99,19 +99,21 @@ echo   [C]  MSI Mode             - Interrupt mode (7 devices)
 echo   [D]  Power Plan           - YAZX Ultimate Performance
 echo   [E]  Privacy              - Hosts/Telemetry cleanup
 echo   [F]  Oneclick             - Run Oneclick tweaker (LAST!)
-echo   [G]  New Tweaks           - CsEnabled/GameMode (SAFE tweaks only)
+echo   [G]  New Tweaks           - VBS/HVCI/Audio + candidate review
+echo   [H]  Autologgers          - Disable ETW autologger sessions
 echo.
-echo   [A]  Run ALL (1-9,C-G in order)
+echo   [A]  Run ALL (1-9,C-H in order)
 echo   [V]  Phase 2.5 Exports    - Kernel/Power/VST/Profiles (manual review)
 echo   [R]  Registry FULL Restore (from backup exports)
 echo   [Q]  Quit
 echo.
 
-choice /c 123456789ACDEFGVRQ /n /m "  Select: "
+choice /c 123456789ACDEFGHVRQ /n /m "  Select: "
 
-if errorlevel 18 exit /b
-if errorlevel 17 goto run_reg_full_restore
-if errorlevel 16 goto run_phase25
+if errorlevel 19 exit /b
+if errorlevel 18 goto run_reg_full_restore
+if errorlevel 17 goto run_phase25
+if errorlevel 16 goto run_autologgers
 if errorlevel 15 goto run_newtweaks
 if errorlevel 14 goto run_oneclick
 if errorlevel 13 goto run_privacy
@@ -161,15 +163,17 @@ powershell -ExecutionPolicy Bypass -File "%YAZX_DIR%\modules\11_PowerPlan.ps1" -
 powershell -ExecutionPolicy Bypass -File "%YAZX_DIR%\modules\12_Privacy.ps1" -YazxDir "%YAZX_DIR%" -BackupDir "%BACKUP_DIR%" -LogFile "%LOG_FILE%"
 echo.
 regedit /s "%YAZX_DIR%\registry\YAZX_NewTweaks.reg"
-echo  [%DATE% %TIME%] Registry NewTweaks: Applied (CsEnabled, GameMode, GameDVR - SAFE only) >> "%LOG_FILE%"
-echo  [OK] SAFE tweaks applied (CsEnabled=0, GameMode, GameDVR).
+echo  [%DATE% %TIME%] Registry NewTweaks: Applied (CsEnabled, GameMode, GameDVR) >> "%LOG_FILE%"
+powershell -ExecutionPolicy Bypass -File "%YAZX_DIR%\modules\14_NewTweaks.ps1" -YazxDir "%YAZX_DIR%" -BackupDir "%BACKUP_DIR%" -LogFile "%LOG_FILE%"
+powershell -ExecutionPolicy Bypass -File "%YAZX_DIR%\modules\15_Autologgers.ps1" -YazxDir "%YAZX_DIR%" -BackupDir "%BACKUP_DIR%" -LogFile "%LOG_FILE%"
+echo.
 echo  [!] Candidate tweaks (Timer Resolution, Memory Compression, P-core policy)
 echo      are NOT auto-applied. See registry\YAZX_NewTweaks_Candidates.reg
 echo.
 echo  [!] Module 13 (Oneclick) must be run manually - download from:
 echo      https://github.com/QuakedK/Oneclick/releases
 echo.
-echo  [%DATE% %TIME%] ALL modules completed (14 modules). Oneclick skipped (run manually). >> "%LOG_FILE%"
+echo  [%DATE% %TIME%] ALL modules completed (15 modules). Oneclick skipped (run manually). >> "%LOG_FILE%"
 goto done
 
 :run_syscheck
@@ -278,15 +282,17 @@ goto done
 
 :run_newtweaks
 echo.
-echo  Applying New Tweaks (SAFE only: CsEnabled, GameMode, GameDVR)...
+echo  Applying New Tweaks (VBS/HVCI/Audio + SAFE registry)...
 regedit /s "%YAZX_DIR%\registry\YAZX_NewTweaks.reg"
-echo  [%DATE% %TIME%] Registry NewTweaks SAFE: Applied >> "%LOG_FILE%"
-echo  [OK] SAFE tweaks applied.
+echo  [%DATE% %TIME%] Registry NewTweaks: Applied >> "%LOG_FILE%"
+powershell -ExecutionPolicy Bypass -File "%YAZX_DIR%\modules\14_NewTweaks.ps1" -YazxDir "%YAZX_DIR%" -BackupDir "%BACKUP_DIR%" -LogFile "%LOG_FILE%"
 echo.
-echo  Candidate tweaks are NOT auto-applied. To review and apply manually:
-echo    - registry\YAZX_NewTweaks_Candidates.reg (Timer Resolution, LargeSystemCache)
-echo    - modules\14_NewTweaks.ps1 (Memory Compression, P-core policy, ASPM)
-echo  Each candidate must be tested individually.
+echo  Candidate tweaks (Timer Resolution, Memory Compression, P-core, ASPM)
+echo  are NOT auto-applied. Each must be tested individually.
+goto done
+
+:run_autologgers
+powershell -ExecutionPolicy Bypass -File "%YAZX_DIR%\modules\15_Autologgers.ps1" -YazxDir "%YAZX_DIR%" -BackupDir "%BACKUP_DIR%" -LogFile "%LOG_FILE%"
 goto done
 
 :run_oneclick

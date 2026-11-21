@@ -75,16 +75,32 @@ foreach ($prog in $programs) {
     }
 }
 
-# VC++ Redistributables
+# VC++ Redistributables (auto-install missing via winget)
 Write-Host "`n  --- Visual C++ Redistributables ---" -ForegroundColor Yellow
-$vcList = @("2005", "2008", "2010", "2012", "2013", "2022")
-foreach ($vc in $vcList) {
+$vcRedists = @(
+    @{Year="2005"; WingetId="Microsoft.VCRedist.2005.x64"},
+    @{Year="2008"; WingetId="Microsoft.VCRedist.2008.x64"},
+    @{Year="2010"; WingetId="Microsoft.VCRedist.2010.x64"},
+    @{Year="2012"; WingetId="Microsoft.VCRedist.2012.x64"},
+    @{Year="2013"; WingetId="Microsoft.VCRedist.2013.x64"},
+    @{Year="2015+"; WingetId="Microsoft.VCRedist.2015+.x64"}
+)
+foreach ($vc in $vcRedists) {
     $found = Get-ItemProperty "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\*" -ErrorAction SilentlyContinue |
-        Where-Object { $_.DisplayName -match "Visual C\+\+ $vc" }
+        Where-Object { $_.DisplayName -match "Visual C\+\+ $($vc.Year -replace '\+','\\+')" }
     if ($found) {
-        Write-Host "  [OK] VC++ $vc" -ForegroundColor Green
+        Write-Host "  [OK] VC++ $($vc.Year)" -ForegroundColor Green
+    } elseif ($hasWinget) {
+        Write-Host "  [=>] VC++ $($vc.Year) - Installing via winget..." -ForegroundColor Yellow
+        winget install --id $vc.WingetId --accept-package-agreements --accept-source-agreements --silent 2>&1 | Out-Null
+        if ($LASTEXITCODE -eq 0) {
+            Write-Host "  [OK] VC++ $($vc.Year) - Installed" -ForegroundColor Green
+            Log "VC++ $($vc.Year): Installed via winget"
+        } else {
+            Write-Host "  [!] VC++ $($vc.Year) - Winget failed" -ForegroundColor Yellow
+        }
     } else {
-        Write-Host "  [!!] VC++ $vc - Missing" -ForegroundColor Red
+        Write-Host "  [!!] VC++ $($vc.Year) - Missing (no winget)" -ForegroundColor Red
     }
 }
 

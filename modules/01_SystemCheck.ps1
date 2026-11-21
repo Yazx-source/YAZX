@@ -68,5 +68,25 @@ if ($appinfo) {
     Write-Host "  Appinfo: DELETED (expected after Oneclick)" -ForegroundColor Yellow
 }
 
+# --- DPC Latency Check ---
+Write-Host "`n  --- DPC Latency ---" -ForegroundColor Yellow
+try {
+    $dpcTimer = (Get-ItemProperty "HKLM:\SYSTEM\CurrentControlSet\Control\Session Manager\kernel" -Name "GlobalTimerResolutionRequests" -ErrorAction SilentlyContinue).GlobalTimerResolutionRequests
+    Write-Host "  GlobalTimerResolutionRequests: $(if($dpcTimer -eq 1){'Enabled (apps honored)'}else{'Not set (default)'})" -ForegroundColor White
+
+    $nvDpc = (Get-ItemProperty "HKLM:\SYSTEM\CurrentControlSet\Services\nvlddmkm\Parameters" -Name "RmGpsPsEnablePerCpuCoreDpc" -ErrorAction SilentlyContinue).RmGpsPsEnablePerCpuCoreDpc
+    Write-Host "  NVIDIA PerCpuCoreDpc: $(if($nvDpc -eq 1){'Enabled'}else{'Not set'})" -ForegroundColor White
+
+    $msi = Get-ChildItem "HKLM:\SYSTEM\CurrentControlSet\Enum" -Recurse -ErrorAction SilentlyContinue |
+        Where-Object { $_.PSChildName -eq "Device Parameters" } |
+        Get-ItemProperty -Name "MSISupported" -ErrorAction SilentlyContinue |
+        Where-Object { $_.MSISupported -eq 1 }
+    $msiCount = ($msi | Measure-Object).Count
+    Write-Host "  MSI-enabled devices: $msiCount" -ForegroundColor White
+    Log "DPC: TimerRes=$dpcTimer, NvDpc=$nvDpc, MSI=$msiCount"
+} catch {
+    Write-Host "  [!] Could not read DPC info" -ForegroundColor Yellow
+}
+
 Write-Host "`n  [OK] System check complete." -ForegroundColor Green
 Log "Module 01 SystemCheck: Completed"

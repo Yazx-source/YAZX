@@ -44,8 +44,17 @@ powercfg /setacvalueindex scheme_current 2a737441-1930-4402-8d77-b2bebba308a3 48
 powercfg /setacvalueindex scheme_current 501a4d13-42af-4429-9fd1-a8218c268e20 ee12f906-d277-404b-b6da-e5fa1a576df5 0 2>$null
 # Disable Hard disk timeout
 powercfg /setacvalueindex scheme_current 0012ee47-9041-4b5d-9b77-535fba8b1442 6738e2c4-e8a5-4a42-b16a-e040e769756e 0 2>$null
+# Disable Modern Standby (PlatformAoAcOverride)
+$pwrPath = "HKLM:\SYSTEM\CurrentControlSet\Control\Power"
+Set-ItemProperty -Path $pwrPath -Name "PlatformAoAcOverride" -Value 0 -Type DWord -Force
+Set-ItemProperty -Path $pwrPath -Name "CsEnabled" -Value 0 -Type DWord -Force
+Write-Host "  [OK] Modern Standby disabled (PlatformAoAcOverride=0)" -ForegroundColor Green
+
+# Disable Processor Idle (prevents C-states — lower latency, higher power)
+powercfg /setacvalueindex scheme_current 54533251-82be-4824-96c1-47b60b740d00 5d76a2ca-e8c0-402f-a133-2158492d58ad 1 2>$null
+
 powercfg /setactive scheme_current
 
 Write-Host "  [OK] Power settings optimized" -ForegroundColor Green
-Log "Module 11 PowerPlan: Completed"
+Log "Module 11 PowerPlan: Completed (Modern Standby off, Idle off)"
 Write-Host "`n  [OK] Power plan module complete.`n" -ForegroundColor Green

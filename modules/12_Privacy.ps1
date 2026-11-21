@@ -36,11 +36,28 @@ Write-Host "  --- Telemetry Tasks ---" -ForegroundColor Yellow
 $telTasks = @(
     "\Microsoft\Windows\Application Experience\Microsoft Compatibility Appraiser",
     "\Microsoft\Windows\Application Experience\ProgramDataUpdater",
+    "\Microsoft\Windows\Application Experience\AitAgent",
+    "\Microsoft\Windows\Application Experience\StartupAppTask",
     "\Microsoft\Windows\Autochk\Proxy",
     "\Microsoft\Windows\Customer Experience Improvement Program\Consolidator",
     "\Microsoft\Windows\Customer Experience Improvement Program\UsbCeip",
     "\Microsoft\Windows\DiskDiagnostic\Microsoft-Windows-DiskDiagnosticDataCollector",
-    "\Microsoft\Windows\Feedback\Siuf\DmClient"
+    "\Microsoft\Windows\Feedback\Siuf\DmClient",
+    "\Microsoft\Windows\Feedback\Siuf\DmClientOnScenarioDownload",
+    "\Microsoft\Windows\Maps\MapsToastTask",
+    "\Microsoft\Windows\Maps\MapsUpdateTask",
+    "\Microsoft\Windows\NetTrace\GatherNetworkInfo",
+    "\Microsoft\Windows\PI\Sqm-Tasks",
+    "\Microsoft\Windows\Power Efficiency Diagnostics\AnalyzeSystem",
+    "\Microsoft\Windows\Shell\FamilySafetyMonitor",
+    "\Microsoft\Windows\Shell\FamilySafetyRefreshTask",
+    "\Microsoft\Windows\Windows Error Reporting\QueueReporting",
+    "\Microsoft\Windows\WindowsUpdate\Scheduled Start",
+    "\Microsoft\Windows\Maintenance\WinSAT",
+    "\Microsoft\Windows\CloudExperienceHost\CreateObjectTask",
+    "\Microsoft\Windows\DiskFootprint\Diagnostics",
+    "\Microsoft\Windows\Flighting\FeatureConfig\ReconcileFeatures",
+    "\Microsoft\Windows\Flighting\OneSettings\RefreshCache"
 )
 
 foreach ($task in $telTasks) {
