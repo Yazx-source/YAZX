@@ -102,17 +102,19 @@ echo   [F]  Oneclick             - Run Oneclick tweaker (LAST!)
 echo   [G]  New Tweaks           - VBS/HVCI/Audio + candidate review
 echo   [H]  Autologgers          - Disable ETW autologger sessions
 echo.
+echo   [T]  Download Tools       - Auto-download all optimization tools
 echo   [A]  Run ALL (Smart Defaults, one-click)
 echo   [V]  Phase 2.5 Exports    - Kernel/Power/VST/Profiles (manual review)
 echo   [R]  Registry FULL Restore (from backup exports)
 echo   [Q]  Quit
 echo.
 
-choice /c 123456789ACDEFGHVRQ /n /m "  Select: "
+choice /c 123456789ACDEFGHTVRQ /n /m "  Select: "
 
-if errorlevel 19 exit /b
-if errorlevel 18 goto run_reg_full_restore
-if errorlevel 17 goto run_phase25
+if errorlevel 20 exit /b
+if errorlevel 19 goto run_reg_full_restore
+if errorlevel 18 goto run_phase25
+if errorlevel 17 goto run_downloadtools
 if errorlevel 16 goto run_autologgers
 if errorlevel 15 goto run_newtweaks
 if errorlevel 14 goto run_oneclick
@@ -142,6 +144,9 @@ echo.
 echo  Creating system restore point...
 powershell -Command "try { Checkpoint-Computer -Description 'YAZX Pre-Setup' -RestorePointType 'MODIFY_SETTINGS' -ErrorAction Stop; Write-Host '  [OK] Restore point created' } catch { Write-Host '  [!] Restore point skipped (not available)' }"
 echo  [%DATE% %TIME%] Running ALL modules (Auto mode) >> "%LOG_FILE%"
+echo.
+echo  Downloading tools (if missing)...
+powershell -ExecutionPolicy Bypass -File "%YAZX_DIR%\modules\16_DownloadTools.ps1" -YazxDir "%YAZX_DIR%" -BackupDir "%BACKUP_DIR%" -LogFile "%LOG_FILE%" -Auto
 echo.
 powershell -ExecutionPolicy Bypass -File "%YAZX_DIR%\modules\01_SystemCheck.ps1" -YazxDir "%YAZX_DIR%" -BackupDir "%BACKUP_DIR%" -LogFile "%LOG_FILE%" -Auto
 powershell -ExecutionPolicy Bypass -File "%YAZX_DIR%\modules\02_NVIDIADriver.ps1" -YazxDir "%YAZX_DIR%" -BackupDir "%BACKUP_DIR%" -LogFile "%LOG_FILE%" -Auto
@@ -174,14 +179,14 @@ powershell -ExecutionPolicy Bypass -File "%YAZX_DIR%\modules\14_NewTweaks.ps1" -
 powershell -ExecutionPolicy Bypass -File "%YAZX_DIR%\modules\15_Autologgers.ps1" -YazxDir "%YAZX_DIR%" -BackupDir "%BACKUP_DIR%" -LogFile "%LOG_FILE%" -Auto
 echo.
 echo  ═══════════════════════════════════════════
-echo   ALL 15 modules applied with YAZX defaults
+echo   ALL 16 modules applied with YAZX defaults
 echo  ═══════════════════════════════════════════
 echo.
 echo  [!] Module 13 (Oneclick) must be run manually - download from:
 echo      https://github.com/QuakedK/Oneclick/releases
 echo.
 echo  Log file: %LOG_FILE%
-echo  [%DATE% %TIME%] ALL modules completed (15 modules, Auto mode). >> "%LOG_FILE%"
+echo  [%DATE% %TIME%] ALL modules completed (16 modules, Auto mode). >> "%LOG_FILE%"
 goto done
 
 :run_syscheck
@@ -301,6 +306,10 @@ goto done
 
 :run_autologgers
 powershell -ExecutionPolicy Bypass -File "%YAZX_DIR%\modules\15_Autologgers.ps1" -YazxDir "%YAZX_DIR%" -BackupDir "%BACKUP_DIR%" -LogFile "%LOG_FILE%"
+goto done
+
+:run_downloadtools
+powershell -ExecutionPolicy Bypass -File "%YAZX_DIR%\modules\16_DownloadTools.ps1" -YazxDir "%YAZX_DIR%" -BackupDir "%BACKUP_DIR%" -LogFile "%LOG_FILE%"
 goto done
 
 :run_oneclick
